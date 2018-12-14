@@ -1,31 +1,33 @@
 import java.awt.*;
 import javax.swing.*;
+import java.util.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+
 public class Level extends JPanel {
     private Tank tank = new Tank(100, 100);
+    private ArrayList<Bullet> playerB;
 
     public Level() {
-
+        playerB = new ArrayList<Bullet>(0);
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent)  {
-                //tank.mouseClicked(mouseEvent);
-
             }
 
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-                tank.mousePressed(mouseEvent);
-                            }
+            public void mousePressed(MouseEvent e) {
+                Bullet b = new Bullet(tank.getX(),tank.getY(),e.getX(),e.getY());
+                playerB.add(b);
+            }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-                tank.mouseReleased(mouseEvent);
+
             }
 
             @Override
@@ -55,8 +57,9 @@ public class Level extends JPanel {
         setFocusable(true);
     }
 
+    //moving each non player element
     private void move() {
-
+        for (Bullet b : playerB)b.move();
     }
 
     @Override
@@ -65,6 +68,7 @@ public class Level extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         tank.paint(g2d);
+        for (Bullet b : playerB)b.paint(g2d);
     }
 
 
