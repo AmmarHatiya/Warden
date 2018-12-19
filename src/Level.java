@@ -8,25 +8,30 @@ import java.awt.event.MouseListener;
 
 
 public class Level extends JPanel {
-    private Tank tank = new Tank(100, 100);
-    private Barrel barrel;
-    private ArrayList<Bullet> playerB;
+    private Entity[] entities = new Entity[]{new Tank(100, 100)};
+    private LinkedList<Particle> particles = new LinkedList<>();
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
 
     public Level() {
-        playerB = new ArrayList<Bullet>(0);
-        barrel = new Barrel(tank.getX(), tank.getY(),1,1);
+        for (Entity e: entities) e.addParticleToLevel = particle -> {
+            particles.add(particle);
+        };
+        for (Entity e: entities) e.removeSelf = entity -> {
+            //TODO: change entities to list and do this
+        };
+        for (Particle p: particles) p.removeSelf = particle -> {
+            this.particles.remove(particle);
+        };
 
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                for (Entity e: entities) e.mouseClicked(mouseEvent);
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Bullet b = new Bullet(tank.getX(), tank.getY(), e.getX(), e.getY());
-                playerB.add(b);
             }
 
             @Override
@@ -50,43 +55,32 @@ public class Level extends JPanel {
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent ev) {
+                for (Entity e: entities) e.keyReleased(ev);
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
-                tank.keyPressed(e);
+            public void keyPressed(KeyEvent ev) {
+                for (Entity e: entities) e.keyPressed(ev);
             }
         });
         setFocusable(true);
     }
 
-    //moving each non player element
-    private void move() {
-        for (Bullet b : playerB) b.move();
+    private void tick() {
+        for (Particle p: particles) p.tick(WIDTH, HEIGHT);
+        for (Entity e: entities) e.tick(WIDTH, HEIGHT);
     }
 
-    private void remove() {
-        ArrayList<Bullet> toRemove = new ArrayList<Bullet>(0);
-        if (!playerB.isEmpty()) {
-            for (Bullet b : playerB) {
-                if (b.getX() > WIDTH-5 || b.getX() < 5 || b.getY() > HEIGHT-5|| b.getY() < 5) {
-                    toRemove.add(b);
-                }
-            }
-            playerB.removeAll(toRemove);
-        }
-    }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g); //Clears the panel, for a fresh start
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-
-        tank.paint(g2d);
-        for (Bullet b : playerB) b.paint(g2d);
-        barrel.paint(g2d);
+        for (Entity e: entities) e.paint(g2d);
+        for (Particle p: particles) p.paint(g2d);
     }
 
 
@@ -99,10 +93,9 @@ public class Level extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
-            jp.move(); //Updates the coordinates
+            jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
-            jp.remove();
-            Thread.sleep(1); //Pauses for a moment
+            Thread.sleep(1000/30); //Pauses for a moment
         }
     }
 
