@@ -78,12 +78,6 @@ private Grassbttnlsm gb = new Grassbttnlsm();
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
                 // Go to corresponding menu
-                /*if (mouseY == ){
-
-                }*/
-                /*if (mouseX == ){
-
-                }*/
 
             }
 
