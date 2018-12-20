@@ -3,18 +3,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 //https://stackoverflow.com/questions/44138641/2d-bullet-game-in-java
-public class Tank extends Entity {
-    public enum Direction {
-        N, S, E, W;
-    }
-    private Direction direction = Direction.N;
-
+public class PlayerTank extends Entity {
     private int speed = 1; //how fast moves
-    private boolean shoot = false;
 
-    public static final Color MOD_YELLOW = new Color(254, 255, 24, 251);
-
-    public Tank(int x, int y) {
+    public PlayerTank(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -58,8 +50,8 @@ public class Tank extends Entity {
 
     }
 
-    public void mouseClicked(MouseEvent e) {
-        super.mouseClicked(e);
+    public void mousePressed(MouseEvent e) {
+        super.mousePressed(e);
         this.addParticleToLevel.accept(new Bullet(this.x, this.y, e.getX(), e.getY()));
     }
 }

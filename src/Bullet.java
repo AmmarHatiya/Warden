@@ -4,7 +4,6 @@ import java.awt.*;
 
 
 public class Bullet extends Particle {
-    // TODO: remove particles
     public Bullet(double x, double y, double xM, double yM) {
         this.x = x;
         this.y = y;
@@ -27,7 +26,7 @@ public class Bullet extends Particle {
     public void tick(int levelWidth, int levelHeight) {
         super.tick(levelWidth, levelHeight);
         this.speed *= 0.999;
-        if (x > levelWidth-5 || x < 5 || y > levelHeight-5||y < 5) {
+        if (x > levelWidth-15 || x < 5 || y > levelHeight-15||y < 5) {
             this.removeSelf.accept(this);
         }
     }

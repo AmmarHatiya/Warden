@@ -1,5 +1,5 @@
+/*
 import java.awt.*;
-
 public class Barrel {
 
     int  xM, yM;
@@ -40,3 +40,4 @@ public class Barrel {
         g2d.fillRect((int)Math.round(this.x), (int)Math.round(this.y), 20, 70);
     }
 }
+*/

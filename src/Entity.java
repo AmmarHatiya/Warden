@@ -8,6 +8,9 @@ public abstract class Entity {
     public Consumer<Particle> addParticleToLevel = e -> {
         System.out.println("addParticleToLevel not set, ignoring");
     };
+    public Consumer<Particle> removeParticleFromLevel = e -> {
+        System.out.println("removeParticleFromLevel not set, ignoring");
+    };
     public Consumer<Entity> removeSelf = e -> {
         System.out.println("removeSelf not set, ignoring");
     };
@@ -16,7 +19,7 @@ public abstract class Entity {
     public abstract void check(Entity p);
     public void keyPressed(KeyEvent e) {}
     public void keyReleased(KeyEvent e) {}
-    public void mouseClicked(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {}
     public void tick(int levelWidth, int levelHeight) {
         this.x += this.vx;
         this.y += this.vy;
