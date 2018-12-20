@@ -4,9 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Startmenu extends JPanel {
-    private Tank tank = new Tank(100, 100);
-
-
 private Buttons ngamebttn = new Buttons(30,175,125,50);
     private Buttons lselectbttn = new Buttons(30,375,125,50);
     private Buttons upgradesbttn = new Buttons(30,475,125,50);
