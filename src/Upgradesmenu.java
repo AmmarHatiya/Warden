@@ -148,7 +148,7 @@ public class Upgradesmenu extends JPanel {
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(armorbttn.buttonx, armorbttn.buttony, armorbttn.buttonw, armorbttn.buttonh);
         try {
-            image = ImageIO.read(new File(""));
+            image = ImageIO.read(new File("C:\\Users\\s300045442\\IdeaProjects\\Warden2\\res"));
         } catch (IOException ex) {
             // handle exception...
         }
@@ -159,7 +159,7 @@ public class Upgradesmenu extends JPanel {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters
     }
-    }
+
 
 
     public static void main(String[] args) throws InterruptedException {
