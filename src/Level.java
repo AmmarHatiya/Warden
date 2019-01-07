@@ -16,6 +16,7 @@ public class Level extends JPanel {
 
     public Level() {
         entities.add((new PlayerTank(100, 100)));
+        entities.add((new Enemy(1, 500,500)));
         for (Entity e : entities)
             e.addParticleToLevel = particle -> {
                 particle.removeSelf = p -> this.particles.remove(p);
@@ -89,7 +90,7 @@ public class Level extends JPanel {
 
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame("CityScape");
+        JFrame frame = new JFrame("Den of Tanks");
         Level jp = new Level();
         frame.add(jp);
         frame.setSize(WIDTH, HEIGHT);
@@ -100,6 +101,7 @@ public class Level extends JPanel {
             jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
             Thread.sleep(1000 / 30); //Pauses for a moment
+            //Thread.sleep(1000); //Pauses for a moment
         }
     }
 

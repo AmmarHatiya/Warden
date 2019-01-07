@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 //https://stackoverflow.com/questions/44138641/2d-bullet-game-in-java
 public class PlayerTank extends Entity {
-    private int speed = 1; //how fast moves
+    private int speed = 2; //how fast moves
 
     public PlayerTank(int x, int y) {
         this.x = x;
