@@ -31,26 +31,26 @@ public class Enemy extends Entity {
     }
 
     public void tick(int levelWidth, int levelHeight) {
-        //super.tick(levelWidth, levelHeight);
-       // if (x > levelWidth-15 || x < 5 || y > levelHeight-15||y < 5) {
-        //    this.removeSelf.accept(this);
-        //}
+
 
         //vertical
         int random = (int)(Math.random() * 100 + 1);
 
         if (type == 4 || type == 5) {
-            if (random > 50) {
+            if (random > 70) {
                 shoot();
             }
         }
         //stationary
         if (type == 1 || type == 2) {
-            if (random > 66) {
+            if (random > 85) {
                 this.vy = speed;
             }
-            else if (random > 33){
+            else if (random > 70){
                 this.vy = -speed;
+            }
+            else if (random > 15){
+
             }
             else
                 shoot();
@@ -58,13 +58,15 @@ public class Enemy extends Entity {
 
         //horizontal
         random = (int)(Math.random() * 100 + 1);
-        System.out.println(random);
         if (type == 1 || type == 3) {
-            if (random > 66) {
+            if (random > 85) {
                 this.vx = speed;
             }
-            else if (random > 33){
+            else if (random > 70){
                 this.vx = -speed;
+            }
+            else if (random > 15){
+
             }
             else
                 shoot();
@@ -76,8 +78,8 @@ public class Enemy extends Entity {
     }
 
     public void shoot(){
-        int r1 = (int)(Math.random() * 100 - 100);
-        int r2 = (int)(Math.random() * 100 - 100);
+        int r1 = (int)(Math.random() * 1000 - 100);
+        int r2 = (int)(Math.random() * 1000 - 100);
         this.addParticleToLevel.accept(new Bullet(this.x, this.y, r1, r2));
     }
 

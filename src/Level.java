@@ -8,21 +8,27 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 
-public class Level extends JPanel {
+public abstract class Level extends AppPanel {
     private StartMenu startmenu = new StartMenu();
-    private List<Entity> entities = Collections.synchronizedList(new LinkedList<>());
-    private List<Particle> particles = Collections.synchronizedList(new LinkedList<>());
+    List<Entity> entities = Collections.synchronizedList(new LinkedList<>());
+    List<Particle> particles = Collections.synchronizedList(new LinkedList<>());
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
-    private static final int STARTSCREEN = 1;
-    private static final int UPGRADESSCREEN = 2;
-    private static final int LEVELSELECTSCREEN = 3;
-    private static final int GAMEOVERSCREEN = 4;
-    private static final int PLAYSCREEN = 5;
-private int select = STARTSCREEN;
-    public Level() {
+
+    public static class Level1 extends Level {
+        public Level1() {
+            super(Arrays.asList(new Entity[] {
+                    new Enemy(1, 500, 500)
+            }), Arrays.asList(new Particle[] {
+
+            }));
+        }
+    }
+
+    public Level(List<Entity> entitiesToAdd, List<Particle> particlesToAdd) {
         entities.add((new PlayerTank(100, 100)));
-        entities.add((new Enemy(1, 500,500)));
+        entities.addAll(entitiesToAdd);
+        particles.addAll(particlesToAdd);
         for (Entity e : entities)
             e.addParticleToLevel = particle -> {
                 particle.removeSelf = p -> this.particles.remove(p);
@@ -33,59 +39,11 @@ private int select = STARTSCREEN;
             e.removeParticleFromLevel = particle -> this.particles.remove(particle);
         }
         for (Particle p : particles) p.removeSelf = particle -> this.particles.remove(particle);
-
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                if (select == STARTSCREEN){
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent ev) {
-                for (Entity e : entities) e.mousePressed(ev);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-
-            }
-        });
-
-        addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent ev) {
-                for (Entity e : entities) e.keyReleased(ev);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent ev) {
-                for (Entity e : entities) e.keyPressed(ev);
-            }
-        });
         setFocusable(true);
     }
-public int getselect(){
-        return select;
-}
-public int setselect(int s){
-        select = s ;
-        return s;
-}
-    private void tick() {
+
+
+    public void tick() {
         // copy the list so it doesn't crash if the list is modified
         for (Particle p : new ArrayList<>(particles)) p.tick(WIDTH, HEIGHT);
         for (Entity e : new ArrayList<>(entities)) e.tick(WIDTH, HEIGHT);
@@ -105,7 +63,7 @@ public int setselect(int s){
 
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("Den of Tanks");
-        Level jp = new Level();
+        Level jp = new Level1();
         frame.setContentPane(jp);
         frame.setSize(WIDTH, HEIGHT);
         frame.setVisible(true);
