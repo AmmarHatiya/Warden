@@ -18,7 +18,11 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     public static class Level1 extends Level {
         public Level1() {
             super(Arrays.asList(new Entity[] {
-                    new Enemy(1, 500, 500)
+                    new Enemy(1, 100, 100),
+                    new Enemy(2, 200, 100),
+                    new Enemy(3, 300, 100),
+                    new Enemy(4, 400, 100),
+                    new Enemy(5, 500, 100),
             }), Arrays.asList(new Particle[] {
 
             }));
@@ -26,7 +30,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public Level(List<Entity> entitiesToAdd, List<Particle> particlesToAdd) {
-        entities.add(new PlayerTank(100, 100));
+        entities.add(new PlayerTank(600, 600));
         entities.addAll(entitiesToAdd);
         particles.addAll(particlesToAdd);
         for (Entity e : entities)
