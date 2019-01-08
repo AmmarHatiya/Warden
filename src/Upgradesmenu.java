@@ -1,14 +1,14 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+        import java.awt.*;
+        import java.awt.event.MouseEvent;
+        import java.awt.event.MouseListener;
+        import java.awt.Graphics;
+        import java.awt.image.BufferedImage;
+        import java.io.File;
+        import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+        import javax.imageio.ImageIO;
+        import javax.swing.JPanel;
 
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
 public class Upgradesmenu extends JPanel {
