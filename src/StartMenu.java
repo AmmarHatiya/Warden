@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,7 +6,7 @@ public class StartMenu extends AppPanel implements MouseListener {
 private Buttons ngamebttn = new Buttons(30,175,125,50);
     private Buttons lselectbttn = new Buttons(30,375,125,50);
     private Buttons upgradesbttn = new Buttons(30,475,125,50);
-    private Buttons continuegamebttn = new Buttons(30,275,125,50);
+    private Buttons howtoplaybttn = new Buttons(30,275,125,50);
     public StartMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -29,7 +28,7 @@ lsb.paint(g2d);*/
         g2d.setColor(Color.GREEN);
         ngamebttn.paint(g2d);
         upgradesbttn.paint(g2d);
-        continuegamebttn.paint(g2d);
+        howtoplaybttn.paint(g2d);
         lselectbttn.paint(g2d);
     }
 
@@ -44,9 +43,9 @@ lsb.paint(g2d);*/
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
-        if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX()<=(continuegamebttn.getX()+continuegamebttn.getW())) && (mouseEvent.getY()>= continuegamebttn.getY())&& (mouseEvent.getY()<=(continuegamebttn.getY()+continuegamebttn.getH()))){
-            System.out.println("I'm in the Continue Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+continuegamebttn.getY());
+        if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+ howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+ howtoplaybttn.getH()))){
+            System.out.println("I'm in the howtoplay button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ howtoplaybttn.getY());
         }
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
@@ -74,9 +73,9 @@ lsb.paint(g2d);*/
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
-        if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX()<=(continuegamebttn.getX()+continuegamebttn.getW())) && (mouseEvent.getY()>= continuegamebttn.getY())&& (mouseEvent.getY()<=(continuegamebttn.getY()+continuegamebttn.getH()))){
-            System.out.println("I'm in the Continue Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+continuegamebttn.getY());
+        if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+ howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+ howtoplaybttn.getH()))){
+            System.out.println("I'm in the Howtoplay button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ howtoplaybttn.getY());
         }
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
