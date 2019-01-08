@@ -53,13 +53,15 @@ lsb.paint(g2d);*/
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX()<=(upgradesbttn.getX()+upgradesbttn.getW())) && (mouseEvent.getY()>= upgradesbttn.getY())&& (mouseEvent.getY()<=(upgradesbttn.getY()+upgradesbttn.getH()))){
             System.out.println("I'm in the Upgrades button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+upgradesbttn.getY());
+            App.setCurrentPanel(App.upgradesmenu);
         }
 
         // IF STATEMENTS FOR LEVEL SELECT BUTTON
         if ((mouseEvent.getX() >= lselectbttn.getX()) && (mouseEvent.getX()<=(lselectbttn.getX()+lselectbttn.getW())) && (mouseEvent.getY()>= lselectbttn.getY())&& (mouseEvent.getY()<=(lselectbttn.getY()+lselectbttn.getH()))){
             System.out.println("I'm in the Level Select button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+lselectbttn.getY());
-            /*lsb.paint();*/
+            App.setCurrentPanel(App.levelSelectMenu);
+
         }
     }
 
