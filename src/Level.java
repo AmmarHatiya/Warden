@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 
-public abstract class Level extends AppPanel {
+public abstract class Level extends AppPanel implements MouseListener, KeyListener {
     private StartMenu startmenu = new StartMenu();
     List<Entity> entities = Collections.synchronizedList(new LinkedList<>());
     List<Particle> particles = Collections.synchronizedList(new LinkedList<>());
@@ -26,7 +26,7 @@ public abstract class Level extends AppPanel {
     }
 
     public Level(List<Entity> entitiesToAdd, List<Particle> particlesToAdd) {
-        entities.add((new PlayerTank(100, 100)));
+        entities.add(new PlayerTank(100, 100));
         entities.addAll(entitiesToAdd);
         particles.addAll(particlesToAdd);
         for (Entity e : entities)
@@ -40,6 +40,8 @@ public abstract class Level extends AppPanel {
         }
         for (Particle p : particles) p.removeSelf = particle -> this.particles.remove(particle);
         setFocusable(true);
+        this.addKeyListener(this);
+        this.addMouseListener(this);
     }
 
 
@@ -77,5 +79,36 @@ public abstract class Level extends AppPanel {
         }
     }
 
+    public void mouseClicked(MouseEvent mouseEvent) {
+
+    }
+
+    public void mousePressed(MouseEvent mouseEvent) {
+        for (Entity e: entities) e.mousePressed(mouseEvent);
+    }
+
+    public void mouseReleased(MouseEvent mouseEvent) {
+        for (Entity e: entities) e.mousePressed(mouseEvent);
+    }
+
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    public void keyPressed(KeyEvent keyEvent) {
+        for (Entity e: entities) e.keyPressed(keyEvent);
+    }
+
+    public void keyReleased(KeyEvent keyEvent) {
+        for (Entity e: entities) e.keyReleased(keyEvent);
+    }
 }
 
