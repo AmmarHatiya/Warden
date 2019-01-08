@@ -8,6 +8,7 @@ private Buttons ngamebttn = new Buttons(30,175,125,50);
     private Buttons lselectbttn = new Buttons(30,375,125,50);
     private Buttons upgradesbttn = new Buttons(30,475,125,50);
     private Buttons continuegamebttn = new Buttons(30,275,125,50);
+    private Buttons howtoplaybttn = new Buttons(30,75,125,50);
     public StartMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -31,6 +32,7 @@ lsb.paint(g2d);*/
         upgradesbttn.paint(g2d);
         continuegamebttn.paint(g2d);
         lselectbttn.paint(g2d);
+        howtoplaybttn.paint(g2d);
     }
 
     public void tick() {
@@ -63,6 +65,12 @@ lsb.paint(g2d);*/
             App.setCurrentPanel(App.levelSelectMenu);
 
         }
+        // IF STATEMENTS FOR HOWTOPLAY BUTTON
+        if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
+            System.out.println("I'm in the how to play button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
+            /*App.setCurrentPanel(App.levelSelectMenu);*/
+        }
     }
 
     public void mousePressed(MouseEvent mouseEvent) {
@@ -90,6 +98,12 @@ lsb.paint(g2d);*/
             System.out.println("I'm in the Level Select button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+lselectbttn.getY());
             /*    lsb.paint();*/
+        }
+        // IF STATEMENTS FOR HOWTOPLAY BUTTON
+        if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
+            System.out.println("I'm in the how to play button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
+            /*App.setCurrentPanel(App.levelSelectMenu);*/
         }
     }
 
