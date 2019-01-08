@@ -106,7 +106,6 @@ lsb.paint(g2d);*/
             /*App.setCurrentPanel(App.levelSelectMenu);*/
         }
     }
-
     public void mouseReleased(MouseEvent mouseEvent) {
     }
 
