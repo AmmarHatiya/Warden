@@ -7,6 +7,7 @@ public class App {
     private static JFrame f;
     private static AppPanel currentPanel;
 
+    public final static Upgradesmenu upgradesmenu= new Upgradesmenu();
     public final static StartMenu startMenu = new StartMenu();
     public final static LevelSelectMenu levelSelectMenu = new LevelSelectMenu();
 
@@ -14,6 +15,8 @@ public class App {
         currentPanel = p;
         f.setContentPane(currentPanel);
         f.repaint();
+        currentPanel.invalidate();
+        currentPanel.revalidate();
         currentPanel.repaint();
         currentPanel.tick();
     }

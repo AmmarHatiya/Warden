@@ -11,7 +11,7 @@ import javax.swing.*;
         import javax.swing.JPanel;
 
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
-public class Upgradesmenu extends JPanel {
+public class Upgradesmenu extends AppPanel implements MouseListener {
     private BufferedImage image;
 
 
@@ -32,103 +32,11 @@ public class Upgradesmenu extends JPanel {
 
 
     public Upgradesmenu() {
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-
-                // IF STATEMENTS FOR double barrel BUTTON
-                if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
-                    System.out.println("I'm in the double barrel upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + doublebarrelbttn.getY());
-                }
-
-
-                // IF STATEMENTS FOR armor BUTTON
-                if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
-                    System.out.println("I'm in the armor upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + armorbttn.getY());
-                }
-
-
-                // IF STATEMENTS FOR mobility GAME BUTTON
-                if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
-                    System.out.println("I'm in the mobility upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
-                }
-                // IF STATEMENTS FOR penetration BUTTON
-                if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
-                    System.out.println("I'm in the penetration upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
-                }
-                // IF STATEMENTS FOR RAPID FIRE BUTTON
-                if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
-                    System.out.println("I'm in the rapid fire upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + rapidbttn.getY());
-                }
-                // IF STATEMENTS FOR HEALTH UPGRADES
-                if ((mouseEvent.getX() >= healthbttn.getX()) && (mouseEvent.getX() <= (healthbttn.getX() + healthbttn.getW())) && (mouseEvent.getY() >= healthbttn.getY()) && (mouseEvent.getY() <= (healthbttn.getY() + healthbttn.getH()))) {
-                    System.out.println("I'm in the health upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-
-                // IF STATEMENTS FOR double barrel BUTTON
-                if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
-                    System.out.println("I'm in the double barrel upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + doublebarrelbttn.getY());
-                }
-
-
-                // IF STATEMENTS FOR armor BUTTON
-                if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
-                    System.out.println("I'm in the armor upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + armorbttn.getY());
-                }
-
-
-                // IF STATEMENTS FOR mobility GAME BUTTON
-                if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
-                    System.out.println("I'm in the mobility upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
-                }
-                // IF STATEMENTS FOR penetration BUTTON
-                if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
-                    System.out.println("I'm in the penetration upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
-                }
-                // IF STATEMENTS FOR RAPID FIRE BUTTON
-                if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
-                    System.out.println("I'm in the rapid fire upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + rapidbttn.getY());
-                }
-                // IF STATEMENTS FOR HEALTH UPGRADES
-                if ((mouseEvent.getX() >= healthbttn.getX()) && (mouseEvent.getX() <= (healthbttn.getX() + healthbttn.getW())) && (mouseEvent.getY() >= healthbttn.getY()) && (mouseEvent.getY() <= (healthbttn.getY() + healthbttn.getH()))) {
-                    System.out.println("I'm in the health upgrade button");
-                    System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
-                }
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-                // Go to corresponding menu
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-
-            }
-        });
-        setFocusable(true);
+        addMouseListener(this);
+            setFocusable(true);
     }
-
+    public void tick() {
+    }
 
     public void paint(Graphics g) {
         super.paint(g);
@@ -153,8 +61,96 @@ public class Upgradesmenu extends JPanel {
             // handle exception...
         }
     }
+    public void mouseClicked(MouseEvent mouseEvent) {
 
-    @Override
+        // IF STATEMENTS FOR double barrel BUTTON
+        if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
+            System.out.println("I'm in the double barrel upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + doublebarrelbttn.getY());
+        }
+
+
+        // IF STATEMENTS FOR armor BUTTON
+        if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
+            System.out.println("I'm in the armor upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + armorbttn.getY());
+        }
+
+
+        // IF STATEMENTS FOR mobility GAME BUTTON
+        if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
+            System.out.println("I'm in the mobility upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
+        }
+        // IF STATEMENTS FOR penetration BUTTON
+        if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
+            System.out.println("I'm in the penetration upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
+        }
+        // IF STATEMENTS FOR RAPID FIRE BUTTON
+        if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
+            System.out.println("I'm in the rapid fire upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + rapidbttn.getY());
+        }
+        // IF STATEMENTS FOR HEALTH UPGRADES
+        if ((mouseEvent.getX() >= healthbttn.getX()) && (mouseEvent.getX() <= (healthbttn.getX() + healthbttn.getW())) && (mouseEvent.getY() >= healthbttn.getY()) && (mouseEvent.getY() <= (healthbttn.getY() + healthbttn.getH()))) {
+            System.out.println("I'm in the health upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
+        }
+    }
+
+    public void mousePressed(MouseEvent mouseEvent) {
+
+        // IF STATEMENTS FOR double barrel BUTTON
+        if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
+            System.out.println("I'm in the double barrel upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + doublebarrelbttn.getY());
+        }
+
+
+        // IF STATEMENTS FOR armor BUTTON
+        if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
+            System.out.println("I'm in the armor upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + armorbttn.getY());
+        }
+
+
+        // IF STATEMENTS FOR mobility GAME BUTTON
+        if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
+            System.out.println("I'm in the mobility upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
+        }
+        // IF STATEMENTS FOR penetration BUTTON
+        if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
+            System.out.println("I'm in the penetration upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
+        }
+        // IF STATEMENTS FOR RAPID FIRE BUTTON
+        if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
+            System.out.println("I'm in the rapid fire upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + rapidbttn.getY());
+        }
+        // IF STATEMENTS FOR HEALTH UPGRADES
+        if ((mouseEvent.getX() >= healthbttn.getX()) && (mouseEvent.getX() <= (healthbttn.getX() + healthbttn.getW())) && (mouseEvent.getY() >= healthbttn.getY()) && (mouseEvent.getY() <= (healthbttn.getY() + healthbttn.getH()))) {
+            System.out.println("I'm in the health upgrade button");
+            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
+        }
+    }
+
+    public void mouseReleased(MouseEvent mouseEvent) {
+        // Go to corresponding menu
+
+    }
+
+
+    public void mouseEntered(MouseEvent mouseEvent) {
+    }
+
+
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters
