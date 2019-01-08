@@ -9,13 +9,20 @@ import java.util.List;
 
 
 public class Level extends JPanel {
+    private StartMenu startmenu = new StartMenu();
     private List<Entity> entities = Collections.synchronizedList(new LinkedList<>());
     private List<Particle> particles = Collections.synchronizedList(new LinkedList<>());
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
-
+    private static final int STARTSCREEN = 1;
+    private static final int UPGRADESSCREEN = 2;
+    private static final int LEVELSELECTSCREEN = 3;
+    private static final int GAMEOVERSCREEN = 4;
+    private static final int PLAYSCREEN = 5;
+private int select = STARTSCREEN;
     public Level() {
         entities.add((new PlayerTank(100, 100)));
+        entities.add((new Enemy(1, 500,500)));
         for (Entity e : entities)
             e.addParticleToLevel = particle -> {
                 particle.removeSelf = p -> this.particles.remove(p);
@@ -30,6 +37,8 @@ public class Level extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                if (select == STARTSCREEN){
+                }
             }
 
             @Override
@@ -69,7 +78,13 @@ public class Level extends JPanel {
         });
         setFocusable(true);
     }
-
+public int getselect(){
+        return select;
+}
+public int setselect(int s){
+        select = s ;
+        return s;
+}
     private void tick() {
         // copy the list so it doesn't crash if the list is modified
         for (Particle p : new ArrayList<>(particles)) p.tick(WIDTH, HEIGHT);
@@ -89,9 +104,9 @@ public class Level extends JPanel {
 
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame("CityScape");
+        JFrame frame = new JFrame("Den of Tanks");
         Level jp = new Level();
-        frame.add(jp);
+        frame.setContentPane(jp);
         frame.setSize(WIDTH, HEIGHT);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +115,7 @@ public class Level extends JPanel {
             jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
             Thread.sleep(1000 / 30); //Pauses for a moment
+            //Thread.sleep(1000); //Pauses for a moment
         }
     }
 

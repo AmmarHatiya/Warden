@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
-public class Levelselectmenu extends JPanel {
-
-
+public class LevelSelectMenu extends AppPanel implements MouseListener {
     private int grasstankx[] = {30 + 25, 30 + 5, 30 + 60, 30 + 45};
     private int grasstanky[] = {50+60, 50 + 82, 50 + 82, 50+60};
     private int mudtankx[] = {30 + 25, 30 + 5, 30 + 60, 30 + 45};
@@ -19,91 +17,10 @@ public class Levelselectmenu extends JPanel {
     private Buttons grassbttn= new Buttons(30,50,150,125);
     private Buttons citybttn= new Buttons(30,500,150,125);
 
-    public Levelselectmenu() {
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-
-                // IF STATEMENTS FOR Grass BUTTON
-                if ((mouseEvent.getX() >= grassbttn.getX()) && (mouseEvent.getX()<=(grassbttn.getX()+grassbttn.getW())) && (mouseEvent.getY()>= grassbttn.getY())&& (mouseEvent.getY()<=(grassbttn.getY()+grassbttn.getH()))){
-                    System.out.println("I'm in the Grass button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+grassbttn.getY());
-                }
-
-
-
-                // IF STATEMENTS FOR mud BUTTON
-                if ((mouseEvent.getX() >= mudbttn.getX()) && (mouseEvent.getX()<=(mudbttn.getX()+mudbttn.getW())) && (mouseEvent.getY()>= mudbttn.getY())&& (mouseEvent.getY()<=(mudbttn.getY()+mudbttn.getH()))){
-                    System.out.println("I'm in the Mud button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+mudbttn.getY());
-                }
-
-
-
-                // IF STATEMENTS FOR ice GAME BUTTON
-                if ((mouseEvent.getX() >= icebttn.getX()) && (mouseEvent.getX()<=(icebttn.getX()+icebttn.getW())) && (mouseEvent.getY()>= icebttn.getY())&& (mouseEvent.getY()<=(icebttn.getY()+icebttn.getH()))){
-                    System.out.println("I'm in the Ice button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+icebttn.getY());
-                }
-                // IF STATEMENTS FOR city BUTTON
-                if ((mouseEvent.getX() >= citybttn.getX()) && (mouseEvent.getX()<=(citybttn.getX()+citybttn.getW())) && (mouseEvent.getY()>= citybttn.getY())&& (mouseEvent.getY()<=(citybttn.getY()+citybttn.getH()))){
-                    System.out.println("I'm in the City button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-                // Go to corresponding menu
-                // IF STATEMENTS FOR Grass BUTTON
-                if ((mouseEvent.getX() >= grassbttn.getX()) && (mouseEvent.getX()<=(grassbttn.getX()+grassbttn.getW())) && (mouseEvent.getY()>= grassbttn.getY())&& (mouseEvent.getY()<=(grassbttn.getY()+grassbttn.getH()))){
-                    System.out.println("I'm in the Grass button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+grassbttn.getY());
-                }
-
-
-
-                // IF STATEMENTS FOR mud BUTTON
-                if ((mouseEvent.getX() >= mudbttn.getX()) && (mouseEvent.getX()<=(mudbttn.getX()+mudbttn.getW())) && (mouseEvent.getY()>= mudbttn.getY())&& (mouseEvent.getY()<=(mudbttn.getY()+mudbttn.getH()))){
-                    System.out.println("I'm in the Mud button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+mudbttn.getY());
-                }
-
-
-
-                // IF STATEMENTS FOR ice GAME BUTTON
-                if ((mouseEvent.getX() >= icebttn.getX()) && (mouseEvent.getX()<=(icebttn.getX()+icebttn.getW())) && (mouseEvent.getY()>= icebttn.getY())&& (mouseEvent.getY()<=(icebttn.getY()+icebttn.getH()))){
-                    System.out.println("I'm in the Ice button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+icebttn.getY());
-                }
-                // IF STATEMENTS FOR city BUTTON
-                if ((mouseEvent.getX() >= citybttn.getX()) && (mouseEvent.getX()<=(citybttn.getX()+citybttn.getW())) && (mouseEvent.getY()>= citybttn.getY())&& (mouseEvent.getY()<=(citybttn.getY()+citybttn.getH()))){
-                    System.out.println("I'm in the City button");
-                    System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
-                }
-
-
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-                // Go to corresponding menu
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-
-            }
-        });
+    public LevelSelectMenu() {
+        addMouseListener(this);
         setFocusable(true);
     }
-
 
     public void paint(Graphics g) {
         super.paint(g);
@@ -180,23 +97,69 @@ public class Levelselectmenu extends JPanel {
         g2d.fillPolygon(citytankx, citytanky, 4);
     }
 
-
-    public static void main(String[] args) throws InterruptedException {
-
-        JFrame frame = new JFrame("Den of Tanks");
-        Levelselectmenu p = new Levelselectmenu();
-
-        frame.add(p);
-        //Add our JPanel to the frame
-        frame.setSize(1000, 700);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Draw stuff
-        while (true) {
-            p.repaint();
-            Thread.sleep(10);
-        }
+    public void tick() {
 
     }
 
+    public void mouseClicked(MouseEvent mouseEvent) {
+        // IF STATEMENTS FOR Grass BUTTON
+        if ((mouseEvent.getX() >= grassbttn.getX()) && (mouseEvent.getX()<=(grassbttn.getX()+grassbttn.getW())) && (mouseEvent.getY()>= grassbttn.getY())&& (mouseEvent.getY()<=(grassbttn.getY()+grassbttn.getH()))){
+            System.out.println("I'm in the Grass button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+grassbttn.getY());
+        }
+
+        // IF STATEMENTS FOR mud BUTTON
+        if ((mouseEvent.getX() >= mudbttn.getX()) && (mouseEvent.getX()<=(mudbttn.getX()+mudbttn.getW())) && (mouseEvent.getY()>= mudbttn.getY())&& (mouseEvent.getY()<=(mudbttn.getY()+mudbttn.getH()))){
+            System.out.println("I'm in the Mud button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+mudbttn.getY());
+        }
+
+        // IF STATEMENTS FOR ice GAME BUTTON
+        if ((mouseEvent.getX() >= icebttn.getX()) && (mouseEvent.getX()<=(icebttn.getX()+icebttn.getW())) && (mouseEvent.getY()>= icebttn.getY())&& (mouseEvent.getY()<=(icebttn.getY()+icebttn.getH()))){
+            System.out.println("I'm in the Ice button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+icebttn.getY());
+        }
+        // IF STATEMENTS FOR city BUTTON
+        if ((mouseEvent.getX() >= citybttn.getX()) && (mouseEvent.getX()<=(citybttn.getX()+citybttn.getW())) && (mouseEvent.getY()>= citybttn.getY())&& (mouseEvent.getY()<=(citybttn.getY()+citybttn.getH()))){
+            System.out.println("I'm in the City button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
+        }
+    }
+
+    public void mousePressed(MouseEvent mouseEvent) {
+        // Go to corresponding menu
+        // IF STATEMENTS FOR Grass BUTTON
+        if ((mouseEvent.getX() >= grassbttn.getX()) && (mouseEvent.getX()<=(grassbttn.getX()+grassbttn.getW())) && (mouseEvent.getY()>= grassbttn.getY())&& (mouseEvent.getY()<=(grassbttn.getY()+grassbttn.getH()))){
+            System.out.println("I'm in the Grass button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+grassbttn.getY());
+        }
+
+        // IF STATEMENTS FOR mud BUTTON
+        if ((mouseEvent.getX() >= mudbttn.getX()) && (mouseEvent.getX()<=(mudbttn.getX()+mudbttn.getW())) && (mouseEvent.getY()>= mudbttn.getY())&& (mouseEvent.getY()<=(mudbttn.getY()+mudbttn.getH()))){
+            System.out.println("I'm in the Mud button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+mudbttn.getY());
+        }
+
+        // IF STATEMENTS FOR ice GAME BUTTON
+        if ((mouseEvent.getX() >= icebttn.getX()) && (mouseEvent.getX()<=(icebttn.getX()+icebttn.getW())) && (mouseEvent.getY()>= icebttn.getY())&& (mouseEvent.getY()<=(icebttn.getY()+icebttn.getH()))){
+            System.out.println("I'm in the Ice button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+icebttn.getY());
+        }
+        // IF STATEMENTS FOR city BUTTON
+        if ((mouseEvent.getX() >= citybttn.getX()) && (mouseEvent.getX()<=(citybttn.getX()+citybttn.getW())) && (mouseEvent.getY()>= citybttn.getY())&& (mouseEvent.getY()<=(citybttn.getY()+citybttn.getH()))){
+            System.out.println("I'm in the City button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
+        }
+    }
+
+    public void mouseReleased(MouseEvent mouseEvent) {
+        // Go to corresponding menu
+    }
+
+    public void mouseEntered(MouseEvent mouseEvent) {
+    }
+
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
 }
