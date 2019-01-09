@@ -6,7 +6,7 @@ public class App {
 
     private static JFrame f;
     private static AppPanel currentPanel;
-
+    public final static RetryScreen retryScreen= new RetryScreen();
     public final static Upgradesmenu upgradesmenu= new Upgradesmenu();
     public final static StartMenu startMenu = new StartMenu();
     public final static LevelSelectMenu levelSelectMenu = new LevelSelectMenu();
