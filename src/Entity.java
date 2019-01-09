@@ -24,4 +24,6 @@ public abstract class Entity {
         this.x += this.vx;
         this.y += this.vy;
     }
+    public abstract void check(Entity e);
+    public abstract void check(Particle p);
 }
