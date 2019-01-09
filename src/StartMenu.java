@@ -16,6 +16,8 @@ private Buttons ngamebttn = new Buttons(30,175,125,50);
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        Font font = new Font("Century Gothic", Font.BOLD, 14);
+        g.setFont(font);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         //Draw Background
@@ -32,6 +34,12 @@ lsb.paint(g2d);*/
         continuegamebttn.paint(g2d);
         lselectbttn.paint(g2d);
         howtoplaybttn.paint(g2d);
+        g2d.drawString("How To Play", howtoplaybttn.buttonx+25, howtoplaybttn.buttony+27);
+        g2d.drawString("New Game", ngamebttn.buttonx+25, ngamebttn.buttony+27);
+        g2d.drawString("Continue Game", continuegamebttn.buttonx+13, continuegamebttn.buttony+27);
+        g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
+        g2d.drawString("Upgrades", upgradesbttn.buttonx+25, upgradesbttn.buttony+27);
+
     }
 
     public void tick() {

@@ -4,8 +4,8 @@ import java.awt.event.MouseListener;
 
 public class RetryScreen extends AppPanel implements MouseListener {
 
-        private Buttons mainmenu = new Buttons(30,175,125,50);
-        private Buttons retrybttn = new Buttons(30,375,125,50);
+        private Buttons mainmenu = new Buttons(250,350,125,50);
+        private Buttons retrybttn = new Buttons(600,350,125,50);
 
         public RetryScreen() {
             addMouseListener(this);
