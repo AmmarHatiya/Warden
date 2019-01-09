@@ -52,6 +52,6 @@ public class PlayerTank extends Entity {
 
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        this.addParticleToLevel.accept(new Bullet(this.x, this.y, e.getX(), e.getY()));
+        this.addParticleToLevel.accept(new Bullet(this.x, this.y, e.getX(), e.getY(), true));
     }
 }

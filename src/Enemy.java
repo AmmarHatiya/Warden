@@ -8,6 +8,9 @@ public class Enemy extends Entity {
     private static final int TURRETS = 4;
     private static final int TOWER = 5;
 
+    public int width = 30;
+    public int height = 30;
+
     private int type;
     private int health;
     private boolean shoot = false;
@@ -24,7 +27,7 @@ public class Enemy extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.black);
-        g2d.fillRect((int) x - 15, (int) y - 15, 30, 30);
+        g2d.fillRect((int) x - 15, (int) y - 15, width, height);
 
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
@@ -82,7 +85,7 @@ public class Enemy extends Entity {
     public void shoot() {
         int r1 = (int) (Math.random() * 1000 - 100);
         int r2 = (int) (Math.random() * 1000 - 100);
-        this.addParticleToLevel.accept(new Bullet(this.x, this.y, r1, r2));
+        this.addParticleToLevel.accept(new Bullet(this.x, this.y, r1, r2, false));
     }
 
     public void check(Entity p) {
@@ -90,7 +93,14 @@ public class Enemy extends Entity {
     }
 
     public void check(Particle p) {
+        if (p instanceof Bullet){
+            Bullet b = (Bullet) p;
+            if (b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
+                this.removeParticleFromLevel.accept(p);
+                this.removeSelf.accept(this);
+            }
 
+        }
     }
 
 }

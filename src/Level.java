@@ -6,23 +6,30 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public abstract class Level extends AppPanel implements MouseListener, KeyListener {
     private StartMenu startmenu = new StartMenu();
-    List<Entity> entities = Collections.synchronizedList(new LinkedList<>());
-    List<Particle> particles = Collections.synchronizedList(new LinkedList<>());
+    List<Entity> entities = Collections.synchronizedList(new CopyOnWriteArrayList<>());
+    List<Particle> particles = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 700;
+
+    private static final int TANK = 1;
+    private static final int TRUCK = 2;
+    private static final int PLANE = 3;
+    private static final int TURRET = 4;
+    private static final int TOWER = 5;
 
     public static class Level1 extends Level {
         public Level1() {
             super(Arrays.asList(new Entity[] {
-                    new Enemy(1, 100, 100),
-                    new Enemy(2, 200, 100),
-                    new Enemy(3, 300, 100),
-                    new Enemy(4, 400, 100),
-                    new Enemy(5, 500, 100),
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
             }), Arrays.asList(new Particle[] {
 
             }));
@@ -51,8 +58,10 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
     public void tick() {
         // copy the list so it doesn't crash if the list is modified
-        for (Particle p : new ArrayList<>(particles)) p.tick(WIDTH, HEIGHT);
-        for (Entity e : new ArrayList<>(entities)) e.tick(WIDTH, HEIGHT);
+        for (Entity a: entities) for (Entity b: entities) a.check(b);
+        for (Entity a: entities) for (Particle b: particles) a.check(b);
+        for (Particle p : particles) p.tick(WIDTH, HEIGHT);
+        for (Entity e : entities) e.tick(WIDTH, HEIGHT);
     }
 
 
@@ -62,8 +71,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        for (Entity e : new ArrayList<>(entities)) e.paint(g2d);
-        for (Particle p : new ArrayList<>(particles)) p.paint(g2d);
+        for (Entity e : entities) e.paint(g2d);
+        for (Particle p : particles) p.paint(g2d);
     }
 
 

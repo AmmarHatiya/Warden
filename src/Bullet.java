@@ -4,15 +4,19 @@ import java.awt.*;
 
 
 public class Bullet extends Particle {
-    public Bullet(double x, double y, double xM, double yM) {
+
+
+    public Bullet(double x, double y, double xM, double yM, boolean ip) {
         this.x = x;
         this.y = y;
         this.speed = 2;
+        this.isPlayer = ip;
 
         this.vy = speed * Math.sin(getAngle(xM, yM));
         this.vx = speed * Math.cos(getAngle(xM, yM));
 
     }
+
 
     public double getAngle(double xM, double yM) {
         double angle = Math.toDegrees(Math.atan2(yM - y, xM - x));
@@ -34,13 +38,5 @@ public class Bullet extends Particle {
     public void paint(Graphics2D g2d) {
         g2d.setColor(Color.yellow);
         g2d.fillRect((int)Math.round(this.x), (int)Math.round(this.y), 8, 8);
-    }
-
-    public void check(Entity p) {
-
-    }
-
-    public void check(Particle p) {
-
     }
 }
