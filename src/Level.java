@@ -10,7 +10,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public abstract class Level extends AppPanel implements MouseListener, KeyListener {
-    private StartMenu startmenu = new StartMenu();
     List<Entity> entities = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     List<Particle> particles = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     private static final int WIDTH = 1000;

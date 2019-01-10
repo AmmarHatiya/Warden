@@ -86,6 +86,7 @@ lsb.paint(g2d);*/
         if ((mouseEvent.getX() >= ngamebttn.getX()) && (mouseEvent.getX()<=(ngamebttn.getX()+ngamebttn.getW())) && (mouseEvent.getY()>= ngamebttn.getY())&& (mouseEvent.getY()<=(ngamebttn.getY()+ngamebttn.getH()))){
             System.out.println("I'm in the New Game button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ngamebttn.getY());
+            App.setCurrentPanel(App.level);
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
