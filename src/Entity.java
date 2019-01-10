@@ -20,6 +20,7 @@ public abstract class Entity {
     public void keyPressed(KeyEvent e) {}
     public void keyReleased(KeyEvent e) {}
     public void mousePressed(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {}
     public void tick(int levelWidth, int levelHeight) {
         this.x += this.vx;
         this.y += this.vy;

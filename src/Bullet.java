@@ -30,13 +30,14 @@ public class Bullet extends Particle {
     public void tick(int levelWidth, int levelHeight) {
         super.tick(levelWidth, levelHeight);
         this.speed *= 0.999;
-        if (x > levelWidth-15 || x < 5 || y > levelHeight-15||y < 5) {
+        if (x > levelWidth - 15 || x < 5 || y > levelHeight - 15 || y < 5) {
             this.removeSelf.accept(this);
         }
     }
 
     public void paint(Graphics2D g2d) {
-        g2d.setColor(Color.yellow);
-        g2d.fillRect((int)Math.round(this.x), (int)Math.round(this.y), 8, 8);
+        if (isPlayer) g2d.setColor(Color.yellow);
+        else g2d.setColor(Color.red);
+        g2d.fillRect((int) Math.round(this.x), (int) Math.round(this.y), 8, 8);
     }
 }
