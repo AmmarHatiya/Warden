@@ -27,20 +27,21 @@ public class Enemy extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.black);
-        g2d.fillRect((int) x - 15, (int) y - 15, width, height);
+        g2d.fillRect((int) x, (int) y, width, height);
 
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
     }
 
     public void tick(int levelWidth, int levelHeight) {
-
-
         //vertical
         int random = (int) (Math.random() * 100 + 1);
 
         if (type == 4 || type == 5) {
-            if (random > 98) {
+            if (random > 2) {
+
+            }
+            else{
                 shoot();
             }
         }
@@ -85,11 +86,14 @@ public class Enemy extends Entity {
     public void shoot() {
         int r1 = (int) (Math.random() * 1000 - 100);
         int r2 = (int) (Math.random() * 1000 - 100);
-        this.addParticleToLevel.accept(new Bullet(this.x, this.y, r1, r2, false));
+        this.addParticleToLevel.accept(new Bullet(this.x+15, this.y+15, r1, r2, false));
     }
 
     public void check(Entity p) {
-
+        if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
+            this.x = x - vx;
+            this.y = y - vy;
+        }
     }
 
     public void check(Particle p) {
@@ -99,7 +103,6 @@ public class Enemy extends Entity {
                 this.removeParticleFromLevel.accept(p);
                 this.removeSelf.accept(this);
             }
-
         }
     }
 
