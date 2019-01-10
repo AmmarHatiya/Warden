@@ -1,15 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 import java.util.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-public abstract class Level extends AppPanel implements MouseListener, KeyListener {
+public abstract class Level extends AppPanel implements MouseListener, KeyListener, MouseMotionListener {
     private StartMenu startmenu = new StartMenu();
     List<Entity> entities = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     List<Particle> particles = Collections.synchronizedList(new CopyOnWriteArrayList<>());
@@ -42,17 +39,18 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         particles.addAll(particlesToAdd);
         for (Entity e : entities)
             e.addParticleToLevel = particle -> {
-                particle.removeSelf = p -> this.particles.remove(p);
+                particle.removeSelf = this.particles::remove;
                 particles.add(particle);
             };
         for (Entity e : entities) {
-            e.removeSelf = entity -> this.entities.remove(entity);
-            e.removeParticleFromLevel = particle -> this.particles.remove(particle);
+            e.removeSelf = this.entities::remove;
+            e.removeParticleFromLevel = this.particles::remove;
         }
-        for (Particle p : particles) p.removeSelf = particle -> this.particles.remove(particle);
+        for (Particle p : particles) p.removeSelf = this.particles::remove;
         setFocusable(true);
         this.addKeyListener(this);
         this.addMouseListener(this);
+        this.addMouseMotionListener(this);
     }
 
 
@@ -87,7 +85,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         while (true) {
             jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
-            Thread.sleep(1000 / 30); //Pauses for a moment
+            Thread.sleep(1000 / 60); //Pauses for a moment
             //Thread.sleep(1000); //Pauses for a moment
         }
     }
@@ -101,7 +99,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void mouseReleased(MouseEvent mouseEvent) {
-        for (Entity e: entities) e.mousePressed(mouseEvent);
+
     }
 
     public void mouseEntered(MouseEvent mouseEvent) {
@@ -122,6 +120,14 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
     public void keyReleased(KeyEvent keyEvent) {
         for (Entity e: entities) e.keyReleased(keyEvent);
+    }
+
+    public void mouseDragged(MouseEvent mouseEvent) {
+        for (Entity e: entities) e.mouseDragged(mouseEvent);
+    }
+
+    public void mouseMoved(MouseEvent mouseEvent) {
+
     }
 }
 
