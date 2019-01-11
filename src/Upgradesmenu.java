@@ -12,7 +12,15 @@ import javax.swing.*;
 
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
 public class Upgradesmenu extends AppPanel implements MouseListener {
-    private BufferedImage image;
+    /*private final static Image backImage;
+
+    static {
+        try {
+            backImage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("back.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }*/
 
 
     private int grasstankx[] = {30 + 25, 30 + 5, 30 + 60, 30 + 45};
@@ -29,7 +37,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     private Buttons penetrationbttn = new Buttons(30, 350, 70, 80);
     private Buttons rapidbttn = new Buttons(30, 450, 70, 80);
     private Buttons healthbttn = new Buttons(30, 550, 70, 80);
-
+    private Buttons backbttn= new Buttons(820,50,125,50);
 
     public Upgradesmenu() {
         addMouseListener(this);
@@ -53,13 +61,18 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         penetrationbttn.paint(g2d);
         healthbttn.paint(g2d);
         rapidbttn.paint(g2d);
+        backbttn.paint(g2d);
+        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+15);
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(armorbttn.buttonx, armorbttn.buttony, armorbttn.buttonw, armorbttn.buttonh);
-        try {
-            image = ImageIO.read(new File("C:\\Users\\s300045442\\IdeaProjects\\Warden2\\res"));
-        } catch (IOException ex) {
-            // handle exception...
-        }
+        g2d.drawString("Armor", armorbttn.buttonx+30, armorbttn.buttony+armorbttn.buttonh+15);
+        g2d.drawString("Mobility", mobilitybttn.buttonx+32, mobilitybttn.buttony+mobilitybttn.buttonh+15);
+        g2d.drawString("Double Barrel Ability", doublebarrelbttn.buttonx+35, doublebarrelbttn.buttony+doublebarrelbttn.buttonh+15);
+        g2d.drawString("Armor Penetration", penetrationbttn.buttonx+30, penetrationbttn.buttony+penetrationbttn.buttonh+15);
+        g2d.drawString("Health Upgrade", healthbttn.buttonx+30, healthbttn.buttony+healthbttn.buttonh+15);
+        g2d.drawString("Rapid Fire Ability", rapidbttn.buttonx+32, rapidbttn.buttony+rapidbttn.buttonh+15);
+
+        /*g2d.drawImage(backImage, 0, 0, this);*/
     }
     public void mouseClicked(MouseEvent mouseEvent) {
 
@@ -97,6 +110,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
             System.out.println("I'm in the health upgrade button");
             System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
         }
+
     }
 
     public void mousePressed(MouseEvent mouseEvent) {
@@ -135,6 +149,12 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
             System.out.println("I'm in the health upgrade button");
             System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + healthbttn.getY());
         }
+        // IF STATEMENTS FOR BACK BUTTON
+        if ((mouseEvent.getX() >= backbttn.getX()) && (mouseEvent.getX()<=(backbttn.getX()+backbttn.getW())) && (mouseEvent.getY()>= backbttn.getY())&& (mouseEvent.getY()<=(backbttn.getY()+backbttn.getH()))){
+            System.out.println("I'm in the Mud button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+backbttn.getY());
+            App.setCurrentPanel(App.startMenu);
+        }
     }
 
     public void mouseReleased(MouseEvent mouseEvent) {
@@ -151,29 +171,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
 
     }
 
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters
-    }
 
 
-
-    public static void main(String[] args) throws InterruptedException {
-
-        JFrame frame = new JFrame("Den of Tanks");
-        Upgradesmenu p = new Upgradesmenu();
-
-        frame.add(p);
-        //Add our JPanel to the frame
-        frame.setSize(1000, 700);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Draw stuff
-        while (true) {
-            p.repaint();
-            Thread.sleep(10);
-        }
-
-    }
 
 }

@@ -6,7 +6,12 @@ public class App {
 
     private static JFrame f;
     private static AppPanel currentPanel;
+    public final static Level level1 = new Level.Level1();
+    public final static Level level2 = new Level.Level1();
+    public final static Level level3 = new Level.Level1();
+    public final static Level level4 = new Level.Level1();
 
+    public final static RetryScreen retryScreen= new RetryScreen();
     public final static Upgradesmenu upgradesmenu= new Upgradesmenu();
     public final static StartMenu startMenu = new StartMenu();
     public final static LevelSelectMenu levelSelectMenu = new LevelSelectMenu();
@@ -19,13 +24,12 @@ public class App {
         currentPanel.revalidate();
         currentPanel.repaint();
         currentPanel.tick();
+        currentPanel.grabFocus();
     }
 
     public static void main(String[] args) {
-        f = new JFrame();
-
+        f = new JFrame("Den Of Tanks");
         setCurrentPanel(startMenu);
-
         f.setSize(WIDTH, HEIGHT);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

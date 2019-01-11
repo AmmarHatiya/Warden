@@ -2,12 +2,16 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public abstract class Level extends AppPanel implements MouseListener, KeyListener, MouseMotionListener {
-    private StartMenu startmenu = new StartMenu();
+
     List<Entity> entities = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     List<Particle> particles = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     private static final int WIDTH = 1000;
