@@ -16,7 +16,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
     private Buttons icebttn= new Buttons(30,200,150,125);
     private Buttons grassbttn= new Buttons(30,50,150,125);
     private Buttons citybttn= new Buttons(30,500,150,125);
-
+    private Buttons backbttn= new Buttons(820,50,125,50);
     public LevelSelectMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -30,11 +30,14 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         //Draw Background
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
+        Font font = new Font("Century Gothic", Font.BOLD, 14);
+        g.setFont(font);
         g2d.setColor(Color.GREEN);
        mudbttn.paint(g2d);
         icebttn.paint(g2d);
         grassbttn.paint(g2d);
         citybttn.paint(g2d);
+        backbttn.paint(g2d);
         //DRAW BACKGROUND OF GRASS BUTTON
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(grassbttn.buttonx,grassbttn.buttony,grassbttn.buttonw,grassbttn.buttonh);
@@ -49,6 +52,14 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.fillOval(grassbttn.buttonx+8,grassbttn.buttony+75,50,15);
         g2d.setColor(new Color(50, 89, 47, 254));
         g2d.fillPolygon(grasstankx, grasstanky, 4);
+
+        g2d.setColor(new Color(39, 255, 47, 254));
+        g2d.drawString("Level 1: Grass", grassbttn.buttonx+30, grassbttn.buttony+grassbttn.buttonh+15);
+        g2d.drawString("Level 3: Mud", mudbttn.buttonx+32, mudbttn.buttony+mudbttn.buttonh+15);
+        g2d.drawString("Level 2: Ice", icebttn.buttonx+35, icebttn.buttony+icebttn.buttonh+15);
+        g2d.drawString("Level 4: City", citybttn.buttonx+30, citybttn.buttony+citybttn.buttonh+15);
+        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+15);
+
         //DRAW BACKGROUND OF MUD BUTTON
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(mudbttn.buttonx,mudbttn.buttony,mudbttn.buttonw,mudbttn.buttonh);
@@ -170,6 +181,11 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
             System.out.println("I'm in the City button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
         }
+        // IF STATEMENTS FOR BACK BUTTON
+        if ((mouseEvent.getX() >= backbttn.getX()) && (mouseEvent.getX()<=(backbttn.getX()+backbttn.getW())) && (mouseEvent.getY()>= backbttn.getY())&& (mouseEvent.getY()<=(backbttn.getY()+backbttn.getH()))){
+            System.out.println("BACK");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+backbttn.getY());
+        }
     }
 
     public void mousePressed(MouseEvent mouseEvent) {
@@ -195,6 +211,12 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         if ((mouseEvent.getX() >= citybttn.getX()) && (mouseEvent.getX()<=(citybttn.getX()+citybttn.getW())) && (mouseEvent.getY()>= citybttn.getY())&& (mouseEvent.getY()<=(citybttn.getY()+citybttn.getH()))){
             System.out.println("I'm in the City button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+citybttn.getY());
+        }
+        // IF STATEMENTS FOR BACK BUTTON
+        if ((mouseEvent.getX() >= backbttn.getX()) && (mouseEvent.getX()<=(backbttn.getX()+backbttn.getW())) && (mouseEvent.getY()>= backbttn.getY())&& (mouseEvent.getY()<=(backbttn.getY()+backbttn.getH()))){
+            System.out.println("I'm in the Mud button");
+            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+backbttn.getY());
+            App.setCurrentPanel(App.startMenu);
         }
     }
 
