@@ -89,7 +89,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         while (true) {
             jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
-            Thread.sleep(1000 / 60); //Pauses for a moment
+            Thread.sleep(1000 / 30); //Pauses for a moment
             //Thread.sleep(1000); //Pauses for a moment
         }
     }

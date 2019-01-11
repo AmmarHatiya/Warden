@@ -4,11 +4,14 @@ import java.awt.event.MouseEvent;
 
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
-    private int delay = 50; //slows down rate of fire
+    private static final int DELAY = 5;
+    private int delay = DELAY; //slows down rate of fire
+    private static final int HEALTH =30;
+    public int health = HEALTH;
 
     public int width = 30;
     public int height = 30;
-    public int health = 3;
+
 
     public PlayerTank(int x, int y) {
         this.x = x;
@@ -23,6 +26,13 @@ public class PlayerTank extends Entity {
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
 
+        g2d.setColor(Color.lightGray);
+        g2d.fillRect(500, 500-HEALTH*5, 25, HEALTH*5);
+
+        if (health>0){
+            g2d.setColor(Color.pink);
+            g2d.fillRect(500, 500-health*5, 25, health*5);
+        }
 
     }
 
@@ -45,21 +55,25 @@ public class PlayerTank extends Entity {
             this.vx = 0;
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S)
             this.vy = 0;
+        if (e.getKeyCode() == KeyEvent.VK_SPACE)
+            this.health = HEALTH;
     }
 
-    //TODO: stop player movement off the screen
     public void tick(int levelWidth, int levelHeight) {
         super.tick(levelWidth, levelHeight);
         if (x < 0) x = 0;
         if (x + width > levelWidth) x = levelWidth - width;
         if (y < 0) y = 0;
         if (y + height > levelHeight) y = levelHeight - height;
+        this.delay++;
     }
 
+    //TODO:need health to come down
     public void check(Entity p) {
-        if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
-            this.x = x - vx;
-            this.y = y - vy;
+        if (x>p.x && x+width < p.x + width && y<p.y && y+height>p.y + height){
+            /*this.x = x - vx;
+            this.y = y - vy;*/
+            health--;
         }
     }
 
@@ -68,7 +82,7 @@ public class PlayerTank extends Entity {
             Bullet b = (Bullet) p;
             if (!b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
                 this.removeParticleFromLevel.accept(p);
-                //this.removeSelf.accept(this);
+                health--;
             }
         }
         if (health<=0){
@@ -83,6 +97,9 @@ public class PlayerTank extends Entity {
 
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
-        this.addParticleToLevel.accept(new Bullet(this.x+15, this.y+15, e.getX(), e.getY(), true));
+        if (delay>50) {
+            this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
+            this.delay=0;
+        }
     }
 }
