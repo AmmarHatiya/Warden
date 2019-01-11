@@ -15,8 +15,6 @@ public abstract class Entity {
         System.out.println("removeSelf not set, ignoring");
     };
     public abstract void paint(Graphics2D g);
-    //public abstract void check(Particle p);
-    //public abstract void check(Entity p);
     public void keyPressed(KeyEvent e) {}
     public void keyReleased(KeyEvent e) {}
     public void mousePressed(MouseEvent e) {}
