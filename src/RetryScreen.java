@@ -16,7 +16,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             super.paint(g);
             Graphics2D g2d = (Graphics2D) g;
             Font button = new Font("Century Gothic", Font.BOLD, 14);
-            Font gameover = new Font("Century Gothic", Font.BOLD, 20);
+            Font gameover = new Font("Century Gothic", Font.BOLD, 30);
             g.setFont(button);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -30,7 +30,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             g2d.drawString("Retry Level", retrybttn.buttonx+25, retrybttn.buttony+27);
             g2d.drawString("Main Menu", mainmenu.buttonx+25, mainmenu.buttony+27);
             g.setFont(gameover);
-            g2d.drawString("Game Over", 0, 0);
+            g2d.drawString("NOT DONE YET", 20, 20);
         }
 
         public void tick() {
