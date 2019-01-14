@@ -7,6 +7,7 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
     private Buttons mainmenu = new Buttons(425, 550, 125, 50);
     private Buttons nextbttn = new Buttons(425, 550, 125, 50);
 
+
     public HowToPlayMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -16,7 +17,8 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         Font button = new Font("Monospaced", Font.BOLD, 14);
-
+        Font title = new Font("Century Gothic", Font.BOLD, 30);
+        Font txt = new Font("Monospaced", Font.BOLD, 25);
         g.setFont(button);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -29,9 +31,17 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         /*nextbttn.paint(g2d);*//*
         g2d.drawString("Next", nextbttn.buttonx+25, nextbttn.buttony+27);*/
         g2d.drawString("Main Menu", mainmenu.buttonx + 25, mainmenu.buttony + 27);
-        Font gameover = new Font("Century Gothic", Font.BOLD, 30);
-        g2d.setFont(gameover);
-        g2d.drawString("HOW TO PLAY", 25, 27);
+        g2d.setFont(txt);
+g2d.drawString("Press W to move ⇧",200,150);
+        g2d.drawString("Press A to move ⇦",200,170);
+        g2d.drawString("Press S to move ⇩",200,190);
+        g2d.drawString("Press D to move ⇨",200,210);
+        g2d.drawString("Move mouse to Aim",200,210);
+        g2d.drawString("Right-Click mouse button to shoot",200,210);
+        g2d.setFont(title);
+        g2d.drawString("HOW TO PLAY", 390, 40);
+
+
     }
 
     public void tick() {

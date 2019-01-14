@@ -76,7 +76,6 @@ lsb.paint(g2d);*/
         if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
             System.out.println("I'm in the how to play button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
-            /*App.setCurrentPanel(App.levelSelectMenu);*/
         }
     }
 
@@ -112,7 +111,7 @@ lsb.paint(g2d);*/
         if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
             System.out.println("I'm in the how to play button");
             System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
-            /*App.setCurrentPanel(App.levelSelectMenu);*/
+            App.setCurrentPanel(App.howtoplayScreen);
         }
     }
     public void mouseReleased(MouseEvent mouseEvent) {

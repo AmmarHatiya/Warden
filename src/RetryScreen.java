@@ -15,8 +15,8 @@ public class RetryScreen extends AppPanel implements MouseListener {
         public void paint(Graphics g) {
             super.paint(g);
             Graphics2D g2d = (Graphics2D) g;
-            Font button = new Font("Century Gothic", Font.BOLD, 14);
-            Font gameover = new Font("Century Gothic", Font.BOLD, 30);
+            Font button = new Font("Monospaced", Font.BOLD, 14);
+            Font gameover = new Font("Monospaced", Font.BOLD, 30);
             g.setFont(button);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
