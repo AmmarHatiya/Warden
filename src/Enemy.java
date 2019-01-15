@@ -70,10 +70,11 @@ public class Enemy extends Entity {
                 shoot();
         }
 
+
         super.tick(levelWidth, levelHeight);
-        if (x > levelWidth - 15 || x < 5)
+        if (x > levelWidth - width || x < 5)
             vx *= -speed;
-        if (y > levelHeight - 15 || y < 5)
+        if (y > levelHeight - 85-height || y < 5)
             vy *= -speed;
 
 
@@ -100,6 +101,7 @@ public class Enemy extends Entity {
         if (p instanceof Bullet){
             Bullet b = (Bullet) p;
             if (b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
+                this.addToScore.accept(1);
                 this.removeParticleFromLevel.accept(p);
                 this.removeSelf.accept(this);
             }

@@ -14,6 +14,9 @@ public abstract class Entity {
     public Consumer<Entity> removeSelf = e -> {
         System.out.println("removeSelf not set, ignoring");
     };
+    public Consumer<Integer> addToScore = e -> {
+        System.out.println("addToScore not set, ignoring");
+    };
     public abstract void paint(Graphics2D g);
     public void keyPressed(KeyEvent e) {}
     public void keyReleased(KeyEvent e) {}

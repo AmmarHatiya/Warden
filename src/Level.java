@@ -23,6 +23,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TURRET = 4;
     private static final int TOWER = 5;
 
+    private int points = 0;
+
     public static class Level1 extends Level {
         public Level1() {
             super(Arrays.asList(new Entity[] {
@@ -41,14 +43,14 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         entities.add(new PlayerTank(600, 600));
         entities.addAll(entitiesToAdd);
         particles.addAll(particlesToAdd);
-        for (Entity e : entities)
+        for (Entity e : entities) {
             e.addParticleToLevel = particle -> {
                 particle.removeSelf = this.particles::remove;
                 particles.add(particle);
             };
-        for (Entity e : entities) {
             e.removeSelf = this.entities::remove;
             e.removeParticleFromLevel = this.particles::remove;
+            e.addToScore = this::addToScore;
         }
         for (Particle p : particles) p.removeSelf = this.particles::remove;
         setFocusable(true);
@@ -71,8 +73,16 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     public void paint(Graphics g) {
         super.paint(g); //Clears the panel, for a fresh start
         Graphics2D g2d = (Graphics2D) g;
+
+        Font txt = new Font("Monospaced",Font.BOLD,13);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+
+        g2d.setColor(Color.DARK_GRAY);
+        g2d.fillRect(0, HEIGHT-85, WIDTH, 50);
+        g2d.setColor(Color.green);
+        g2d.setFont(txt);
+        g2d.drawString("Points:"+ points, 10,HEIGHT-45);
         for (Entity e : entities) e.paint(g2d);
         for (Particle p : particles) p.paint(g2d);
     }
@@ -90,7 +100,6 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             jp.tick(); //Updates the coordinates
             jp.repaint(); //Calls the paint method
             Thread.sleep(1000 / 30); //Pauses for a moment
-            //Thread.sleep(1000); //Pauses for a moment
         }
     }
 
@@ -131,7 +140,10 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void mouseMoved(MouseEvent mouseEvent) {
+    }
 
+    public void addToScore(int n) {
+        this.points += n;
     }
 }
 
