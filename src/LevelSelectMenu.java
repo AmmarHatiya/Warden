@@ -58,7 +58,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.drawString("Level 3: Mud", mudbttn.buttonx+32, mudbttn.buttony+mudbttn.buttonh+15);
         g2d.drawString("Level 2: Ice", icebttn.buttonx+35, icebttn.buttony+icebttn.buttonh+15);
         g2d.drawString("Level 4: City", citybttn.buttonx+30, citybttn.buttony+citybttn.buttonh+15);
-        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+15);
+        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+25);
 
         //DRAW BACKGROUND OF MUD BUTTON
         g2d.setColor(new Color(128, 203, 255));
