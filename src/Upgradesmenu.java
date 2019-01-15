@@ -50,7 +50,8 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+        Font font = new Font("Monospaced", Font.BOLD, 14);
+        g2d.setFont(font);
         //Draw Background
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
