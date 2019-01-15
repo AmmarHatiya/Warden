@@ -30,7 +30,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         //Draw Background
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
-        Font font = new Font("Century Gothic", Font.BOLD, 14);
+        Font font = new Font("Monospaced", Font.BOLD, 14);
         g.setFont(font);
         g2d.setColor(Color.GREEN);
        mudbttn.paint(g2d);
@@ -58,7 +58,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.drawString("Level 3: Mud", mudbttn.buttonx+32, mudbttn.buttony+mudbttn.buttonh+15);
         g2d.drawString("Level 2: Ice", icebttn.buttonx+35, icebttn.buttony+icebttn.buttonh+15);
         g2d.drawString("Level 4: City", citybttn.buttonx+30, citybttn.buttony+citybttn.buttonh+15);
-        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+25);
+        g2d.drawString("Back", backbttn.buttonx+45, backbttn.buttony+27);
 
         //DRAW BACKGROUND OF MUD BUTTON
         g2d.setColor(new Color(128, 203, 255));

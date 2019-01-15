@@ -51,6 +51,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Font font = new Font("Monospaced", Font.BOLD, 14);
+        Font title = new Font("Monospaced", Font.BOLD, 32);
         g2d.setFont(font);
         //Draw Background
         g2d.setColor(Color.BLACK);
@@ -63,7 +64,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         healthbttn.paint(g2d);
         rapidbttn.paint(g2d);
         backbttn.paint(g2d);
-        g2d.drawString("Back", backbttn.buttonx+35, backbttn.buttony+15);
+        g2d.drawString("Back", backbttn.buttonx+45, backbttn.buttony+27);
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(armorbttn.buttonx, armorbttn.buttony, armorbttn.buttonw, armorbttn.buttonh);
         g2d.drawString("Armor", armorbttn.buttonx+30, armorbttn.buttony+armorbttn.buttonh+15);
@@ -72,7 +73,10 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         g2d.drawString("Armor Penetration", penetrationbttn.buttonx+30, penetrationbttn.buttony+penetrationbttn.buttonh+15);
         g2d.drawString("Health Upgrade", healthbttn.buttonx+30, healthbttn.buttony+healthbttn.buttonh+15);
         g2d.drawString("Rapid Fire Ability", rapidbttn.buttonx+32, rapidbttn.buttony+rapidbttn.buttonh+15);
-
+        //TITLE DRAW
+        g2d.setColor(Color.GREEN);
+        g2d.setFont(title);
+        g2d.drawString("Upgrades", 390, 30);
         /*g2d.drawImage(backImage, 0, 0, this);*/
     }
     public void mouseClicked(MouseEvent mouseEvent) {
