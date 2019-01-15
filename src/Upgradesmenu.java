@@ -34,10 +34,9 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     private Buttons doublebarrelbttn = new Buttons(30, 250, 70, 80);
     private Buttons armorbttn = new Buttons(30, 150, 70, 80);
     private Buttons mobilitybttn = new Buttons(30, 50, 70, 80);
-    private Buttons penetrationbttn = new Buttons(30, 350, 70, 80);
     private Buttons rapidbttn = new Buttons(30, 450, 70, 80);
-    private Buttons healthbttn = new Buttons(30, 550, 70, 80);
-    private Buttons backbttn= new Buttons(820,50,125,50);
+    private Buttons healthbttn = new Buttons(30, 350, 70, 80);
+    private Buttons backbttn= new Buttons(820,550,125,50);
 
     public Upgradesmenu() {
         addMouseListener(this);
@@ -60,7 +59,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         armorbttn.paint(g2d);
         mobilitybttn.paint(g2d);
         doublebarrelbttn.paint(g2d);
-        penetrationbttn.paint(g2d);
         healthbttn.paint(g2d);
         rapidbttn.paint(g2d);
         backbttn.paint(g2d);
@@ -70,7 +68,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         g2d.drawString("Armor", armorbttn.buttonx+30, armorbttn.buttony+armorbttn.buttonh+15);
         g2d.drawString("Mobility", mobilitybttn.buttonx+32, mobilitybttn.buttony+mobilitybttn.buttonh+15);
         g2d.drawString("Double Barrel Ability", doublebarrelbttn.buttonx+35, doublebarrelbttn.buttony+doublebarrelbttn.buttonh+15);
-        g2d.drawString("Armor Penetration", penetrationbttn.buttonx+30, penetrationbttn.buttony+penetrationbttn.buttonh+15);
         g2d.drawString("Health Upgrade", healthbttn.buttonx+30, healthbttn.buttony+healthbttn.buttonh+15);
         g2d.drawString("Rapid Fire Ability", rapidbttn.buttonx+32, rapidbttn.buttony+rapidbttn.buttonh+15);
         //TITLE DRAW
@@ -99,11 +96,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
             System.out.println("I'm in the mobility upgrade button");
             System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
-        }
-        // IF STATEMENTS FOR penetration BUTTON
-        if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
-            System.out.println("I'm in the penetration upgrade button");
-            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
         }
         // IF STATEMENTS FOR RAPID FIRE BUTTON
         if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
@@ -139,11 +131,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
             System.out.println("I'm in the mobility upgrade button");
             System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mobilitybttn.getY());
         }
-        // IF STATEMENTS FOR penetration BUTTON
-        if ((mouseEvent.getX() >= penetrationbttn.getX()) && (mouseEvent.getX() <= (penetrationbttn.getX() + penetrationbttn.getW())) && (mouseEvent.getY() >= penetrationbttn.getY()) && (mouseEvent.getY() <= (penetrationbttn.getY() + penetrationbttn.getH()))) {
-            System.out.println("I'm in the penetration upgrade button");
-            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + penetrationbttn.getY());
-        }
+
         // IF STATEMENTS FOR RAPID FIRE BUTTON
         if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
             System.out.println("I'm in the rapid fire upgrade button");

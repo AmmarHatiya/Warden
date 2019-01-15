@@ -3,11 +3,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class StartMenu extends AppPanel implements MouseListener {
-private Buttons ngamebttn = new Buttons(30,175,125,50);
-    private Buttons lselectbttn = new Buttons(30,375,125,50);
-    private Buttons upgradesbttn = new Buttons(30,475,125,50);
-    private Buttons continuegamebttn = new Buttons(30,275,125,50);
-    private Buttons howtoplaybttn = new Buttons(30,75,125,50);
+private Buttons ngamebttn = new Buttons(30,175,175,50);
+    private Buttons lselectbttn = new Buttons(30,375,175,50);
+    private Buttons upgradesbttn = new Buttons(30,475,175,50);
+    private Buttons continuegamebttn = new Buttons(30,275,175,50);
+    private Buttons howtoplaybttn = new Buttons(30,75,175,50);
     public StartMenu() {
         addMouseListener(this);
         setFocusable(true);
