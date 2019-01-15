@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
-    private static final int DELAY = 5;
+    private static final int DELAY = 20;
     private int delay = DELAY; //slows down rate of fire
     private static final int HEALTH =30;
     public int health = HEALTH;
@@ -27,11 +27,11 @@ public class PlayerTank extends Entity {
         g2d.fillOval((int) x, (int) y, 5, 5);
 
         g2d.setColor(Color.lightGray);
-        g2d.fillRect(500, 500-HEALTH*5, 25, HEALTH*5);
+        g2d.fillRect(500-HEALTH*5,600,  HEALTH*5, 25);
 
         if (health>0){
             g2d.setColor(Color.pink);
-            g2d.fillRect(500, 500-health*5, 25, health*5);
+            g2d.fillRect(500-health*5,600, health*5, 25);
         }
 
     }
@@ -68,11 +68,8 @@ public class PlayerTank extends Entity {
         this.delay++;
     }
 
-    //TODO:need health to come down
     public void check(Entity p) {
-        if (x>p.x && x+width < p.x + width && y<p.y && y+height>p.y + height){
-            /*this.x = x - vx;
-            this.y = y - vy;*/
+        if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
             health--;
         }
     }
@@ -97,7 +94,7 @@ public class PlayerTank extends Entity {
 
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
-        if (delay>50) {
+        if (delay>DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
             this.delay=0;
         }
