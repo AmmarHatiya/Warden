@@ -18,7 +18,7 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         Font button = new Font("Monospaced", Font.BOLD, 14);
         Font title = new Font("Century Gothic", Font.BOLD, 32);
         Font txt = new Font("Monospaced", Font.BOLD, 25);
-        g.setFont(button);
+        g2d.setFont(button);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         //Draw Background
@@ -40,11 +40,11 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         g2d.drawRect(9, 125, 500, 375);
         g2d.drawRect(509, 125, 465, 375);
         // SECOND BOX
-        g2d.drawString("Shoot and destroy all enemy", 523, 159);
-        g2d.drawString("forces. Avoid enemy bullets.", 523, 219);
-        g2d.drawString("Beat the boss at the end of", 523, 279);
-        g2d.drawString("every level. Good luck and", 523, 339);
-        g2d.drawString("stay safe Sergeant!", 523, 399);
+        g2d.drawString("Shoot and destroy all enemy", 526, 159);
+        g2d.drawString("forces. Avoid enemy bullets.", 526, 219);
+        g2d.drawString("Beat the boss at the end of", 526,279);
+        g2d.drawString("every level. Good luck and", 526, 339);
+        g2d.drawString("stay safe Sergeant!", 600, 399);
         g2d.setFont(title);
         g2d.drawString("HOW TO PLAY", 390, 30);
     }

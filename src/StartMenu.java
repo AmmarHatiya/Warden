@@ -16,7 +16,7 @@ private Buttons ngamebttn = new Buttons(30,175,125,50);
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        Font font = new Font("Century Gothic", Font.BOLD, 14);
+        Font font = new Font("Monospaced", Font.BOLD, 18);
         g.setFont(font);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
