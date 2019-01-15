@@ -32,11 +32,11 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         g2d.drawString("Next", nextbttn.buttonx+25, nextbttn.buttony+27);*/
         g2d.drawString("Main Menu", mainmenu.buttonx + 25, mainmenu.buttony + 27);
         g2d.setFont(txt);
-        g2d.drawString("Press W to move ⇧", 4, 150);
-        g2d.drawString("Press A to move ⇦", 4, 170);
-        g2d.drawString("Press S to move ⇩", 4, 190);
-        g2d.drawString("Press D to move ⇨", 4, 210);
-        g2d.drawString("Move mouse to Aim", 4, 230);
+        g2d.drawString("Press W to move ⇧", 9, 150);
+        g2d.drawString("Press A to move ⇦", 9, 170);
+        g2d.drawString("Press S to move ⇩", 9, 190);
+        g2d.drawString("Press D to move ⇨", 9, 210);
+        g2d.drawString("Move mouse to Aim", 9, 230);
         g2d.drawString("Right-Click mouse to shoot", 4, 250);
         g2d.setFont(title);
         g2d.drawString("HOW TO PLAY", 390, 30);
