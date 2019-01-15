@@ -43,7 +43,8 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         g2d.drawString("Shoot and destroy all enemy", 523, 159);
         g2d.drawString("forces. Avoid enemy bullets.", 523, 219);
         g2d.drawString("Beat the boss at the end of", 523, 279);
-        g2d.drawString("each level", 523, 339);
+        g2d.drawString("every level. Good luck and", 523, 339);
+        g2d.drawString("stay safe Sergeant!", 523, 399);
         g2d.setFont(title);
         g2d.drawString("HOW TO PLAY", 390, 30);
     }
