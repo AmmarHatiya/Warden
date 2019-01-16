@@ -4,9 +4,10 @@ import java.awt.event.MouseEvent;
 
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
-    private static final int DELAY = 20;
+    //TODO: change delay, just testing phase
+    private static final int DELAY = 2;
     private int delay = DELAY; //slows down rate of fire
-    private static final int HEALTH =30;
+    public static final int HEALTH =3;
     public int health = HEALTH;
 
     public int width = 30;
@@ -55,6 +56,7 @@ public class PlayerTank extends Entity {
             this.vx = 0;
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S)
             this.vy = 0;
+        //TODO: remove this after testing
         if (e.getKeyCode() == KeyEvent.VK_SPACE)
             this.health = HEALTH;
     }
@@ -62,9 +64,9 @@ public class PlayerTank extends Entity {
     public void tick(int levelWidth, int levelHeight) {
         super.tick(levelWidth, levelHeight);
         if (x < 0) x = 0;
-        if (x + width > levelWidth) x = levelWidth - width;
+        if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;
-        if (y + height > levelHeight) y = levelHeight - height;
+        if (y + height > levelHeight- 85) y = levelHeight - 85 - height;
         this.delay++;
     }
 
