@@ -55,8 +55,7 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
     public void mouseClicked(MouseEvent mouseEvent) {
         // IF STATEMENTS FOR MAIN MENU BUTTON
         if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX() <= (mainmenu.getX() + mainmenu.getW())) && (mouseEvent.getY() >= mainmenu.getY()) && (mouseEvent.getY() <= (mainmenu.getY() + mainmenu.getH()))) {
-            System.out.println("I'm in the Main Menu button");
-            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mainmenu.getY());
+
 
         }
 
@@ -67,8 +66,6 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         // Go to corresponding menu
         // IF STATEMENTS FOR main menu BUTTON
         if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX() <= (mainmenu.getX() + mainmenu.getW())) && (mouseEvent.getY() >= mainmenu.getY()) && (mouseEvent.getY() <= (mainmenu.getY() + mainmenu.getH()))) {
-            System.out.println("I'm in the Main Menu button");
-            System.out.println("Mouse y is:" + mouseEvent.getY() + " Button Y is:" + mainmenu.getY());
             App.setCurrentPanel(App.startMenu);
         }
 
