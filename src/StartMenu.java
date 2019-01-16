@@ -48,34 +48,23 @@ lsb.paint(g2d);*/
     public void mouseClicked(MouseEvent mouseEvent) {
         // IF STATEMENTS FOR NEW GAME BUTTON
         if ((mouseEvent.getX() >= ngamebttn.getX()) && (mouseEvent.getX()<=(ngamebttn.getX()+ngamebttn.getW())) && (mouseEvent.getY()>= ngamebttn.getY())&& (mouseEvent.getY()<=(ngamebttn.getY()+ngamebttn.getH()))){
-            System.out.println("I'm in the New Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ngamebttn.getY());
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
         if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX()<=(continuegamebttn.getX()+continuegamebttn.getW())) && (mouseEvent.getY()>= continuegamebttn.getY())&& (mouseEvent.getY()<=(continuegamebttn.getY()+continuegamebttn.getH()))){
-            System.out.println("I'm in the Continue Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+continuegamebttn.getY());
         }
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX()<=(upgradesbttn.getX()+upgradesbttn.getW())) && (mouseEvent.getY()>= upgradesbttn.getY())&& (mouseEvent.getY()<=(upgradesbttn.getY()+upgradesbttn.getH()))){
-            System.out.println("I'm in the Upgrades button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+upgradesbttn.getY());
+
 
         }
 
         // IF STATEMENTS FOR LEVEL SELECT BUTTON
         if ((mouseEvent.getX() >= lselectbttn.getX()) && (mouseEvent.getX()<=(lselectbttn.getX()+lselectbttn.getW())) && (mouseEvent.getY()>= lselectbttn.getY())&& (mouseEvent.getY()<=(lselectbttn.getY()+lselectbttn.getH()))){
-            System.out.println("I'm in the Level Select button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+lselectbttn.getY());
-
-
         }
         // IF STATEMENTS FOR HOWTOPLAY BUTTON
         if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
-            System.out.println("I'm in the how to play button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
         }
     }
 
@@ -83,34 +72,24 @@ lsb.paint(g2d);*/
         // Go to corresponding menu
         // IF STATEMENTS FOR NEW GAME BUTTON
         if ((mouseEvent.getX() >= ngamebttn.getX()) && (mouseEvent.getX()<=(ngamebttn.getX()+ngamebttn.getW())) && (mouseEvent.getY()>= ngamebttn.getY())&& (mouseEvent.getY()<=(ngamebttn.getY()+ngamebttn.getH()))){
-            System.out.println("I'm in the New Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ngamebttn.getY());
             App.setCurrentPanel(App.level1);
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
         if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX()<=(continuegamebttn.getX()+continuegamebttn.getW())) && (mouseEvent.getY()>= continuegamebttn.getY())&& (mouseEvent.getY()<=(continuegamebttn.getY()+continuegamebttn.getH()))){
-            System.out.println("I'm in the Continue Game button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+continuegamebttn.getY());
         }
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX()<=(upgradesbttn.getX()+upgradesbttn.getW())) && (mouseEvent.getY()>= upgradesbttn.getY())&& (mouseEvent.getY()<=(upgradesbttn.getY()+upgradesbttn.getH()))){
-            System.out.println("I'm in the Upgrades button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+upgradesbttn.getY());
             App.setCurrentPanel(App.upgradesmenu);
         }
 
         // IF STATEMENTS FOR LEVEL SELECT BUTTON
         if ((mouseEvent.getX() >= lselectbttn.getX()) && (mouseEvent.getX()<=(lselectbttn.getX()+lselectbttn.getW())) && (mouseEvent.getY()>= lselectbttn.getY())&& (mouseEvent.getY()<=(lselectbttn.getY()+lselectbttn.getH()))){
-            System.out.println("I'm in the Level Select button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+lselectbttn.getY());
             App.setCurrentPanel(App.levelSelectMenu);
         }
         // IF STATEMENTS FOR HOWTOPLAY BUTTON
         if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
-            System.out.println("I'm in the how to play button");
-            System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+howtoplaybttn.getY());
             App.setCurrentPanel(App.howtoplayScreen);
         }
     }
