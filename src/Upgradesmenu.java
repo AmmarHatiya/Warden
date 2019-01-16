@@ -64,6 +64,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         backbttn.paint(g2d);
         g2d.drawString("Back", backbttn.buttonx+45, backbttn.buttony+27);
         g2d.setColor(new Color(128, 203, 255));
+        g2d.setColor(Color.GREEN);
         g2d.fillRect(armorbttn.buttonx, armorbttn.buttony, armorbttn.buttonw, armorbttn.buttonh);
         g2d.drawString("Armor", armorbttn.buttonx+30, armorbttn.buttony+armorbttn.buttonh+15);
         g2d.drawString("Mobility", mobilitybttn.buttonx+32, mobilitybttn.buttony+mobilitybttn.buttonh+15);
