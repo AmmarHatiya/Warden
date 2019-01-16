@@ -29,7 +29,7 @@ public class App {
 
     public static void main(String[] args) {
         f = new JFrame("Den Of Tanks");
-        setCurrentPanel(retryscreen);
+        setCurrentPanel(startMenu);
         f.setSize(WIDTH, HEIGHT);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
