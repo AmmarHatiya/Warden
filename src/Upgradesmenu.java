@@ -37,7 +37,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     private Buttons rapidbttn = new Buttons(30, 450, 70, 80);
     private Buttons healthbttn = new Buttons(30, 350, 70, 80);
     private Buttons backbttn= new Buttons(820,550,125,50);
-
+// BRING SCORE TO THE UPGRADES PAGE
     public Upgradesmenu() {
         addMouseListener(this);
             setFocusable(true);
