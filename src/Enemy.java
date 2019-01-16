@@ -101,7 +101,7 @@ public class Enemy extends Entity {
         if (p instanceof Bullet){
             Bullet b = (Bullet) p;
             if (b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
-                this.addToScore.accept(1);
+                this.addToScore.accept(5);
                 this.removeParticleFromLevel.accept(p);
                 this.removeSelf.accept(this);
             }

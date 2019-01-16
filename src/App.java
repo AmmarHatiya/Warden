@@ -27,6 +27,10 @@ public class App {
         currentPanel.grabFocus();
     }
 
+    public static AppPanel getCurrentPanel(AppPanel p) {
+        return currentPanel;
+    }
+
     public static void main(String[] args) {
         f = new JFrame("Den Of Tanks");
         setCurrentPanel(startMenu);

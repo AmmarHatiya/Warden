@@ -4,7 +4,8 @@ import java.awt.event.MouseEvent;
 
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
-    private static final int DELAY = 20;
+    //TODO: change delay, just testing phase
+    private static final int DELAY = 2;
     private int delay = DELAY; //slows down rate of fire
     public static final int HEALTH =3;
     public int health = HEALTH;

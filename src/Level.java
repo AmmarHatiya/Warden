@@ -65,6 +65,118 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             }));
         }
     }
+    public static class Level2 extends Level {
+        public Level2() {
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+            }));
+
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
+
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
+        }
+    }
+    public static class Level3 extends Level {
+        public Level3() {
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+            }));
+
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
+
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
+        }
+
+        public static class Level4 extends Level {
+            public Level4() {
+                this.addWave(Arrays.asList(new Entity[]{
+                        new Enemy(TANK, 100, 100),
+                        new Enemy(TRUCK, 200, 100),
+                        new Enemy(PLANE, 300, 100),
+                        new Enemy(TURRET, 400, 100),
+                        new Enemy(TOWER, 500, 100),
+                }));
+
+                this.addWave(Arrays.asList(new Entity[]{
+                        new Enemy(TANK, 100, 100),
+                        new Enemy(TRUCK, 200, 100),
+                        new Enemy(PLANE, 300, 100),
+                        new Enemy(TURRET, 400, 100),
+                        new Enemy(TOWER, 500, 100),
+                        new Enemy(TANK, 200, 200),
+                        new Enemy(TRUCK, 300, 200),
+                        new Enemy(PLANE, 400, 200),
+                        new Enemy(TURRET, 500, 200),
+                        new Enemy(TOWER, 600, 200),
+                }));
+
+                this.addWave(Arrays.asList(new Entity[]{
+                        new Enemy(TANK, 100, 100),
+                        new Enemy(TRUCK, 200, 100),
+                        new Enemy(PLANE, 300, 100),
+                        new Enemy(TURRET, 400, 100),
+                        new Enemy(TOWER, 500, 100),
+                        new Enemy(TANK, 200, 200),
+                        new Enemy(TRUCK, 300, 200),
+                        new Enemy(PLANE, 400, 200),
+                        new Enemy(TURRET, 500, 200),
+                        new Enemy(TOWER, 600, 200),
+                }));
+            }
+        }
+    }
 
     public Level() {
         entities.add(new PlayerTank(500, 500));
@@ -109,13 +221,26 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         if (enemyCount < 1) {
             currentWave++;
             for (Entity e: entities) if (e instanceof PlayerTank) {
-                ((PlayerTank) e).x = 0;
-                ((PlayerTank) e).y = 0;
+                ((PlayerTank) e).x = 500;
+                ((PlayerTank) e).y = 500;
                 ((PlayerTank) e).vx = 0;
                 ((PlayerTank) e).vy = 0;
             }
             if (currentWave >= this.waves.size()) {
                 this.reset();
+                if (App.getCurrentPanel(App.level1)==App.level1)
+                {
+                    App.setCurrentPanel(App.level2);
+                }
+                else if (App.getCurrentPanel(App.level2)==App.level2)
+                {
+                    App.setCurrentPanel(App.level3);
+                }
+                else if (App.getCurrentPanel(App.level3)==App.level3)
+                {
+                    App.setCurrentPanel(App.level4);
+                }
+                else
                 App.setCurrentPanel(App.startMenu);
                 return;
             }
