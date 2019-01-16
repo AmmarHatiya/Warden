@@ -24,25 +24,50 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TOWER = 5;
 
     private int points = 0;
+    private int currentWave = -1;
+
+    private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
 
     public static class Level1 extends Level {
         public Level1() {
-            super(Arrays.asList(new Entity[] {
+            this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
                     new Enemy(PLANE, 300, 100),
                     new Enemy(TURRET, 400, 100),
                     new Enemy(TOWER, 500, 100),
-            }), Arrays.asList(new Particle[] {
+            }));
 
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
+
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
             }));
         }
     }
 
-    public Level(List<Entity> entitiesToAdd, List<Particle> particlesToAdd) {
-        entities.add(new PlayerTank(600, 600));
-        entities.addAll(entitiesToAdd);
-        particles.addAll(particlesToAdd);
+    public Level() {
+        entities.add(new PlayerTank(500, 500));
         for (Entity e : entities) {
             e.addParticleToLevel = particle -> {
                 particle.removeSelf = this.particles::remove;
@@ -59,13 +84,52 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         this.addMouseMotionListener(this);
     }
 
+    public void addWave(List<Entity> wave) {
+        this.waves.add(wave);
+    }
 
     public void tick() {
         // copy the list so it doesn't crash if the list is modified
-        for (Entity a: entities) for (Entity b: entities) a.check(b);
-        for (Entity a: entities) for (Particle b: particles) a.check(b);
+        for (Entity a : entities) for (Entity b : entities) a.check(b);
+        for (Entity a : entities) for (Particle b : particles) a.check(b);
         for (Particle p : particles) p.tick(WIDTH, HEIGHT);
         for (Entity e : entities) e.tick(WIDTH, HEIGHT);
+
+        int enemyCount = 0;
+        for (Entity p : entities) {
+            if (p instanceof PlayerTank) if (((PlayerTank) p).health <= 0) {
+                ((PlayerTank) p).health = PlayerTank.HEALTH;
+                this.reset();
+                App.retryScreen.retryView = this;
+                App.setCurrentPanel(App.retryScreen);
+            }
+            if (p instanceof Enemy) enemyCount++;
+        }
+
+        if (enemyCount < 1) {
+            currentWave++;
+            for (Entity e: entities) if (e instanceof PlayerTank) {
+                ((PlayerTank) e).x = 0;
+                ((PlayerTank) e).y = 0;
+                ((PlayerTank) e).vx = 0;
+                ((PlayerTank) e).vy = 0;
+            }
+            if (currentWave >= this.waves.size()) {
+                this.reset();
+                App.setCurrentPanel(App.startMenu);
+                return;
+            }
+            this.entities.addAll(this.waves.get(this.currentWave));
+            for (Entity e : entities) {
+                e.addParticleToLevel = particle -> {
+                    particle.removeSelf = this.particles::remove;
+                    particles.add(particle);
+                };
+                e.removeSelf = this.entities::remove;
+                e.removeParticleFromLevel = this.particles::remove;
+                e.addToScore = this::addToScore;
+            }
+        }
     }
 
 
@@ -74,15 +138,15 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         super.paint(g); //Clears the panel, for a fresh start
         Graphics2D g2d = (Graphics2D) g;
 
-        Font txt = new Font("Monospaced",Font.BOLD,13);
+        Font txt = new Font("Monospaced", Font.BOLD, 13);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 
         g2d.setColor(Color.DARK_GRAY);
-        g2d.fillRect(0, HEIGHT-85, WIDTH, 50);
+        g2d.fillRect(0, HEIGHT - 85, WIDTH, 50);
         g2d.setColor(Color.green);
         g2d.setFont(txt);
-        g2d.drawString("Points:"+ points, 10,HEIGHT-45);
+        g2d.drawString("Points:" + points, 10, HEIGHT - 45);
         for (Entity e : entities) e.paint(g2d);
         for (Particle p : particles) p.paint(g2d);
     }
@@ -108,7 +172,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void mousePressed(MouseEvent mouseEvent) {
-        for (Entity e: entities) e.mousePressed(mouseEvent);
+        for (Entity e : entities) e.mousePressed(mouseEvent);
     }
 
     public void mouseReleased(MouseEvent mouseEvent) {
@@ -128,15 +192,15 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void keyPressed(KeyEvent keyEvent) {
-        for (Entity e: entities) e.keyPressed(keyEvent);
+        for (Entity e : entities) e.keyPressed(keyEvent);
     }
 
     public void keyReleased(KeyEvent keyEvent) {
-        for (Entity e: entities) e.keyReleased(keyEvent);
+        for (Entity e : entities) e.keyReleased(keyEvent);
     }
 
     public void mouseDragged(MouseEvent mouseEvent) {
-        for (Entity e: entities) e.mouseDragged(mouseEvent);
+        for (Entity e : entities) e.mouseDragged(mouseEvent);
     }
 
     public void mouseMoved(MouseEvent mouseEvent) {
@@ -144,6 +208,12 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
     public void addToScore(int n) {
         this.points += n;
+    }
+    public void reset() {
+        for (Entity e: entities) if (e instanceof PlayerTank) ((PlayerTank) e).health = PlayerTank.HEALTH;
+        for (Entity e: entities) if (e instanceof Enemy) entities.remove(e);
+        particles.removeIf(v -> true);
+        this.currentWave = -1;
     }
 }
 

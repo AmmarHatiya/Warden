@@ -10,7 +10,7 @@ public class App {
     public final static Level level2 = new Level.Level1();
     public final static Level level3 = new Level.Level1();
     public final static Level level4 = new Level.Level1();
-    public final static RetryScreen retryscreen= new RetryScreen();
+    public final static RetryScreen retryScreen= new RetryScreen();
     public final static HowToPlayMenu howtoplayScreen= new HowToPlayMenu();
     public final static Upgradesmenu upgradesmenu= new Upgradesmenu();
     public final static StartMenu startMenu = new StartMenu();
