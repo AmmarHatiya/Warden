@@ -6,6 +6,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
 
         private Buttons mainmenu = new Buttons(250,350,125,50);
         private Buttons retrybttn = new Buttons(600,350,125,50);
+        public AppPanel retryView = App.startMenu;
 
         public RetryScreen() {
             addMouseListener(this);
@@ -47,7 +48,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
                 System.out.println("I'm in the Retry button");
                 System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                /*App.setCurrentPanel(App.);*/
+                if (this.retryView != null) App.setCurrentPanel(this.retryView);
             }
 
 
