@@ -23,7 +23,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TURRET = 4;
     private static final int TOWER = 5;
 
-    private int points = 0;
+    public static int points = 0;
     private int currentWave = -1;
 
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
@@ -207,8 +207,9 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void addToScore(int n) {
-        this.points += n;
+        points += n;
     }
+
     public void reset() {
         for (Entity e: entities) if (e instanceof PlayerTank) ((PlayerTank) e).health = PlayerTank.HEALTH;
         for (Entity e: entities) if (e instanceof Enemy) entities.remove(e);
