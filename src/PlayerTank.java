@@ -10,7 +10,7 @@ public class PlayerTank extends Entity {
     public static final int HEALTH =30;
     public int health = HEALTH;
     private boolean healthUpgradeApplied = false;
-private boolean rapidfireApplied = false;
+
     public int width = 30;
     public int height = 30;
 
@@ -76,10 +76,8 @@ private boolean rapidfireApplied = false;
             this.health += 15;
             healthUpgradeApplied = true;
         }
-        if (Upgradesmenu.rapidfire && !rapidfireApplied){
-            this.delay = this.delay +4;
-            rapidfireApplied = true;
-        }
+
+        if (Upgradesmenu.rapidfire) this.delay = this.delay + 4;
 
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
@@ -116,6 +114,7 @@ private boolean rapidfireApplied = false;
         super.mouseDragged(e);
         if (delay>DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
+            if (Upgradesmenu.doublebarrel) this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX()+15, e.getY(), true));
             this.delay=0;
         }
     }
