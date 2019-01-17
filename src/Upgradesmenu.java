@@ -15,11 +15,11 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     private Buttons rapidbttn = new Buttons(30, 450, 70, 80);
     private Buttons medkitbttn = new Buttons(30, 350, 70, 80);
     private Buttons backbttn = new Buttons(820, 550, 125, 50);
-    private boolean mobility = false;
-    private boolean rapidfire = false;
-    private boolean armor = false;
-    private boolean medkit = false;
-    private boolean doublebarrel = false;
+    public static boolean mobility = false;
+    public static boolean rapidfire = false;
+    public static boolean armor = false;
+    public static boolean medkit = false;
+    public static boolean doublebarrel = false;
 
     // BRING SCORE TO THE UPGRADES PAGE
     public Upgradesmenu() {

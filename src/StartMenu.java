@@ -16,11 +16,11 @@ public class StartMenu extends AppPanel implements MouseListener {
             throw new RuntimeException(ex);
         }
     }
-private Buttons ngamebttn = new Buttons(30,175,175,50);
-    private Buttons lselectbttn = new Buttons(30,375,175,50);
-    private Buttons upgradesbttn = new Buttons(30,475,175,50);
-    private Buttons continuegamebttn = new Buttons(30,275,175,50);
-    private Buttons howtoplaybttn = new Buttons(30,75,175,50);
+private Buttons ngamebttn = new Buttons(30,250,175,50);
+    private Buttons lselectbttn = new Buttons(30,450,175,50);
+    private Buttons upgradesbttn = new Buttons(30,550,175,50);
+    private Buttons continuegamebttn = new Buttons(30,350,175,50);
+    private Buttons howtoplaybttn = new Buttons(30,150,175,50);
     public StartMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -49,11 +49,11 @@ lsb.paint(g2d);*/
         continuegamebttn.paint(g2d);
         lselectbttn.paint(g2d);
         howtoplaybttn.paint(g2d);
-        g2d.drawString("How To Play", howtoplaybttn.buttonx+25, howtoplaybttn.buttony+27);
-        g2d.drawString("New Game", ngamebttn.buttonx+25, ngamebttn.buttony+27);
-        g2d.drawString("Continue Game", continuegamebttn.buttonx+13, continuegamebttn.buttony+27);
+        g2d.drawString("How To Play", howtoplaybttn.buttonx+27, howtoplaybttn.buttony+27);
+        g2d.drawString("New Game", ngamebttn.buttonx+30, ngamebttn.buttony+27);
+        g2d.drawString("Continue Game", continuegamebttn.buttonx+15, continuegamebttn.buttony+27);
         g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
-        g2d.drawString("Upgrades", upgradesbttn.buttonx+27, upgradesbttn.buttony+27);
+        g2d.drawString("Upgrades", upgradesbttn.buttonx+40, upgradesbttn.buttony+27);
         g2d.setFont(title);
         g2d.drawString("DEN OF TANKS",400,100);
         g2d.drawImage(tankimage, 400, 250, this);

@@ -61,7 +61,14 @@ public class PlayerTank extends Entity {
     }
 
     public void tick(int levelWidth, int levelHeight) {
-        super.tick(levelWidth, levelHeight);
+        // Note: not calling super, as we want custom speeds.
+        if (Upgradesmenu.mobility) {
+            this.x += this.vx*2;
+            this.y += this.vy*2;
+        } else {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;
