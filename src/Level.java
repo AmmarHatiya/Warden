@@ -23,13 +23,21 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TURRET = 4;
     private static final int TOWER = 5;
 
-    public static int points = 1100;
+    private static final int BOSSTURRET = 6;
+    private static final int BOSSTANK = 7;
+    private static final int BOSSSHIP = 8;
+    private static final int BOSSCOPTER = 9;
+
+    public int level;
+
+    public static int points = 1100; //TODO: reduce before handing in
     private int currentWave = -1;
 
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
 
     public static class Level1 extends Level {
         public Level1() {
+            this.level = 1;
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
@@ -65,8 +73,10 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             }));
         }
     }
+
     public static class Level2 extends Level {
         public Level2() {
+            this.level = 2;
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
@@ -102,8 +112,10 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             }));
         }
     }
+
     public static class Level3 extends Level {
         public Level3() {
+            this.level = 3;
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
@@ -138,43 +150,44 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
                     new Enemy(TOWER, 600, 200),
             }));
         }
+    }
 
-        public static class Level4 extends Level {
-            public Level4() {
-                this.addWave(Arrays.asList(new Entity[]{
-                        new Enemy(TANK, 100, 100),
-                        new Enemy(TRUCK, 200, 100),
-                        new Enemy(PLANE, 300, 100),
-                        new Enemy(TURRET, 400, 100),
-                        new Enemy(TOWER, 500, 100),
-                }));
+    public static class Level4 extends Level {
+        public Level4() {
+            this.level = 4;
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+            }));
 
-                this.addWave(Arrays.asList(new Entity[]{
-                        new Enemy(TANK, 100, 100),
-                        new Enemy(TRUCK, 200, 100),
-                        new Enemy(PLANE, 300, 100),
-                        new Enemy(TURRET, 400, 100),
-                        new Enemy(TOWER, 500, 100),
-                        new Enemy(TANK, 200, 200),
-                        new Enemy(TRUCK, 300, 200),
-                        new Enemy(PLANE, 400, 200),
-                        new Enemy(TURRET, 500, 200),
-                        new Enemy(TOWER, 600, 200),
-                }));
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
 
-                this.addWave(Arrays.asList(new Entity[]{
-                        new Enemy(TANK, 100, 100),
-                        new Enemy(TRUCK, 200, 100),
-                        new Enemy(PLANE, 300, 100),
-                        new Enemy(TURRET, 400, 100),
-                        new Enemy(TOWER, 500, 100),
-                        new Enemy(TANK, 200, 200),
-                        new Enemy(TRUCK, 300, 200),
-                        new Enemy(PLANE, 400, 200),
-                        new Enemy(TURRET, 500, 200),
-                        new Enemy(TOWER, 600, 200),
-                }));
-            }
+            this.addWave(Arrays.asList(new Entity[]{
+                    new Enemy(TANK, 100, 100),
+                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(PLANE, 300, 100),
+                    new Enemy(TURRET, 400, 100),
+                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 300, 200),
+                    new Enemy(PLANE, 400, 200),
+                    new Enemy(TURRET, 500, 200),
+                    new Enemy(TOWER, 600, 200),
+            }));
         }
     }
 
@@ -220,28 +233,26 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
         if (enemyCount < 1) {
             currentWave++;
-            for (Entity e: entities) if (e instanceof PlayerTank) {
-                ((PlayerTank) e).x = 500;
-                ((PlayerTank) e).y = 500;
-                ((PlayerTank) e).vx = 0;
-                ((PlayerTank) e).vy = 0;
-            }
+            for (Entity e : entities)
+                if (e instanceof PlayerTank) {
+                    ((PlayerTank) e).x = 500;
+                    ((PlayerTank) e).y = 500;
+                    ((PlayerTank) e).vx = 0;
+                    ((PlayerTank) e).vy = 0;
+                }
             if (currentWave >= this.waves.size()) {
                 this.reset();
-                if (App.getCurrentPanel(App.level1)==App.level1)
-                {
+                if (App.getCurrentPanel() instanceof Level1) {
                     App.setCurrentPanel(App.level2);
-                }
-                else if (App.getCurrentPanel(App.level2)==App.level2)
-                {
+                    System.out.println("level 1 -> 2");
+                } else if (App.getCurrentPanel() instanceof Level2) {
                     App.setCurrentPanel(App.level3);
-                }
-                else if (App.getCurrentPanel(App.level3)==App.level3)
-                {
+                    System.out.println("level 2 -> 3");
+                } else if (App.getCurrentPanel() instanceof Level3) {
                     App.setCurrentPanel(App.level4);
-                }
-                else
-                App.setCurrentPanel(App.startMenu);
+                    System.out.println("level 3 -> 4");
+                } else
+                    App.setCurrentPanel(App.startMenu);
                 return;
             }
             this.entities.addAll(this.waves.get(this.currentWave));
@@ -272,6 +283,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         g2d.setColor(Color.green);
         g2d.setFont(txt);
         g2d.drawString("Points:" + points, 10, HEIGHT - 45);
+        g2d.drawString("Level:" + level + " Wave: " + (currentWave + 1), 150, HEIGHT - 45);
         for (Entity e : entities) e.paint(g2d);
         for (Particle p : particles) p.paint(g2d);
     }
@@ -336,8 +348,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void reset() {
-        for (Entity e: entities) if (e instanceof PlayerTank) ((PlayerTank) e).health = PlayerTank.HEALTH;
-        for (Entity e: entities) if (e instanceof Enemy) entities.remove(e);
+        for (Entity e : entities) if (e instanceof PlayerTank) ((PlayerTank) e).health = PlayerTank.HEALTH;
+        for (Entity e : entities) if (e instanceof Enemy) entities.remove(e);
         particles.removeIf(v -> true);
         this.currentWave = -1;
     }
