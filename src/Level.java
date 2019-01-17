@@ -23,7 +23,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TURRET = 4;
     private static final int TOWER = 5;
 
-    public static int points = 0;
+    public static int points = 1100;
     private int currentWave = -1;
 
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();

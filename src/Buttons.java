@@ -5,6 +5,7 @@ public class Buttons {
     public int buttony;
     public int buttonw;
     public int buttonh;
+    public boolean filled = false;
 
     public Buttons(int buttonx, int buttony, int buttonw,int buttonh){
         this.buttonh= buttonh;
@@ -35,6 +36,7 @@ public class Buttons {
         //Draw Button
         g2d.setColor(Color.GREEN);
         g2d.drawRect(buttonx, buttony, buttonw, buttonh);
+        if (filled) g2d.fillRect(buttonx, buttony, buttonw, buttonh);
     }
 
 
