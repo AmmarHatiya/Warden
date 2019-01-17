@@ -60,7 +60,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         g2d.setColor(Color.GREEN);
         g2d.setFont(title);
         g2d.drawString("Upgrades", 390, 30);
-        /*g2d.drawImage(backImage, 0, 0, this);*/
     }
     public void mouseClicked(MouseEvent mouseEvent) {
 
