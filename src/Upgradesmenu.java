@@ -3,24 +3,11 @@ import javax.swing.*;
         import java.awt.event.MouseEvent;
         import java.awt.event.MouseListener;
         import java.awt.Graphics;
-        import java.awt.image.BufferedImage;
-        import java.io.File;
-        import java.io.IOException;
 
-        import javax.imageio.ImageIO;
-        import javax.swing.JPanel;
 
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
 public class Upgradesmenu extends AppPanel implements MouseListener {
-    /*private final static Image backImage;
 
-    static {
-        try {
-            backImage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("back.png"));
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }*/
 
     private Buttons doublebarrelbttn = new Buttons(30, 250, 70, 80);
     private Buttons armorbttn = new Buttons(30, 150, 70, 80);
@@ -116,6 +103,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
             if (Level.points >= 5 ) {
                 armor = true;
             Level.points = Level.points - 5;
+
         }
         }
 

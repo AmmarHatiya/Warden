@@ -1,8 +1,21 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 public class StartMenu extends AppPanel implements MouseListener {
+    private final static Image tankimage;
+
+    static {
+        try {
+            tankimage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("tankimage.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 private Buttons ngamebttn = new Buttons(30,175,175,50);
     private Buttons lselectbttn = new Buttons(30,375,175,50);
     private Buttons upgradesbttn = new Buttons(30,475,175,50);
@@ -42,8 +55,8 @@ lsb.paint(g2d);*/
         g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
         g2d.drawString("Upgrades", upgradesbttn.buttonx+27, upgradesbttn.buttony+27);
         g2d.setFont(title);
-        g2d.drawString("DEN OF TANKS",500,100);
-
+        g2d.drawString("DEN OF TANKS",400,100);
+        g2d.drawImage(tankimage, 400, 250, this);
     }
 
     public void tick() {
