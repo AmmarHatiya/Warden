@@ -17,7 +17,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             super.paint(g);
             Graphics2D g2d = (Graphics2D) g;
             Font button = new Font("Monospaced", Font.BOLD, 14);
-            Font gameover = new Font("Monospaced", Font.BOLD, 30);
+            Font gameover = new Font("Monospaced", Font.BOLD, 35);
             g.setFont(button);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -28,10 +28,11 @@ public class RetryScreen extends AppPanel implements MouseListener {
             g2d.setColor(Color.GREEN);
             mainmenu.paint(g2d);
             retrybttn.paint(g2d);
-            g2d.drawString("Retry Level", retrybttn.buttonx+25, retrybttn.buttony+27);
+            g2d.drawString("Retry Level", retrybttn.buttonx+23, retrybttn.buttony+27);
             g2d.drawString("Main Menu", mainmenu.buttonx+25, mainmenu.buttony+27);
             g.setFont(gameover);
-            g2d.drawString("NOT DONE YET", 20, 20);
+            g2d.drawString("Game Over", 400, 250);
+ /*           g2d.drawString("Tank Destroyed!", 400, 200);*/
         }
 
         public void tick() {
@@ -40,15 +41,11 @@ public class RetryScreen extends AppPanel implements MouseListener {
         public void mouseClicked(MouseEvent mouseEvent) {
             // IF STATEMENTS FOR NEW GAME BUTTON
             if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX()<=(mainmenu.getX()+ mainmenu.getW())) && (mouseEvent.getY()>= mainmenu.getY())&& (mouseEvent.getY()<=(mainmenu.getY()+ mainmenu.getH()))){
-                System.out.println("I'm in the Main Menu button");
-                System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ mainmenu.getY());
 
             }
             // IF STATEMENTS FOR retry BUTTON
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
-                System.out.println("I'm in the Retry button");
-                System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                if (this.retryView != null) App.setCurrentPanel(this.retryView);
+
             }
 
 
@@ -58,15 +55,13 @@ public class RetryScreen extends AppPanel implements MouseListener {
             // Go to corresponding menu
             // IF STATEMENTS FOR NEW GAME BUTTON
             if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX()<=(mainmenu.getX()+ mainmenu.getW())) && (mouseEvent.getY()>= mainmenu.getY())&& (mouseEvent.getY()<=(mainmenu.getY()+ mainmenu.getH()))){
-                System.out.println("I'm in the Main Menu button");
-                System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ mainmenu.getY());
                 App.setCurrentPanel(App.startMenu);
             }
-            // IF STATEMENTS FOR LEVEL SELECT BUTTON
+            // IF STATEMENTS FOR Retry BUTTON
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
                 System.out.println("I'm in the Retry button");
                 System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                /*    lsb.paint();*/
+                if (this.retryView != null) App.setCurrentPanel(this.retryView);
             }
 
         }

@@ -7,8 +7,9 @@ public class PlayerTank extends Entity {
     //TODO: change delay, just testing phase
     private static final int DELAY = 2;
     private int delay = DELAY; //slows down rate of fire
-    public static final int HEALTH =3;
+    public static final int HEALTH =30;
     public int health = HEALTH;
+    private boolean healthUpgradeApplied = false;
 
     public int width = 30;
     public int height = 30;
@@ -28,11 +29,11 @@ public class PlayerTank extends Entity {
         g2d.fillOval((int) x, (int) y, 5, 5);
 
         g2d.setColor(Color.lightGray);
-        g2d.fillRect(500-HEALTH*5,600,  HEALTH*5, 25);
+        g2d.fillRect(700-HEALTH*5,625,  HEALTH*5, 25);
 
         if (health>0){
-            g2d.setColor(Color.pink);
-            g2d.fillRect(500-health*5,600, health*5, 25);
+            g2d.setColor(Color.red);
+            g2d.fillRect(700-health*5,625, health*5, 25);
         }
 
     }
@@ -62,7 +63,22 @@ public class PlayerTank extends Entity {
     }
 
     public void tick(int levelWidth, int levelHeight) {
-        super.tick(levelWidth, levelHeight);
+        // Note: not calling super, as we want custom speeds.
+        if (Upgradesmenu.mobility) {
+            this.x += this.vx*2;
+            this.y += this.vy*2;
+        } else {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+
+        if (Upgradesmenu.armor && !healthUpgradeApplied) {
+            this.health += 15;
+            healthUpgradeApplied = true;
+        }
+
+        if (Upgradesmenu.rapidfire) this.delay = this.delay + 4;
+
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;
@@ -98,6 +114,7 @@ public class PlayerTank extends Entity {
         super.mouseDragged(e);
         if (delay>DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
+            if (Upgradesmenu.doublebarrel) this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX()+15, e.getY(), true));
             this.delay=0;
         }
     }

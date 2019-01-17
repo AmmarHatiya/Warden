@@ -27,7 +27,7 @@ public class App {
         currentPanel.grabFocus();
     }
 
-    public static AppPanel getCurrentPanel(AppPanel p) {
+    public static AppPanel getCurrentPanel() {
         return currentPanel;
     }
 
