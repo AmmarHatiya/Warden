@@ -23,10 +23,10 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private static final int TURRET = 4;
     private static final int TOWER = 5;
 
-    private static final int BOSSTURRET = 6;
-    private static final int BOSSTANK = 7;
-    private static final int BOSSSHIP = 8;
-    private static final int BOSSCOPTER = 9;
+    private static final int BOSSTURRET = 1;
+    private static final int BOSSSHIP = 2;
+    private static final int BOSSTANK = 3;
+    private static final int BOSSCOPTER = 4;
 
     public int level;
 
@@ -60,16 +60,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
-                    new Enemy(TANK, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
-                    new Enemy(TANK, 200, 200),
-                    new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Boss(BOSSTURRET, 500, 100),
             }));
         }
     }
@@ -99,16 +90,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
-                    new Enemy(TANK, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
-                    new Enemy(TANK, 200, 200),
-                    new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Boss(BOSSSHIP, 500, 100),
             }));
         }
     }
