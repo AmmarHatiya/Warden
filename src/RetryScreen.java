@@ -6,6 +6,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
 
         private Buttons mainmenu = new Buttons(250,350,125,50);
         private Buttons retrybttn = new Buttons(600,350,125,50);
+        public AppPanel retryView = App.startMenu;
 
         public RetryScreen() {
             addMouseListener(this);
@@ -16,7 +17,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             super.paint(g);
             Graphics2D g2d = (Graphics2D) g;
             Font button = new Font("Monospaced", Font.BOLD, 14);
-            Font gameover = new Font("Monospaced", Font.BOLD, 30);
+            Font gameover = new Font("Monospaced", Font.BOLD, 35);
             g.setFont(button);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -27,10 +28,11 @@ public class RetryScreen extends AppPanel implements MouseListener {
             g2d.setColor(Color.GREEN);
             mainmenu.paint(g2d);
             retrybttn.paint(g2d);
-            g2d.drawString("Retry Level", retrybttn.buttonx+25, retrybttn.buttony+27);
+            g2d.drawString("Retry Level", retrybttn.buttonx+23, retrybttn.buttony+27);
             g2d.drawString("Main Menu", mainmenu.buttonx+25, mainmenu.buttony+27);
             g.setFont(gameover);
-            g2d.drawString("NOT DONE YET", 20, 20);
+            g2d.drawString("Game Over", 400, 250);
+ /*           g2d.drawString("Tank Destroyed!", 400, 200);*/
         }
 
         public void tick() {
@@ -47,7 +49,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
                 System.out.println("I'm in the Retry button");
                 System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                /*App.setCurrentPanel(App.);*/
+                if (this.retryView != null) App.setCurrentPanel(this.retryView);
             }
 
 

@@ -17,7 +17,9 @@ private Buttons ngamebttn = new Buttons(30,175,175,50);
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         Font font = new Font("Monospaced", Font.BOLD, 18);
-        g.setFont(font);
+        g2d.setFont(font);
+        Font title = new Font("Monospaced", Font.BOLD+Font.ITALIC, 55);
+
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         //Draw Background
@@ -38,7 +40,9 @@ lsb.paint(g2d);*/
         g2d.drawString("New Game", ngamebttn.buttonx+25, ngamebttn.buttony+27);
         g2d.drawString("Continue Game", continuegamebttn.buttonx+13, continuegamebttn.buttony+27);
         g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
-        g2d.drawString("Upgrades", upgradesbttn.buttonx+25, upgradesbttn.buttony+27);
+        g2d.drawString("Upgrades", upgradesbttn.buttonx+27, upgradesbttn.buttony+27);
+        g2d.setFont(title);
+        g2d.drawString("DEN OF TANKS",500,100);
 
     }
 
@@ -56,6 +60,7 @@ lsb.paint(g2d);*/
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX()<=(upgradesbttn.getX()+upgradesbttn.getW())) && (mouseEvent.getY()>= upgradesbttn.getY())&& (mouseEvent.getY()<=(upgradesbttn.getY()+upgradesbttn.getH()))){
+
 
         }
 

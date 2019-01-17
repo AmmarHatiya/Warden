@@ -66,6 +66,7 @@ public class HowToPlayMenu extends AppPanel implements MouseListener {
         // Go to corresponding menu
         // IF STATEMENTS FOR main menu BUTTON
         if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX() <= (mainmenu.getX() + mainmenu.getW())) && (mouseEvent.getY() >= mainmenu.getY()) && (mouseEvent.getY() <= (mainmenu.getY() + mainmenu.getH()))) {
+
             App.setCurrentPanel(App.startMenu);
         }
 
