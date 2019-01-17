@@ -57,7 +57,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         g2d.setColor(Color.GREEN);
         g2d.drawString("Armor: Permanent Health Boost by 15 hp", armorbttn.buttonx + 100, armorbttn.buttony + (armorbttn.buttonh / 2));
         g2d.drawString("Mobility: Move Faster", mobilitybttn.buttonx + 100, mobilitybttn.buttony + (mobilitybttn.buttonh / 2));
-        g2d.drawString("Double Barrel Ability: Have two Barrels for 30 seconds", doublebarrelbttn.buttonx + 100, doublebarrelbttn.buttony + (doublebarrelbttn.buttonh / 2));
+        g2d.drawString("Double Barrel Ability: Two Barrels that fire 2 Bullets at once", doublebarrelbttn.buttonx + 100, doublebarrelbttn.buttony + (doublebarrelbttn.buttonh / 2));
         g2d.drawString("Med Kit: First aid kit that gives you 15 hp" +
                 "", medkitbttn.buttonx + 100, medkitbttn.buttony + (medkitbttn.buttonh / 2));
         g2d.drawString("Rapid Fire Ability: Fire Rapidly for 30 seconds", rapidbttn.buttonx + 100, rapidbttn.buttony + (rapidbttn.buttonh / 2));
@@ -69,25 +69,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
-       /* // IF STATEMENTS FOR double barrel BUTTON
-        if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
-        }
 
-
-        // IF STATEMENTS FOR armor BUTTON
-        if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
-        }
-
-
-        // IF STATEMENTS FOR mobility GAME BUTTON
-        if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
-        }
-        // IF STATEMENTS FOR RAPID FIRE BUTTON
-        if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
-        }
-        // IF STATEMENTS FOR HEALTH UPGRADES
-        if ((mouseEvent.getX() >= medkitbttn.getX()) && (mouseEvent.getX() <= (medkitbttn.getX() + medkitbttn.getW())) && (mouseEvent.getY() >= medkitbttn.getY()) && (mouseEvent.getY() <= (medkitbttn.getY() + medkitbttn.getH()))) {
-        }*/
     }
 
     public void mousePressed(MouseEvent mouseEvent) {
@@ -142,7 +124,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent mouseEvent) {
-        // Go to corresponding menu
 
     }
 

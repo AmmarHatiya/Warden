@@ -5,12 +5,12 @@ import java.awt.event.MouseEvent;
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
-    private static final int DELAY = 2;
+    private static final int DELAY = 1;
     private int delay = DELAY; //slows down rate of fire
     public static final int HEALTH =30;
     public int health = HEALTH;
-    private boolean healthUpgradeApplied = false;
-
+    private boolean armorApplied = false;
+private boolean medkitApplied = false;
     public int width = 30;
     public int height = 30;
 
@@ -49,6 +49,8 @@ public class PlayerTank extends Entity {
             this.vy = -speed;
         if (e.getKeyCode() == KeyEvent.VK_S)
             this.vy = +speed;
+        if (e.getKeyCode() == KeyEvent.VK_1)
+            this.medkitApplied = true;
     }
 
     public void keyReleased(KeyEvent e) {
@@ -72,13 +74,17 @@ public class PlayerTank extends Entity {
             this.y += this.vy;
         }
 
-        if (Upgradesmenu.armor && !healthUpgradeApplied) {
+        if (Upgradesmenu.armor && !armorApplied) {
             this.health += 15;
-            healthUpgradeApplied = true;
+            armorApplied = true;
         }
 
-        if (Upgradesmenu.rapidfire) this.delay = this.delay + 4;
+        if (Upgradesmenu.rapidfire) this.delay = this.delay +4;
 
+if (Upgradesmenu.medkit && medkitApplied){
+    this.health += 15;
+    medkitApplied = false;
+}
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;

@@ -50,7 +50,7 @@ lsb.paint(g2d);*/
         lselectbttn.paint(g2d);
         howtoplaybttn.paint(g2d);
         g2d.drawString("How To Play", howtoplaybttn.buttonx+27, howtoplaybttn.buttony+27);
-        g2d.drawString("New Game", ngamebttn.buttonx+30, ngamebttn.buttony+27);
+        g2d.drawString("New Game", ngamebttn.buttonx+40, ngamebttn.buttony+27);
         g2d.drawString("Continue Game", continuegamebttn.buttonx+15, continuegamebttn.buttony+27);
         g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
         g2d.drawString("Upgrades", upgradesbttn.buttonx+40, upgradesbttn.buttony+27);
