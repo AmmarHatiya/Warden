@@ -102,7 +102,6 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
             if (Level.points >= 5) {
                 armor = true;
                 Level.points = Level.points - 5;
-
             }
         }
 
