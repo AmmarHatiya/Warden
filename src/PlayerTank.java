@@ -7,7 +7,7 @@ public class PlayerTank extends Entity {
     //TODO: change delay, just testing phase
     private static final int DELAY = 2;
     private int delay = DELAY; //slows down rate of fire
-    public static final int HEALTH =3;
+    public static final int HEALTH =30;
     public int health = HEALTH;
 
     public int width = 30;
@@ -28,11 +28,11 @@ public class PlayerTank extends Entity {
         g2d.fillOval((int) x, (int) y, 5, 5);
 
         g2d.setColor(Color.lightGray);
-        g2d.fillRect(500-HEALTH*5,600,  HEALTH*5, 25);
+        g2d.fillRect(700-HEALTH*5,625,  HEALTH*5, 25);
 
         if (health>0){
-            g2d.setColor(Color.pink);
-            g2d.fillRect(500-health*5,600, health*5, 25);
+            g2d.setColor(Color.red);
+            g2d.fillRect(700-health*5,625, health*5, 25);
         }
 
     }
