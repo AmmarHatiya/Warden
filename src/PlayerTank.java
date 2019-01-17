@@ -70,6 +70,14 @@ public class PlayerTank extends Entity {
             this.x += this.vx;
             this.y += this.vy;
         }
+        if (Upgradesmenu.armor) {
+            this.health += this.health+15;
+
+        } else {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;
