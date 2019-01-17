@@ -9,7 +9,8 @@ public class PlayerTank extends Entity {
     private int delay = DELAY; //slows down rate of fire
     public static final int HEALTH =3;
     public int health = HEALTH;
-
+    private boolean healthUpgradeApplied = false;
+private boolean rapidfireApplied = false;
     public int width = 30;
     public int height = 30;
 
@@ -70,12 +71,14 @@ public class PlayerTank extends Entity {
             this.x += this.vx;
             this.y += this.vy;
         }
-        if (Upgradesmenu.armor) {
-            this.health += this.health+15;
 
-        } else {
-            this.x += this.vx;
-            this.y += this.vy;
+        if (Upgradesmenu.armor && !healthUpgradeApplied) {
+            this.health += 15;
+            healthUpgradeApplied = true;
+        }
+        if (Upgradesmenu.rapidfire && !rapidfireApplied){
+            this.delay = this.delay +4;
+            rapidfireApplied = true;
         }
 
         if (x < 0) x = 0;

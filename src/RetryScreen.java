@@ -41,15 +41,11 @@ public class RetryScreen extends AppPanel implements MouseListener {
         public void mouseClicked(MouseEvent mouseEvent) {
             // IF STATEMENTS FOR NEW GAME BUTTON
             if ((mouseEvent.getX() >= mainmenu.getX()) && (mouseEvent.getX()<=(mainmenu.getX()+ mainmenu.getW())) && (mouseEvent.getY()>= mainmenu.getY())&& (mouseEvent.getY()<=(mainmenu.getY()+ mainmenu.getH()))){
-                System.out.println("I'm in the Main Menu button");
-                System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ mainmenu.getY());
 
             }
             // IF STATEMENTS FOR retry BUTTON
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
-                System.out.println("I'm in the Retry button");
-                System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                if (this.retryView != null) App.setCurrentPanel(this.retryView);
+
             }
 
 
@@ -65,7 +61,7 @@ public class RetryScreen extends AppPanel implements MouseListener {
             if ((mouseEvent.getX() >= retrybttn.getX()) && (mouseEvent.getX()<=(retrybttn.getX()+ retrybttn.getW())) && (mouseEvent.getY()>= retrybttn.getY())&& (mouseEvent.getY()<=(retrybttn.getY()+ retrybttn.getH()))){
                 System.out.println("I'm in the Retry button");
                 System.out.println("Mouse y is:"+mouseEvent.getY()+" Button Y is:"+ retrybttn.getY());
-                /*    lsb.paint();*/
+                if (this.retryView != null) App.setCurrentPanel(this.retryView);
             }
 
         }
