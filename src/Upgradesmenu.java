@@ -41,10 +41,15 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
         g2d.setColor(Color.GREEN);
+        armorbttn.filled = armor;
         armorbttn.paint(g2d);
+        mobilitybttn.filled= mobility;
         mobilitybttn.paint(g2d);
+        doublebarrelbttn.filled = doublebarrel;
         doublebarrelbttn.paint(g2d);
+        medkitbttn.filled = medkit;
         medkitbttn.paint(g2d);
+        rapidbttn.filled = rapidfire;
         rapidbttn.paint(g2d);
         backbttn.paint(g2d);
         g2d.drawString("Back", backbttn.buttonx + 45, backbttn.buttony + 27);
@@ -90,7 +95,7 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         // IF STATEMENTS FOR double barrel BUTTON
         if ((mouseEvent.getX() >= doublebarrelbttn.getX()) && (mouseEvent.getX() <= (doublebarrelbttn.getX() + doublebarrelbttn.getW())) && (mouseEvent.getY() >= doublebarrelbttn.getY()) && (mouseEvent.getY() <= (doublebarrelbttn.getY() + doublebarrelbttn.getH()))) {
 
-            if (Level.points >= 500) {
+            if (Level.points >= 500 && !doublebarrel) {
                 doublebarrel = true;
                 Level.points = Level.points - 500;
             }
@@ -99,16 +104,16 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
 
         // IF STATEMENTS FOR armor BUTTON
         if ((mouseEvent.getX() >= armorbttn.getX()) && (mouseEvent.getX() <= (armorbttn.getX() + armorbttn.getW())) && (mouseEvent.getY() >= armorbttn.getY()) && (mouseEvent.getY() <= (armorbttn.getY() + armorbttn.getH()))) {
-            if (Level.points >= 5) {
+            if (Level.points >= 500 && !armor) {
                 armor = true;
-                Level.points = Level.points - 5;
+                Level.points = Level.points - 500;
             }
         }
 
 
         // IF STATEMENTS FOR mobility GAME BUTTON
         if ((mouseEvent.getX() >= mobilitybttn.getX()) && (mouseEvent.getX() <= (mobilitybttn.getX() + mobilitybttn.getW())) && (mouseEvent.getY() >= mobilitybttn.getY()) && (mouseEvent.getY() <= (mobilitybttn.getY() + mobilitybttn.getH()))) {
-            if (Level.points >= 500) {
+            if (Level.points >= 500 && !mobility) {
                 mobility = true;
                 Level.points = Level.points - 500;
             }
@@ -116,14 +121,14 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
 
         // IF STATEMENTS FOR RAPID FIRE BUTTON
         if ((mouseEvent.getX() >= rapidbttn.getX()) && (mouseEvent.getX() <= (rapidbttn.getX() + rapidbttn.getW())) && (mouseEvent.getY() >= rapidbttn.getY()) && (mouseEvent.getY() <= (rapidbttn.getY() + rapidbttn.getH()))) {
-            if (Level.points >= 500) {
+            if (Level.points >= 500 && !rapidfire) {
                 Level.points = Level.points - 500;
                 rapidfire = true;
             }
         }
         // IF STATEMENTS FOR HEALTH UPGRADES
         if ((mouseEvent.getX() >= medkitbttn.getX()) && (mouseEvent.getX() <= (medkitbttn.getX() + medkitbttn.getW())) && (mouseEvent.getY() >= medkitbttn.getY()) && (mouseEvent.getY() <= (medkitbttn.getY() + medkitbttn.getH()))) {
-            if (Level.points >= 500) {
+            if (Level.points >= 500 && !medkit) {
                 medkit = true;
                 Level.points = Level.points - 500;
             }
