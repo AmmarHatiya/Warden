@@ -36,7 +36,7 @@ public class Buttons {
         //Draw Button
         g2d.setColor(Color.GREEN);
         g2d.drawRect(buttonx, buttony, buttonw, buttonh);
-        if (filled) g2d.fillRect(buttonx, buttony, buttonw, buttonh);
+        if (filled) {g2d.setColor(Color.RED);g2d.fillRect(buttonx+1, buttony+1, buttonw-1, buttonh-1);}
     }
 
 

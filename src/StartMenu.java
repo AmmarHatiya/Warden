@@ -55,7 +55,12 @@ lsb.paint(g2d);*/
         g2d.drawString("Level Select", lselectbttn.buttonx+25, lselectbttn.buttony+27);
         g2d.drawString("Upgrades", upgradesbttn.buttonx+40, upgradesbttn.buttony+27);
         g2d.setFont(title);
+        g2d.setColor(Color.GRAY);
+        g2d.drawString("DEN OF TANKS",400+2,100+1);
+        g2d.setColor(Color.GREEN);
         g2d.drawString("DEN OF TANKS",400,100);
+
+
         g2d.drawImage(tankimage, 400, 250, this);
     }
 

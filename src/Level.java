@@ -327,7 +327,7 @@ System.out.println("CURRENT LEVEL: "+this.level);
      System.out.println("CURRENT LEVEL: "+this.level);
  }
 
-        g2d.setColor(Color.DARK_GRAY);
+        g2d.setColor(Color.BLACK);
         g2d.fillRect(0, HEIGHT - 85, WIDTH, 50);
         g2d.setColor(Color.green);
         g2d.setFont(txt);

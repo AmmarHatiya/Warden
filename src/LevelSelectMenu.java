@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -18,7 +19,14 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
     private Buttons grassbttn = new Buttons(30, 50, 150, 125);
     private Buttons citybttn = new Buttons(30, 500, 150, 125);
     private Buttons backbttn = new Buttons(820, 50, 125, 50);
-
+  /*  private final static Image playertankimg;
+    static {
+        try {
+            playertankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankimage.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }*/
     public LevelSelectMenu() {
         addMouseListener(this);
         setFocusable(true);
@@ -33,6 +41,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
         Font font = new Font("Monospaced", Font.BOLD, 14);
+        Font back = new Font("Monospaced", Font.BOLD,16);
         g.setFont(font);
         g2d.setColor(Color.GREEN);
         mudbttn.paint(g2d);
@@ -56,16 +65,20 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.fillPolygon(grasstankx, grasstanky, 4);
 
         g2d.setColor(new Color(39, 255, 47, 254));
-        g2d.drawString("Level 1: Grass", grassbttn.buttonx + 30, grassbttn.buttony + grassbttn.buttonh + 15);
-        g2d.drawString("Level 3: Mud", mudbttn.buttonx + 32, mudbttn.buttony + mudbttn.buttonh + 15);
-        g2d.drawString("Level 2: Ice", icebttn.buttonx + 35, icebttn.buttony + icebttn.buttonh + 15);
-        g2d.drawString("Level 4: City", citybttn.buttonx + 30, citybttn.buttony + citybttn.buttonh + 15);
-        g2d.drawString("Back", backbttn.buttonx + 45, backbttn.buttony + 27);
+        g2d.setFont(back);
+        g2d.drawString("Back", backbttn.buttonx + 40, backbttn.buttony + 27);
+
+
+        g2d.drawString("Level 1: Grass", grassbttn.buttonx + 170, grassbttn.buttony + (grassbttn.buttonh / 2));
+        g2d.drawString("Level 2: Ice", icebttn.buttonx + 170, icebttn.buttony + (icebttn.buttonh / 2));
+        g2d.drawString("Level 3: Mud", mudbttn.buttonx + 170, mudbttn.buttony + (mudbttn.buttonh / 2));
+        g2d.drawString("Level 4: City", citybttn.buttonx + 170, citybttn.buttony + (citybttn.buttonh / 2));
+
 
         //DRAW BACKGROUND OF MUD BUTTON
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(mudbttn.buttonx, mudbttn.buttony, mudbttn.buttonw, mudbttn.buttonh);
-        g2d.setColor(new Color(197, 119, 51));
+        g2d.setColor(new Color(137, 73, 39));
         g2d.fillRect(mudbttn.buttonx, mudbttn.buttony + 75, mudbttn.buttonw, mudbttn.buttonh - 75);
         g2d.setColor(Color.GREEN);
         g2d.drawRect(mudbttn.buttonx - 1, mudbttn.buttony - 1, mudbttn.buttonw, mudbttn.buttonh);
@@ -94,7 +107,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.setColor(new Color(128, 203, 255));
         g2d.fillRect(citybttn.buttonx, citybttn.buttony, citybttn.buttonw, citybttn.buttonh);
         //DRAW BUILDINGS
-        g2d.setColor(new Color(152, 176, 195, 251));
+        g2d.setColor(new Color(110, 131, 145, 251));
         g2d.fillRect(citybttn.buttonx + 1, citybttn.buttony + 25, citybttn.buttonw - 130, citybttn.buttonh - 50);
         g2d.fillRect(citybttn.buttonx + 25, citybttn.buttony + 15, citybttn.buttonw - 105, citybttn.buttonh - 50);
         g2d.fillRect(citybttn.buttonx + 80, citybttn.buttony + 10, citybttn.buttonw - 120, citybttn.buttonh - 50);
@@ -153,6 +166,9 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.fillOval(citybttn.buttonx + 8, citybttn.buttony + 75, 50, 15);
         g2d.setColor(new Color(50, 89, 47, 254));
         g2d.fillPolygon(citytankx, citytanky, 4);
+/*
+        g2d.drawImage(playertankimg,0,0,this);
+*/
     }
 
     public void tick() {
