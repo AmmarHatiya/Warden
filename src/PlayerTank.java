@@ -49,6 +49,9 @@ public class PlayerTank extends Entity {
             this.vy = -speed;
         if (e.getKeyCode() == KeyEvent.VK_S)
             this.vy = +speed;
+        if (e.getKeyCode()== KeyEvent.VK_1){
+            this.healthUpgradeApplied = false;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -84,7 +87,10 @@ public class PlayerTank extends Entity {
         if (y < 0) y = 0;
         if (y + height > levelHeight- 85) y = levelHeight - 85 - height;
         this.delay++;
+
+
     }
+
 
     public void check(Entity p) {
         if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
