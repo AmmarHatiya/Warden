@@ -9,7 +9,7 @@ public class App {
     public final static Level level1 = new Level.Level1();
     public final static Level level2 = new Level.Level2();
     public final static Level level3 = new Level.Level3();
-    public final static Level level4 = new Level.Level4();;
+    public final static Level level4 = new Level.Level4();
     public final static Pause pauseScreen= new Pause();
     public final static EndScreen endScreen = new EndScreen();
     public final static RetryScreen retryScreen= new RetryScreen();

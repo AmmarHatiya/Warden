@@ -9,7 +9,7 @@ public class PlayerTank extends Entity {
 
     private static final int DELAY = 10;
     private int delay = DELAY; //slows down rate of fire
-    private int THIRTYSEC = 100;
+    private static final int THIRTYSEC = 100;
 
 
     public static final int HEALTH = 30;
@@ -51,6 +51,7 @@ public class PlayerTank extends Entity {
         //base
         g2d.setColor(new Color(17, 75, 11));
         g2d.fillRect((int) x , (int) y,  30, 30);
+
 /*g2d.drawImage(playertankimg,(int)x,(int)y,25,25,null);*/
 
 
@@ -126,8 +127,6 @@ public class PlayerTank extends Entity {
             g2d.setFont(txt);
             g2d.drawString(word, 150, 655);
         }
-
-
 
     }
 
