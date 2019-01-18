@@ -5,19 +5,22 @@ import java.awt.event.MouseEvent;
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
-    private int d = 10;
-    //private static final int DELAY = d;
-    private int delay = d; //slows down rate of fire
+
+    private static final int DELAY = 10;
+    private int delay = DELAY; //slows down rate of fire
+    private int THIRTYSEC = 100;
+
+
     public static final int HEALTH = 30;
     public int health = HEALTH;
 
     private boolean healthUpgradeApplied = false;
     private boolean rapidUpgradeApplied = false;
 
-    private boolean usedKit = false;
-    private boolean usedRapid = false;
-    private boolean usedDouble = false;
-    private boolean usedMobility = false;
+    public boolean usedKit = false;
+    public boolean usedRapid = false;
+    public boolean usedDouble = false;
+    public boolean usedMobility = false;
 
     public boolean pause = false;
     public int width = 30;
@@ -25,9 +28,9 @@ public class PlayerTank extends Entity {
 
     private int i = 0;
 
-    private int r = 0;
-    private int b = 0;
-    private int m = 0;
+    public int r = 0;
+    public int b = 0;
+    public int m = 0;
 
 
     public PlayerTank(int x, int y) {
@@ -44,20 +47,75 @@ public class PlayerTank extends Entity {
         g2d.fillOval((int) x, (int) y, 5, 5);
 
         g2d.setColor(Color.lightGray);
-        g2d.fillRect(700 - HEALTH * 5, 625, HEALTH * 5, 25);
+        g2d.fillRect(750 - HEALTH * 5, 625, HEALTH * 5, 25);
 
         if (health > 0) {
             g2d.setColor(Color.red);
-            g2d.fillRect(700 - health * 5, 625, health * 5, 25);
+            g2d.fillRect(750 - health * 5, 625, health * 5, 25);
         }
 
-        if (Upgradesmenu.mobility) {
-            this.x += this.vx * 2;
-            this.y += this.vy * 2;
-        } else {
-            this.x += this.vx;
-            this.y += this.vy;
+        Font txt = new Font("Monospaced", Font.BOLD, 15);
+
+        if (Upgradesmenu.medkit) {
+            String word;
+            if (!usedKit) {
+                g2d.setColor(Color.red);
+                word = "Press 1 For MedKit";
+            }else {
+                g2d.setColor(Color.lightGray);
+                word = "MedKit Used";
+            }
+            g2d.fillRect(150, 617, 250, 8);
+            g2d.setColor(Color.green);
+            g2d.setFont(txt);
+            g2d.drawString(word, 150, 625);
         }
+
+        if (m > THIRTYSEC || Upgradesmenu.mobility) {
+            String word;
+            if (!usedMobility) {
+                g2d.setColor(Color.red);
+                word = "Press 2 For Mobility";
+            }else {
+                g2d.setColor(Color.lightGray);
+                word = "Mobility Used";
+            }
+            g2d.fillRect(150, 627, 250, 8);
+            g2d.setColor(Color.green);
+            g2d.setFont(txt);
+            g2d.drawString(word, 150, 635);
+        }
+
+        if (b > THIRTYSEC || Upgradesmenu.doublebarrel) {
+            String word;
+            if (!usedDouble) {
+                g2d.setColor(Color.red);
+                word = "Press 3 For Double Barrel";
+            }else {
+                g2d.setColor(Color.lightGray);
+                word = "Double Barrel Used";
+            }
+            g2d.fillRect(150, 637, 250, 8);
+            g2d.setColor(Color.green);
+            g2d.setFont(txt);
+            g2d.drawString(word, 150, 645);
+        }
+
+        if (r > THIRTYSEC || Upgradesmenu.rapidfire) {
+            String word;
+            if (!usedRapid) {
+                g2d.setColor(Color.red);
+                word = "Press 4 For Rapid Fire";
+            }else {
+                g2d.setColor(Color.lightGray);
+                word = "Rapid Fire Used";
+            }
+            g2d.fillRect(150, 647, 250, 8);
+            g2d.setColor(Color.green);
+            g2d.setFont(txt);
+            g2d.drawString(word, 150, 655);
+        }
+
 
 
     }
@@ -75,20 +133,20 @@ public class PlayerTank extends Entity {
             this.vy = +speed;
 
         if (e.getKeyCode() == KeyEvent.VK_1 && Upgradesmenu.medkit && !usedKit) {
-            health+=15;
-            usedKit=true;
+            health += 15;
+            usedKit = true;
         }
 
         if (e.getKeyCode() == KeyEvent.VK_2 && Upgradesmenu.mobility && !usedMobility) {
-            usedMobility=true;
+            usedMobility = true;
         }
 
         if (e.getKeyCode() == KeyEvent.VK_3 && Upgradesmenu.doublebarrel && !usedDouble) {
-            usedMobility=true;
+            usedDouble = true;
         }
 
         if (e.getKeyCode() == KeyEvent.VK_4 && Upgradesmenu.rapidfire && !usedRapid) {
-            usedMobility=true;
+            usedRapid = true;
         }
 
 
@@ -123,9 +181,24 @@ public class PlayerTank extends Entity {
             this.x += this.vx * 2;
             this.y += this.vy * 2;
         }
-        if (m > 100 || !usedMobility) {
+        if (m > THIRTYSEC || !usedMobility) {
             this.x += this.vx;
             this.y += this.vy;
+        }
+
+        if (usedRapid) {
+            r++;
+            this.delay += 2;
+        }
+        if (r > THIRTYSEC || !usedRapid) {
+            this.delay++;
+        }
+
+        if (usedDouble) {
+            b++;
+        }
+        if (b > THIRTYSEC || !usedDouble) {
+            usedDouble = false;
         }
 
 
@@ -135,16 +208,10 @@ public class PlayerTank extends Entity {
         }
 
 
-        if (Upgradesmenu.rapidfire && !rapidUpgradeApplied) {
-            this.d = this.d - 5;
-            rapidUpgradeApplied = true;
-        }
-
         if (x < 0) x = 0;
         if (x + width > levelWidth - 15) x = levelWidth - width - 15;
         if (y < 0) y = 0;
         if (y + height > levelHeight - 85) y = levelHeight - 85 - height;
-        this.delay++;
     }
 
     public void check(Entity p) {
@@ -170,9 +237,9 @@ public class PlayerTank extends Entity {
 
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
-        if (delay > d) {
+        if (delay > DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
-            if (Upgradesmenu.doublebarrel)
+            if (usedDouble)
                 this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX() + 15, e.getY(), true));
             this.delay = 0;
         }

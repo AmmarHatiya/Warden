@@ -31,7 +31,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     public static int level = 0;
 
 
-    public static int points = 1100; //TODO: reduce before handing in
+    public static int points = 3100; //TODO: reduce before handing in
     private int currentWave = -1;
 
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
@@ -165,8 +165,6 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         this.addKeyListener(this);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-
-
     }
 
     public void addWave(List<Entity> wave) {
@@ -190,7 +188,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         for (Entity e : entities) e.tick(WIDTH, HEIGHT);
 
         int enemyCount = 0;
-        //TODO: Improve pause button
+
+        //TODO: Improve pause button, needs to reset level if player goes back to main menu
         for (Entity p : entities) {
             if (p instanceof PlayerTank)
                 if (((PlayerTank) p).health <= 0) {
@@ -207,6 +206,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             if (p instanceof Enemy) enemyCount++;
         }
 
+        //TODO double check, seems like levels are skipped and one is looped - check current wave or reset
         if (enemyCount < 1) {
             currentWave++;
             for (Entity e : entities)
@@ -221,7 +221,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
                 if (App.getCurrentPanel() == App.level1) {
                     App.setCurrentPanel(App.level2);
                     System.out.println("level 1 -> 2");
-                } else if (App.getCurrentPanel() == App.level2) { ;
+                } else if (App.getCurrentPanel() == App.level2) {
+                    ;
                     App.setCurrentPanel(App.level3);
                     System.out.println("level 2 -> 3");
                 } else if (App.getCurrentPanel() == App.level3) {
@@ -251,7 +252,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         super.paint(g); //Clears the panel, for a fresh start
         Graphics2D g2d = (Graphics2D) g;
 
-        Font txt = new Font("Monospaced", Font.BOLD, 13);
+        Font txt = new Font("Monospaced", Font.BOLD, 20);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 
@@ -259,8 +260,8 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         g2d.fillRect(0, HEIGHT - 85, WIDTH, 50);
         g2d.setColor(Color.green);
         g2d.setFont(txt);
-        g2d.drawString("Points:" + points, 10, HEIGHT - 45);
-        g2d.drawString("Level:" + level + " Wave: " + (currentWave + 1), 150, HEIGHT - 45);
+        g2d.drawString("Points:" + points, 10, HEIGHT - 55);
+        g2d.drawString("Level:" + level + " Wave: " + (currentWave + 1), 800, HEIGHT - 55);
         for (Entity e : entities) e.paint(g2d);
         for (Particle p : particles) p.paint(g2d);
     }
@@ -325,7 +326,17 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void reset() {
-        for (Entity e : entities) if (e instanceof PlayerTank) ((PlayerTank) e).health = PlayerTank.HEALTH;
+        for (Entity e : entities)
+            if (e instanceof PlayerTank) {
+                ((PlayerTank) e).health = PlayerTank.HEALTH;
+                ((PlayerTank) e).usedKit = false;
+                ((PlayerTank) e).usedRapid = false;
+                ((PlayerTank) e).usedDouble = false;
+                ((PlayerTank) e).usedMobility = false;
+                ((PlayerTank) e).r = 0;
+                ((PlayerTank) e).b = 0;
+                ((PlayerTank) e).m = 0;
+            }
         for (Entity e : entities) if (e instanceof Enemy) entities.remove(e);
         particles.removeIf(v -> true);
         this.currentWave = -1;
