@@ -13,7 +13,7 @@ public class Enemy extends Entity {
 
     private int type;
     private int health;
-    //TODO: health on enemies
+    private boolean shoot = false;
     private int speed;
 
 
@@ -92,7 +92,7 @@ public class Enemy extends Entity {
     }
 
     public void check(Entity p) {
-        if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
+        if (x<p.x+p.width && x+width > p.x && y<p.y +p.height && y+height>p.y){
             this.x = x - vx;
             this.y = y - vy;
         }
@@ -101,7 +101,7 @@ public class Enemy extends Entity {
     public void check(Particle p) {
         if (p instanceof Bullet){
             Bullet b = (Bullet) p;
-            if (b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
+            if (b.isPlayer && x < b.x+b.width && x + width > b.x && y < b.y+b.width && y + height > b.y){
                 this.addToScore.accept(5);
                 this.removeParticleFromLevel.accept(p);
                 this.removeSelf.accept(this);
