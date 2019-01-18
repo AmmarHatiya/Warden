@@ -13,7 +13,6 @@ public class Enemy extends Entity {
 
     private int type;
     private int health;
-    private boolean shoot = false;
     private int speed;
 
 
