@@ -312,16 +312,20 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 if (this.level == 1 ){
 g2d.drawImage(Level.grassimage,0,0,this);
+System.out.println("CURRENT LEVEL: "+this.level);
 }
  if (this.level == 2){
     g2d.drawImage(Level.iceimage,0,0,this);
+     System.out.println("CURRENT LEVEL: "+this.level);
 }
  if (this.level == 3){
     g2d.drawImage(Level.mudimage,0,-50,this);
-}
+     System.out.println("CURRENT LEVEL: "+this.level);
+ }
  if (this.level == 4){
-    g2d.drawImage(Level.cityimage,0,0,this);
-}
+    g2d.drawImage(Level.cityimage,0,0,WIDTH,HEIGHT,this);
+     System.out.println("CURRENT LEVEL: "+this.level);
+ }
 
         g2d.setColor(Color.DARK_GRAY);
         g2d.fillRect(0, HEIGHT - 85, WIDTH, 50);

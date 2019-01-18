@@ -7,9 +7,9 @@ public class App {
     private static JFrame f;
     private static AppPanel currentPanel;
     public final static Level level1 = new Level.Level1();
-    public final static Level level2 = new Level.Level1();
-    public final static Level level3 = new Level.Level1();
-    public final static Level level4 = new Level.Level1();
+    public final static Level level2 = new Level.Level2();
+    public final static Level level3 = new Level.Level3();
+    public final static Level level4 = new Level.Level4();
     public final static RetryScreen retryScreen= new RetryScreen();
     public final static HowToPlayMenu howtoplayScreen= new HowToPlayMenu();
     public final static Upgradesmenu upgradesmenu= new Upgradesmenu();

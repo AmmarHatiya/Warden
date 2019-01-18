@@ -173,6 +173,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         // IF STATEMENTS FOR ice GAME BUTTON
         if ((mouseEvent.getX() >= icebttn.getX()) && (mouseEvent.getX() <= (icebttn.getX() + icebttn.getW())) && (mouseEvent.getY() >= icebttn.getY()) && (mouseEvent.getY() <= (icebttn.getY() + icebttn.getH()))) {
             App.setCurrentPanel(App.level2);
+
         }
         // IF STATEMENTS FOR mud BUTTON
         if ((mouseEvent.getX() >= mudbttn.getX()) && (mouseEvent.getX() <= (mudbttn.getX() + mudbttn.getW())) && (mouseEvent.getY() >= mudbttn.getY()) && (mouseEvent.getY() <= (mudbttn.getY() + mudbttn.getH()))) {
