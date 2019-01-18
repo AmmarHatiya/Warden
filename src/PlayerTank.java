@@ -5,14 +5,29 @@ import java.awt.event.MouseEvent;
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
-    private static final int DELAY = 2;
-    private int delay = DELAY; //slows down rate of fire
-    public static final int HEALTH =30;
+    private int d = 10;
+    //private static final int DELAY = d;
+    private int delay = d; //slows down rate of fire
+    public static final int HEALTH = 30;
     public int health = HEALTH;
-    private boolean healthUpgradeApplied = false;
 
+    private boolean healthUpgradeApplied = false;
+    private boolean rapidUpgradeApplied = false;
+
+    private boolean usedKit = false;
+    private boolean usedRapid = false;
+    private boolean usedDouble = false;
+    private boolean usedMobility = false;
+
+    public boolean pause = false;
     public int width = 30;
     public int height = 30;
+
+    private int i = 0;
+
+    private int r = 0;
+    private int b = 0;
+    private int m = 0;
 
 
     public PlayerTank(int x, int y) {
@@ -23,18 +38,27 @@ public class PlayerTank extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.lightGray);
-        g2d.fillRect((int) x , (int) y,  30, 30);
+        g2d.fillRect((int) x, (int) y, 30, 30);
 
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
 
         g2d.setColor(Color.lightGray);
-        g2d.fillRect(700-HEALTH*5,625,  HEALTH*5, 25);
+        g2d.fillRect(700 - HEALTH * 5, 625, HEALTH * 5, 25);
 
-        if (health>0){
+        if (health > 0) {
             g2d.setColor(Color.red);
-            g2d.fillRect(700-health*5,625, health*5, 25);
+            g2d.fillRect(700 - health * 5, 625, health * 5, 25);
         }
+
+        if (Upgradesmenu.mobility) {
+            this.x += this.vx * 2;
+            this.y += this.vy * 2;
+        } else {
+            this.x += this.vx;
+            this.y += this.vy;
+        }
+
 
     }
 
@@ -49,6 +73,25 @@ public class PlayerTank extends Entity {
             this.vy = -speed;
         if (e.getKeyCode() == KeyEvent.VK_S)
             this.vy = +speed;
+
+        if (e.getKeyCode() == KeyEvent.VK_1 && Upgradesmenu.medkit && !usedKit) {
+            health+=15;
+            usedKit=true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_2 && Upgradesmenu.mobility && !usedMobility) {
+            usedMobility=true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_3 && Upgradesmenu.doublebarrel && !usedDouble) {
+            usedMobility=true;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_4 && Upgradesmenu.rapidfire && !usedRapid) {
+            usedMobility=true;
+        }
+
+
     }
 
     public void keyReleased(KeyEvent e) {
@@ -57,51 +100,66 @@ public class PlayerTank extends Entity {
             this.vx = 0;
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_S)
             this.vy = 0;
-        //TODO: remove this after testing
+
+        //make pause
         if (e.getKeyCode() == KeyEvent.VK_SPACE)
-            this.health = HEALTH;
+            this.pause = true;
     }
 
     public void tick(int levelWidth, int levelHeight) {
         // Note: not calling super, as we want custom speeds.
-        if (Upgradesmenu.mobility) {
-            this.x += this.vx*2;
-            this.y += this.vy*2;
-        } else {
+
+        //to pause
+        if (pause) {
+            i++;
+        }
+        if (i > 1) {
+            i = 0;
+            pause = false;
+        }
+
+        if (usedMobility) {
+            m++;
+            this.x += this.vx * 2;
+            this.y += this.vy * 2;
+        }
+        if (m > 100 || !usedMobility) {
             this.x += this.vx;
             this.y += this.vy;
         }
+
 
         if (Upgradesmenu.armor && !healthUpgradeApplied) {
             this.health += 15;
             healthUpgradeApplied = true;
         }
 
-        if (Upgradesmenu.rapidfire) this.delay = this.delay + 4;
+
+        if (Upgradesmenu.rapidfire && !rapidUpgradeApplied) {
+            this.d = this.d - 5;
+            rapidUpgradeApplied = true;
+        }
 
         if (x < 0) x = 0;
-        if (x + width > levelWidth-15) x = levelWidth - width-15;
+        if (x + width > levelWidth - 15) x = levelWidth - width - 15;
         if (y < 0) y = 0;
-        if (y + height > levelHeight- 85) y = levelHeight - 85 - height;
+        if (y + height > levelHeight - 85) y = levelHeight - 85 - height;
         this.delay++;
     }
 
     public void check(Entity p) {
-        if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){
+        if (x < p.x + p.width && x + width > p.x && y < p.y + p.height && y + height > p.y) {
             health--;
         }
     }
 
     public void check(Particle p) {
-        if (p instanceof Bullet){
+        if (p instanceof Bullet) {
             Bullet b = (Bullet) p;
-            if (!b.isPlayer && x<b.x && x+width > b.x && y<b.y && y+height>b.y){
+            if (!b.isPlayer && x < b.x + b.width && x + width > b.x && y < b.y + b.width && y + height > b.y) {
                 this.removeParticleFromLevel.accept(p);
                 health--;
             }
-        }
-        if (health<=0){
-
         }
     }
 
@@ -112,10 +170,11 @@ public class PlayerTank extends Entity {
 
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
-        if (delay>DELAY) {
+        if (delay > d) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
-            if (Upgradesmenu.doublebarrel) this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX()+15, e.getY(), true));
-            this.delay=0;
+            if (Upgradesmenu.doublebarrel)
+                this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX() + 15, e.getY(), true));
+            this.delay = 0;
         }
     }
 }

@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 public abstract class Entity {
     public double x, y, vx, vy;
+    public int width,height;
     public Consumer<Particle> addParticleToLevel = e -> {
         System.out.println("addParticleToLevel not set, ignoring");
     };
