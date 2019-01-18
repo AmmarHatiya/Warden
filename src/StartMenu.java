@@ -63,8 +63,10 @@ lsb.paint(g2d);*/
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
+        // Go to corresponding menu
         // IF STATEMENTS FOR NEW GAME BUTTON
         if ((mouseEvent.getX() >= ngamebttn.getX()) && (mouseEvent.getX()<=(ngamebttn.getX()+ngamebttn.getW())) && (mouseEvent.getY()>= ngamebttn.getY())&& (mouseEvent.getY()<=(ngamebttn.getY()+ngamebttn.getH()))){
+            App.setCurrentPanel(App.level1);
         }
 
         // IF STATEMENTS FOR CONTINUE GAME BUTTON
@@ -73,15 +75,16 @@ lsb.paint(g2d);*/
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX()<=(upgradesbttn.getX()+upgradesbttn.getW())) && (mouseEvent.getY()>= upgradesbttn.getY())&& (mouseEvent.getY()<=(upgradesbttn.getY()+upgradesbttn.getH()))){
-
-
+            App.setCurrentPanel(App.upgradesmenu);
         }
 
         // IF STATEMENTS FOR LEVEL SELECT BUTTON
         if ((mouseEvent.getX() >= lselectbttn.getX()) && (mouseEvent.getX()<=(lselectbttn.getX()+lselectbttn.getW())) && (mouseEvent.getY()>= lselectbttn.getY())&& (mouseEvent.getY()<=(lselectbttn.getY()+lselectbttn.getH()))){
+            App.setCurrentPanel(App.levelSelectMenu);
         }
         // IF STATEMENTS FOR HOWTOPLAY BUTTON
         if ((mouseEvent.getX() >= howtoplaybttn.getX()) && (mouseEvent.getX()<=(howtoplaybttn.getX()+howtoplaybttn.getW())) && (mouseEvent.getY()>= howtoplaybttn.getY())&& (mouseEvent.getY()<=(howtoplaybttn.getY()+howtoplaybttn.getH()))){
+            App.setCurrentPanel(App.howtoplayScreen);
         }
     }
 
