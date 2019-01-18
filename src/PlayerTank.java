@@ -1,7 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
+import java.awt.image.BufferedImage;
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
@@ -13,7 +14,14 @@ public class PlayerTank extends Entity {
 
     public int width = 30;
     public int height = 30;
-
+    private final static Image playertankimg;
+    static {
+        try {
+            playertankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankimage.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
     public PlayerTank(int x, int y) {
         this.x = x;
@@ -22,9 +30,9 @@ public class PlayerTank extends Entity {
 
     public void paint(Graphics2D g2d) {
         //base
-        g2d.setColor(Color.lightGray);
+        g2d.setColor(new Color(17, 75, 11));
         g2d.fillRect((int) x , (int) y,  30, 30);
-
+/*g2d.drawImage(playertankimg,(int)x,(int)y,25,25,null);*/
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
 
