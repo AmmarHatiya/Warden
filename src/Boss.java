@@ -61,7 +61,6 @@ public class Boss extends Entity {
 
         } else if (type == BOSSSHIP) {
             if (random > 10) {
-
             } else {
                 shoot();
             }

@@ -6,14 +6,14 @@ import java.awt.*;
 public class Bullet extends Particle {
 
     int width = 8;
-    int speed;
+
 
     public Bullet(double x, double y, double xM, double yM, boolean ip) {
         this.x = x;
         this.y = y;
 
         this.isPlayer = ip;
-
+        this.speed = 2;
         this.vy = speed * Math.sin(getAngle(xM, yM));
         this.vx = speed * Math.cos(getAngle(xM, yM));
 
