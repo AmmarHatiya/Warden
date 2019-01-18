@@ -13,6 +13,7 @@ public class Enemy extends Entity {
 
     private int type;
     private int health;
+    private boolean shoot = false;
     private int speed;
 
 
@@ -22,6 +23,7 @@ public class Enemy extends Entity {
         this.type = type;
         this.speed = 2;
     }
+
 
     public void paint(Graphics2D g2d) {
         //base

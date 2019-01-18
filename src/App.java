@@ -38,6 +38,7 @@ public class App {
         setCurrentPanel(startMenu);
         f.setSize(WIDTH, HEIGHT);
         f.setVisible(true);
+        f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
