@@ -1,19 +1,27 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
+import java.awt.image.BufferedImage;
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
-    private static final int DELAY = 1;
+    private static final int DELAY = 2;
     private int delay = DELAY; //slows down rate of fire
     public static final int HEALTH =30;
     public int health = HEALTH;
-    private boolean armorApplied = false;
-private boolean medkitApplied = false;
+    private boolean healthUpgradeApplied = false;
+
     public int width = 30;
     public int height = 30;
-
+    private final static Image playertankimg;
+    static {
+        try {
+            playertankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankimage.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
     public PlayerTank(int x, int y) {
         this.x = x;
@@ -22,9 +30,9 @@ private boolean medkitApplied = false;
 
     public void paint(Graphics2D g2d) {
         //base
-        g2d.setColor(Color.lightGray);
+        g2d.setColor(new Color(17, 75, 11));
         g2d.fillRect((int) x , (int) y,  30, 30);
-
+/*g2d.drawImage(playertankimg,(int)x,(int)y,25,25,null);*/
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
 
@@ -49,8 +57,9 @@ private boolean medkitApplied = false;
             this.vy = -speed;
         if (e.getKeyCode() == KeyEvent.VK_S)
             this.vy = +speed;
-        if (e.getKeyCode() == KeyEvent.VK_1)
-            this.medkitApplied = true;
+        if (e.getKeyCode()== KeyEvent.VK_1){
+            this.healthUpgradeApplied = false;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -74,23 +83,22 @@ private boolean medkitApplied = false;
             this.y += this.vy;
         }
 
-        if (Upgradesmenu.armor && !armorApplied) {
+        if (Upgradesmenu.armor && !healthUpgradeApplied) {
             this.health += 15;
-            armorApplied = true;
+            healthUpgradeApplied = true;
         }
 
-        if (Upgradesmenu.rapidfire) this.delay = this.delay +4;
+        if (Upgradesmenu.rapidfire) this.delay = this.delay + 4;
 
-if (Upgradesmenu.medkit && medkitApplied){
-    this.health += 15;
-    medkitApplied = false;
-}
         if (x < 0) x = 0;
         if (x + width > levelWidth-15) x = levelWidth - width-15;
         if (y < 0) y = 0;
         if (y + height > levelHeight- 85) y = levelHeight - 85 - height;
         this.delay++;
+
+
     }
+
 
     public void check(Entity p) {
         if (x<p.x && x+width > p.x && y<p.y && y+height>p.y){

@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
@@ -11,7 +12,38 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public abstract class Level extends AppPanel implements MouseListener, KeyListener, MouseMotionListener {
-
+    private final static Image grassimage;
+    private final static Image iceimage;
+    private final static Image cityimage;
+    private final static Image mudimage;
+    static {
+        try {
+            grassimage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("grassbackground.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    static {
+        try {
+            mudimage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("mudbackground.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    static {
+        try {
+            iceimage= ImageIO.read(Upgradesmenu.class.getResourceAsStream("snowbackground.bmp"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    static {
+        try {
+            cityimage = ImageIO.read(Upgradesmenu.class.getResourceAsStream("citybackground.jpg"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     List<Entity> entities = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     List<Particle> particles = Collections.synchronizedList(new CopyOnWriteArrayList<>());
     private static final int WIDTH = 1000;
@@ -36,6 +68,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
 
     public static class Level1 extends Level {
+
         public Level1() {
             this.level = 1;
             this.addWave(Arrays.asList(new Entity[]{
@@ -209,6 +242,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         this.addMouseMotionListener(this);
     }
 
+
     public void addWave(List<Entity> wave) {
         this.waves.add(wave);
     }
@@ -276,9 +310,21 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
         Font txt = new Font("Monospaced", Font.BOLD, 13);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+if (this.level == 1 ){
+g2d.drawImage(Level.grassimage,0,0,this);
 
+}
+ if (this.level == 2){
+    g2d.drawImage(Level.iceimage,0,0,this);
+}
+ if (this.level == 3){
+    g2d.drawImage(Level.mudimage,0,-50,this);
+ }
+ if (this.level == 4){
+    g2d.drawImage(Level.cityimage,0,0,WIDTH,HEIGHT,this);
+ }
 
-        g2d.setColor(Color.DARK_GRAY);
+        g2d.setColor(Color.BLACK);
         g2d.fillRect(0, HEIGHT - 85, WIDTH, 50);
         g2d.setColor(Color.green);
         g2d.setFont(txt);
