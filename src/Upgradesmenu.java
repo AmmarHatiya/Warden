@@ -1,4 +1,4 @@
-import javax.swing.*;
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -7,7 +7,6 @@ import java.awt.Graphics;
 
 // NOTE: BUTTON CLASSES FOR THIS MENU END WITH -lsm
 public class Upgradesmenu extends AppPanel implements MouseListener {
-
 
     private Buttons doublebarrelbttn = new Buttons(30, 250, 70, 80);
     private Buttons armorbttn = new Buttons(30, 150, 70, 80);
@@ -40,8 +39,9 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         //Draw Background
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, 2300, 2000);
-        g2d.setColor(Color.GREEN);
+        g2d.setColor(Color.RED);
         armorbttn.filled = armor;
+        g2d.setColor(Color.GREEN);
         armorbttn.paint(g2d);
         mobilitybttn.filled= mobility;
         mobilitybttn.paint(g2d);
@@ -52,14 +52,13 @@ public class Upgradesmenu extends AppPanel implements MouseListener {
         rapidbttn.filled = rapidfire;
         rapidbttn.paint(g2d);
         backbttn.paint(g2d);
-        g2d.drawString("Back", backbttn.buttonx + 45, backbttn.buttony + 27);
+        g2d.drawString("Back", backbttn.buttonx + 37, backbttn.buttony + 27);
         g2d.setColor(new Color(128, 203, 255));
         g2d.setColor(Color.GREEN);
         g2d.drawString("Armor: Permanent Health Boost by 15 hp", armorbttn.buttonx + 100, armorbttn.buttony + (armorbttn.buttonh / 2));
         g2d.drawString("Mobility: Move Faster", mobilitybttn.buttonx + 100, mobilitybttn.buttony + (mobilitybttn.buttonh / 2));
         g2d.drawString("Double Barrel Ability: Have two Barrels for 30 seconds", doublebarrelbttn.buttonx + 100, doublebarrelbttn.buttony + (doublebarrelbttn.buttonh / 2));
-        g2d.drawString("Med Kit: First aid kit that gives you 15 hp" +
-                "", medkitbttn.buttonx + 100, medkitbttn.buttony + (medkitbttn.buttonh / 2));
+        g2d.drawString("Med Kit: First aid kit that gives you 15 hp", medkitbttn.buttonx + 100, medkitbttn.buttony + (medkitbttn.buttonh / 2));
         g2d.drawString("Rapid Fire Ability: Fire Rapidly for 30 seconds", rapidbttn.buttonx + 100, rapidbttn.buttony + (rapidbttn.buttonh / 2));
         g2d.drawString("Score: " + Level.points, 820, 50);
         //TITLE DRAW
