@@ -50,13 +50,10 @@ public class PlayerTank extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(new Color(17, 75, 11));
-        g2d.fillRect((int) x , (int) y,  30, 30);
-
-/*g2d.drawImage(playertankimg,(int)x,(int)y,25,25,null);*/
 
 
-        g2d.setColor(Color.green);
-        g2d.fillOval((int) x, (int) y, 5, 5);
+g2d.drawImage(playertankimg,(int)x,(int)y,30,30,null);
+
 
         g2d.setColor(Color.lightGray);
         g2d.fillRect(750 - HEALTH * 5, 625, HEALTH * 5, 25);
