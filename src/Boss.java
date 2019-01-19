@@ -7,23 +7,62 @@ public class Boss extends Entity {
     private static final int BOSSSHIP = 2;
     private static final int BOSSTANK = 3;
     private static final int BOSSCOPTER = 4;
-
-
+    // WHEN SHIP GOES LEFT OR RIGHT, THE PICTURE CHANGES
+    private static final int BOSSHIPRIGHT = 9;
+    private static final int BOSSSHIPLEFT = 8;
+    private int bossshipdirection = 9;
     public int width;
     public int height;
 
     private int type;
     private int health;
     private int speed;
-
-    private final static Image enemyturretimg;
+    private final static Image bossheliimg;
     static {
         try {
-            enemyturretimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyturret.png"));
+            bossheliimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream(""));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
+    private final static Image bossshipleftimg;
+    static {
+        try {
+            bossshipleftimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("bossshipleft.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private final static Image bossshiprightimg;
+    static {
+        try {
+            bossshiprightimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("bossshipright.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private final static Image bossturretimg;
+
+    static {
+        try {
+            bossturretimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("bossturret.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private final static Image bosstankimg;
+
+    static {
+        try {
+            bosstankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("bosstank.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     public Boss(int type, int x, int y) {
         this.x = x;
         this.y = y;
@@ -52,11 +91,18 @@ public class Boss extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.black);
-        if (type == BOSSTURRET){
-
-        }
-        else if (type == BOSSTANK){
-
+        if (type == BOSSTURRET) {
+            g2d.drawImage(bossturretimg, (int) x, (int) y, 80, 95, null);
+        } else if (type == BOSSTANK) {
+            g2d.drawImage(bosstankimg, (int) x, (int) y, 80, 95, null);
+        } else if (type == BOSSSHIP && bossshipdirection == BOSSSHIPLEFT){
+                g2d.drawImage(bossshipleftimg,(int)x,(int)y,65,50,null);
+            }
+            else if (type == BOSSSHIP && bossshipdirection == BOSSHIPRIGHT){
+                g2d.drawImage(bossshiprightimg,(int)x,(int)y,65,50,null);
+            }
+            else if (type == BOSSCOPTER){
+                g2d.drawImage(bossheliimg,(int)x,(int) y,65,65,null);
         }
         g2d.fillRect((int) x, (int) y, width, height);
 
@@ -66,6 +112,7 @@ public class Boss extends Entity {
 
     public void tick(int levelWidth, int levelHeight) {
         //vertical
+        // TURRET
         int random = (int) (Math.random() * 100 + 1);
         if (type == BOSSTURRET) {
             if (random > 10) {
@@ -73,13 +120,43 @@ public class Boss extends Entity {
                 shoot();
             }
         } else if (type == BOSSTANK) {
+            // TANK vertical
+            if (type == BOSSTANK) {
+                if (random > 95) {
+                    this.vy = speed;
+                } else if (random > 90) {
+                    this.vy = -speed;
+                } else if (random > 2) {
 
-        } else if (type == BOSSSHIP) {
-            if (random > 10) {
-            } else {
-                shoot();
+                } else
+                    shoot();
+            }
+            // TANK HORIZONTAL
+            random = (int) (Math.random() * 100 + 1);
+            if (type == 1) {
+                if (random > 95) {
+                    this.vx = speed;
+                } else if (random > 90) {
+                    this.vx = -speed;
+                } else if (random > 2) {
+
+                } else
+                    shoot();
             }
 
+// SHIP MOVEMENT (HORIZONTAL)
+        } else if (type == BOSSSHIP) {
+            if (random > 95) {
+                this.vx = speed;
+                bossshipdirection = BOSSHIPRIGHT;
+            } else if (random > 90) {
+                bossshipdirection = BOSSSHIPLEFT;
+                this.vx = -speed;
+            } else if (random > 2) {
+
+            } else
+                shoot();
+            // HELICOPTER MOVEMENT
         } else if (type == BOSSCOPTER) {
 
         }
