@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+
 public class PlayerTank extends Entity {
     private int speed = 2; //how fast moves
     //TODO: change delay, just testing phase
 
     private static final int DELAY = 10;
     private int delay = DELAY; //slows down rate of fire
-    private static final int THIRTYSEC = 100;
+    private static final int THIRTYSEC = 1000;
 
 
     public static final int HEALTH = 30;
@@ -26,17 +27,50 @@ public class PlayerTank extends Entity {
     public boolean pause = false;
     public int width = 30;
     public int height = 30;
-
+    // BOOLEANS BELOW ROTATE PLAYER TANK DEPENDING ON MOVEMENT
+    private static final int UP = 1;
+    private static final int DOWN= 2;
+    private static final int LEFT= 3;
+    private static final int RIGHT= 4;
+    private int tankdirection = 1;
     private int i = 0;
 
     public int r = 0;
     public int b = 0;
     public int m = 0;
 
-    private final static Image playertankimg;
+    private final static Image playertankright;
+
     static {
         try {
-            playertankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankimage.bmp"));
+            playertankright= ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankright.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image playertankdown;
+    static {
+        try {
+            playertankdown= ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankdown.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image playertankleft;
+
+    static {
+        try {
+            playertankleft = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankleft.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private final static Image playertankup;
+
+    static {
+        try {
+            playertankup = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertank.png"));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -50,13 +84,19 @@ public class PlayerTank extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(new Color(17, 75, 11));
-        g2d.fillRect((int) x , (int) y,  30, 30);
 
-/*g2d.drawImage(playertankimg,(int)x,(int)y,25,25,null);*/
-
-
-        g2d.setColor(Color.green);
-        g2d.fillOval((int) x, (int) y, 5, 5);
+if (tankdirection == UP) {
+    g2d.drawImage(playertankup, (int) x, (int) y, 27, 35, null);
+}
+if (tankdirection == LEFT){
+    g2d.drawImage(playertankleft, (int) x, (int) y, 35, 27, null);
+}
+        if (tankdirection == DOWN){
+            g2d.drawImage(playertankdown, (int) x, (int) y, 27, 35, null);
+        }
+        if (tankdirection == RIGHT){
+            g2d.drawImage(playertankright, (int) x, (int) y, 35, 27, null);
+        }
 
         g2d.setColor(Color.lightGray);
         g2d.fillRect(750 - HEALTH * 5, 625, HEALTH * 5, 25);
@@ -73,7 +113,7 @@ public class PlayerTank extends Entity {
             if (!usedKit) {
                 g2d.setColor(Color.red);
                 word = "Press 1 For MedKit";
-            }else {
+            } else {
                 g2d.setColor(Color.lightGray);
                 word = "MedKit Used";
             }
@@ -88,7 +128,7 @@ public class PlayerTank extends Entity {
             if (!usedMobility) {
                 g2d.setColor(Color.red);
                 word = "Press 2 For Mobility";
-            }else {
+            } else {
                 g2d.setColor(Color.lightGray);
                 word = "Mobility Used";
             }
@@ -103,7 +143,7 @@ public class PlayerTank extends Entity {
             if (!usedDouble) {
                 g2d.setColor(Color.red);
                 word = "Press 3 For Double Barrel";
-            }else {
+            } else {
                 g2d.setColor(Color.lightGray);
                 word = "Double Barrel Used";
             }
@@ -118,7 +158,7 @@ public class PlayerTank extends Entity {
             if (!usedRapid) {
                 g2d.setColor(Color.red);
                 word = "Press 4 For Rapid Fire";
-            }else {
+            } else {
                 g2d.setColor(Color.lightGray);
                 word = "Rapid Fire Used";
             }
@@ -133,15 +173,22 @@ public class PlayerTank extends Entity {
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
 
-        if (e.getKeyCode() == KeyEvent.VK_A)
-            this.vx = -speed;
-        if (e.getKeyCode() == KeyEvent.VK_D)
+        if (e.getKeyCode() == KeyEvent.VK_A){
+            tankdirection = 3;
+        this.vx = -speed;
+    }
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            tankdirection = 4;
             this.vx = +speed;
-        if (e.getKeyCode() == KeyEvent.VK_W)
+        }
+        if (e.getKeyCode() == KeyEvent.VK_W) {
+            tankdirection = 1;
             this.vy = -speed;
-        if (e.getKeyCode() == KeyEvent.VK_S)
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            tankdirection = 2;
             this.vy = +speed;
-
+        }
         if (e.getKeyCode() == KeyEvent.VK_1 && Upgradesmenu.medkit && !usedKit) {
             health += 15;
             usedKit = true;
@@ -186,30 +233,33 @@ public class PlayerTank extends Entity {
             pause = false;
         }
 
-        if (usedMobility) {
-            m++;
-            this.x += this.vx * 2;
-            this.y += this.vy * 2;
-        }
         if (m > THIRTYSEC || !usedMobility) {
             this.x += this.vx;
             this.y += this.vy;
         }
-
-        if (usedRapid) {
-            r++;
-            this.delay += 2;
+        else if (usedMobility) {
+            m++;
+            this.x += this.vx * 2;
+            this.y += this.vy * 2;
         }
+
+
         if (r > THIRTYSEC || !usedRapid) {
             this.delay++;
         }
+        else if (usedRapid) {
+            r++;
+            this.delay += 2;
+        }
 
-        if (usedDouble) {
+
+        if (b > THIRTYSEC || !usedDouble) {
+
+        }
+        else if (usedDouble) {
             b++;
         }
-        if (b > THIRTYSEC || !usedDouble) {
-            usedDouble = false;
-        }
+
 
 
         if (Upgradesmenu.armor && !healthUpgradeApplied) {
@@ -251,7 +301,7 @@ public class PlayerTank extends Entity {
         super.mouseDragged(e);
         if (delay > DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
-            if (usedDouble)
+            if (b < THIRTYSEC && usedDouble)
                 this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX() + 15, e.getY(), true));
             this.delay = 0;
         }

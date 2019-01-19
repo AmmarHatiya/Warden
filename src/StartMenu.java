@@ -18,11 +18,10 @@ public class StartMenu extends AppPanel implements MouseListener {
         }
     }
 
-    private Buttons ngamebttn = new Buttons(30, 250, 175, 50);
-    private Buttons lselectbttn = new Buttons(30, 450, 175, 50);
-    private Buttons upgradesbttn = new Buttons(30, 550, 175, 50);
-    private Buttons continuegamebttn = new Buttons(30, 350, 175, 50);
-    private Buttons howtoplaybttn = new Buttons(30, 150, 175, 50);
+    private Buttons ngamebttn = new Buttons(30, 200, 175, 50);
+    private Buttons lselectbttn = new Buttons(30, 325, 175, 50);
+    private Buttons upgradesbttn = new Buttons(30, 450, 175, 50);
+    private Buttons howtoplaybttn = new Buttons(30, 575, 175, 50);
 
     public StartMenu() {
         addMouseListener(this);
@@ -49,12 +48,10 @@ lsb.paint(g2d);*/
         g2d.setColor(Color.GREEN);
         ngamebttn.paint(g2d);
         upgradesbttn.paint(g2d);
-        continuegamebttn.paint(g2d);
         lselectbttn.paint(g2d);
         howtoplaybttn.paint(g2d);
         g2d.drawString("How To Play", howtoplaybttn.buttonx + 27, howtoplaybttn.buttony + 27);
         g2d.drawString("New Game", ngamebttn.buttonx + 45, ngamebttn.buttony + 27);
-        g2d.drawString("Continue Game", continuegamebttn.buttonx + 15, continuegamebttn.buttony + 27);
         g2d.drawString("Level Select", lselectbttn.buttonx + 25, lselectbttn.buttony + 27);
         g2d.drawString("Upgrades", upgradesbttn.buttonx + 40, upgradesbttn.buttony + 27);
         g2d.setFont(title);
@@ -77,9 +74,6 @@ lsb.paint(g2d);*/
             App.setCurrentPanel(App.level1);
         }
 
-        // IF STATEMENTS FOR CONTINUE GAME BUTTON
-        if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX() <= (continuegamebttn.getX() + continuegamebttn.getW())) && (mouseEvent.getY() >= continuegamebttn.getY()) && (mouseEvent.getY() <= (continuegamebttn.getY() + continuegamebttn.getH()))) {
-        }
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX() <= (upgradesbttn.getX() + upgradesbttn.getW())) && (mouseEvent.getY() >= upgradesbttn.getY()) && (mouseEvent.getY() <= (upgradesbttn.getY() + upgradesbttn.getH()))) {
@@ -103,9 +97,7 @@ lsb.paint(g2d);*/
             App.setCurrentPanel(App.level1);
         }
 
-        // IF STATEMENTS FOR CONTINUE GAME BUTTON
-        if ((mouseEvent.getX() >= continuegamebttn.getX()) && (mouseEvent.getX() <= (continuegamebttn.getX() + continuegamebttn.getW())) && (mouseEvent.getY() >= continuegamebttn.getY()) && (mouseEvent.getY() <= (continuegamebttn.getY() + continuegamebttn.getH()))) {
-        }
+
 
         // IF STATEMENTS FOR UPGRADES GAME BUTTON
         if ((mouseEvent.getX() >= upgradesbttn.getX()) && (mouseEvent.getX() <= (upgradesbttn.getX() + upgradesbttn.getW())) && (mouseEvent.getY() >= upgradesbttn.getY()) && (mouseEvent.getY() <= (upgradesbttn.getY() + upgradesbttn.getH()))) {

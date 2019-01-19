@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 
 public class Enemy extends Entity {
@@ -7,14 +8,65 @@ public class Enemy extends Entity {
     private static final int PLANES = 3;
     private static final int TURRETS = 4;
     private static final int TOWER = 5;
-
-    public int width = 30;
-    public int height = 30;
+// PLANE MOVE RIGHT OR LEFT
+    private static final int PLANELEFT = 9;
+    private static final int PLANERIGHT = 8;
+    private int planedirection = 9;
+    public int width = 25;
+    public int height = 32;
 
     private int type;
     private int health;
     private boolean shoot = false;
     private int speed;
+    private final static Image enemyplaneleft;
+    static {
+        try {
+            enemyplaneleft= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyplaneleft.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image enemyplaneright;
+    static {
+        try {
+            enemyplaneright= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyplaneright.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image enemytowerimg;
+    static {
+        try {
+            enemytowerimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemytower.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image enemyturretimg;
+    static {
+        try {
+            enemyturretimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyturret.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image enemytankimg;
+    static {
+        try {
+            enemytankimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemytank.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    private final static Image enemytruckimg;
+    static {
+        try {
+            enemytruckimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemytruck.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
 
     public Enemy(int type, int x, int y) {
@@ -28,14 +80,33 @@ public class Enemy extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.black);
-        g2d.fillRect((int) x, (int) y, width, height);
+        if (type == TANK) {
+            g2d.drawImage(enemytankimg, (int) x, (int) y, width, height, null);
+        }
+        else if (type == PLANES && planedirection == PLANELEFT){
+            g2d.drawImage(enemyplaneleft,(int)x,(int)y,65,50,null);
+        }
+        else if (type == PLANES && planedirection == PLANERIGHT){
+            g2d.drawImage(enemyplaneright,(int)x,(int)y,65,50,null);
+        }
+        else if (type == TRUCKS){
+            g2d.drawImage(enemytruckimg,(int)x,(int)y,25,33,null);
+        }
+        else if (type == TURRETS ){
+            g2d.drawImage(enemyturretimg,(int)x,(int)y,45,60,null);
+        }
+        else if (type == TOWER ){
+            g2d.drawImage(enemytowerimg,(int)x,(int)y,55,75,null);
+        }
 
-        g2d.setColor(Color.green);
-        g2d.fillOval((int) x, (int) y, 5, 5);
+        else {
+            g2d.fillRect((int) x, (int) y, width, height);
+        }
     }
 
     public void tick(int levelWidth, int levelHeight) {
-        //vertical
+
+        //stationary
         int random = (int) (Math.random() * 100 + 1);
 
         if (type == 4 || type == 5) {
@@ -45,8 +116,10 @@ public class Enemy extends Entity {
             else{
                 shoot();
             }
+
         }
-        //stationary
+        //vertical
+        // TANK AND TRUCK MOVEMENT VERTICAL
         if (type == 1 || type == 2) {
             if (random > 95) {
                 this.vy = speed;
@@ -59,11 +132,26 @@ public class Enemy extends Entity {
         }
 
         //horizontal
+        // TANK MOVEMENT HORIZONTAL
         random = (int) (Math.random() * 100 + 1);
-        if (type == 1 || type == 3) {
+        if (type == 1 ) {
             if (random > 95) {
                 this.vx = speed;
             } else if (random > 90) {
+                this.vx = -speed;
+            } else if (random > 2) {
+
+            } else
+                shoot();
+        }
+        // PLANE MOVEMENT HORIZONTAL
+        random = (int) (Math.random() * 100 + 1);
+        if (type == 3) {
+            if (random > 95) {
+                planedirection = PLANERIGHT;
+                this.vx = speed;
+            } else if (random > 90) {
+                planedirection = PLANELEFT;
                 this.vx = -speed;
             } else if (random > 2) {
 
