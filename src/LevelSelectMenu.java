@@ -19,14 +19,6 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
     private Buttons grassbttn = new Buttons(30, 50, 150, 125);
     private Buttons citybttn = new Buttons(30, 500, 150, 125);
     private Buttons backbttn = new Buttons(820, 50, 125, 50);
-  /*  private final static Image playertankimg;
-    static {
-        try {
-            playertankimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("playertankimage.bmp"));
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }*/
     public LevelSelectMenu() {
         addMouseListener(this);
         setFocusable(true);
