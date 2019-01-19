@@ -267,6 +267,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
                     App.setCurrentPanel(App.pauseScreen);
                 }
             if (p instanceof Enemy) enemyCount++;
+            if (p instanceof Boss) enemyCount++;
         }
 
 
