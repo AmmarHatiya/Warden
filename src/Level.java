@@ -79,7 +79,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
 
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
+                    new Enemy(PLANE, 300, 75),
                     new Enemy(TURRET, 400, 100),
                     new Enemy(TOWER, 500, 100),
 
@@ -97,7 +97,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
+                    new Enemy(PLANE, 300, 75),
                     new Enemy(TURRET, 400, 100),
                     new Enemy(TOWER, 500, 100),
             }));
@@ -110,7 +110,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
                     new Enemy(TOWER, 500, 100),
                     new Enemy(TANK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
+                    new Enemy(PLANE, 400, 150),
                     new Enemy(TURRET, 500, 200),
                     new Enemy(TOWER, 600, 200),
             }));

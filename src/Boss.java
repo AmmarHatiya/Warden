@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 
 public class Boss extends Entity {
@@ -7,6 +8,7 @@ public class Boss extends Entity {
     private static final int BOSSTANK = 3;
     private static final int BOSSCOPTER = 4;
 
+
     public int width;
     public int height;
 
@@ -14,7 +16,14 @@ public class Boss extends Entity {
     private int health;
     private int speed;
 
-
+    private final static Image enemyturretimg;
+    static {
+        try {
+            enemyturretimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyturret.png"));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     public Boss(int type, int x, int y) {
         this.x = x;
         this.y = y;
@@ -43,6 +52,12 @@ public class Boss extends Entity {
     public void paint(Graphics2D g2d) {
         //base
         g2d.setColor(Color.black);
+        if (type == BOSSTURRET){
+
+        }
+        else if (type == BOSSTANK){
+
+        }
         g2d.fillRect((int) x, (int) y, width, height);
 
         g2d.setColor(Color.green);

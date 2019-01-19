@@ -83,6 +83,12 @@ public class Enemy extends Entity {
         if (type == TANK) {
             g2d.drawImage(enemytankimg, (int) x, (int) y, width, height, null);
         }
+        else if (type == PLANES && planedirection == PLANELEFT){
+            g2d.drawImage(enemyplaneleft,(int)x,(int)y,65,50,null);
+        }
+        else if (type == PLANES && planedirection == PLANERIGHT){
+            g2d.drawImage(enemyplaneright,(int)x,(int)y,65,50,null);
+        }
         else if (type == TRUCKS){
             g2d.drawImage(enemytruckimg,(int)x,(int)y,25,33,null);
         }
@@ -92,12 +98,7 @@ public class Enemy extends Entity {
         else if (type == TOWER ){
             g2d.drawImage(enemytowerimg,(int)x,(int)y,55,75,null);
         }
-        else if (type == PLANES && planedirection == PLANELEFT){
-            g2d.drawImage(enemyplaneleft,(int)x,(int)y,65,50,null);
-        }
-        else if (type == PLANES && planedirection == PLANERIGHT){
-            g2d.drawImage(enemyplaneright,(int)x,(int)y,65,50,null);
-        }
+
         else {
             g2d.fillRect((int) x, (int) y, width, height);
         }
