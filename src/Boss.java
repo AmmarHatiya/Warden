@@ -4,26 +4,29 @@ import java.awt.*;
 public class Boss extends Entity {
 
     private static final int BOSSTURRET = 1;
-    private static final int BOSSSHIP = 2;
-    private static final int BOSSTANK = 3;
+    private static final int BOSSTANK = 2;
+    private static final int BOSSSHIP = 3;
     private static final int BOSSCOPTER = 4;
 
 
     public int width;
     public int height;
+    public int h;
 
     private int type;
     private int health;
     private int speed;
 
     private final static Image enemyturretimg;
+
     static {
         try {
-            enemyturretimg= ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyturret.png"));
+            enemyturretimg = ImageIO.read(Upgradesmenu.class.getResourceAsStream("enemyturret.png"));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
+
     public Boss(int type, int x, int y) {
         this.x = x;
         this.y = y;
@@ -33,56 +36,94 @@ public class Boss extends Entity {
         if (type == BOSSTURRET) {
             width = 50;
             height = 50;
-            health = 25;
+            h=health = 25;
         } else if (type == BOSSSHIP) {
-            health = 100;
+            h=health = 100;
             width = 80;
             height = 30;
         } else if (type == BOSSTANK) {
             width = 50;
             height = 50;
-            health = 50;
+            h=health = 50;
         } else if (type == BOSSCOPTER) {
             width = 40;
             height = 30;
-            health = 75;
+            h=health = 75;
         }
     }
 
     public void paint(Graphics2D g2d) {
+        g2d.setColor(Color.lightGray);
+        g2d.fillRect(500 - h * 5, 5, h * 5, 25);
+
+        if (health > 0) {
+            g2d.setColor(Color.red);
+            g2d.fillRect(500 - health * 5, 5, health * 5, 25);
+        }
+        Font txt = new Font("Monospaced", Font.BOLD, 15);
+        g2d.setColor(Color.black);
+        g2d.setFont(txt);
+        g2d.drawString("Boss Health", 500, 25);
         //base
         g2d.setColor(Color.black);
-        if (type == BOSSTURRET){
 
-        }
-        else if (type == BOSSTANK){
-
-        }
         g2d.fillRect((int) x, (int) y, width, height);
 
         g2d.setColor(Color.green);
         g2d.fillOval((int) x, (int) y, 5, 5);
+
+
     }
 
     public void tick(int levelWidth, int levelHeight) {
         //vertical
         int random = (int) (Math.random() * 100 + 1);
         if (type == BOSSTURRET) {
-            if (random > 10) {
+            if (random > 30) {
             } else {
                 shoot();
             }
         } else if (type == BOSSTANK) {
+            if (random > 90) {
+                this.vy = speed;
+            } else if (random > 80) {
+                this.vy = -speed;
+            } else if (random > 10) {
 
+            } else
+                shoot();
+            int r = (int) (Math.random() * 100 + 1);
+            if (r > 90) {
+                this.vx = speed;
+            } else if (r > 80) {
+                this.vx = -speed;
+            } else if (r > 2) {
+
+            } else
+                shoot();
         } else if (type == BOSSSHIP) {
-            if (random > 10) {
+            if (random > 40) {
             } else {
                 shoot();
             }
 
         } else if (type == BOSSCOPTER) {
+            if (random > 90) {
+                this.vx = speed;
+            } else if (random > 80) {
+                this.vx = -speed;
+            } else if (random > 20) {
 
+            } else
+                shoot();
         }
+
+
+        super.tick(levelWidth, levelHeight);
+        if (x > levelWidth - width || x < 5)
+            vx *= -speed;
+        if (y > levelHeight - 85-height || y < 5)
+            vy *= -speed;
 
 
         this.x = x + vx;
@@ -108,9 +149,16 @@ public class Boss extends Entity {
         if (p instanceof Bullet) {
             Bullet b = (Bullet) p;
             if (b.isPlayer && x < b.x && x + width > b.x && y < b.y && y + height > b.y) {
-                this.addToScore.accept(5);
-                this.removeParticleFromLevel.accept(p);
-                this.removeSelf.accept(this);
+                if (health>0){
+                    health--;
+                    this.removeParticleFromLevel.accept(p);
+                }
+                else if (health<=0) {
+                    this.addToScore.accept(h);
+                    this.removeParticleFromLevel.accept(p);
+                    this.removeSelf.accept(this);
+                }
+
             }
         }
     }

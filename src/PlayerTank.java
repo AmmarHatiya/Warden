@@ -10,7 +10,7 @@ public class PlayerTank extends Entity {
 
     private static final int DELAY = 10;
     private int delay = DELAY; //slows down rate of fire
-    private static final int THIRTYSEC = 100;
+    private static final int THIRTYSEC = 1000;
 
 
     public static final int HEALTH = 30;
@@ -233,30 +233,33 @@ if (tankdirection == LEFT){
             pause = false;
         }
 
-        if (usedMobility) {
-            m++;
-            this.x += this.vx * 2;
-            this.y += this.vy * 2;
-        }
         if (m > THIRTYSEC || !usedMobility) {
             this.x += this.vx;
             this.y += this.vy;
         }
-
-        if (usedRapid) {
-            r++;
-            this.delay += 2;
+        else if (usedMobility) {
+            m++;
+            this.x += this.vx * 2;
+            this.y += this.vy * 2;
         }
+
+
         if (r > THIRTYSEC || !usedRapid) {
             this.delay++;
         }
+        else if (usedRapid) {
+            r++;
+            this.delay += 2;
+        }
 
-        if (usedDouble) {
+
+        if (b > THIRTYSEC || !usedDouble) {
+
+        }
+        else if (usedDouble) {
             b++;
         }
-        if (b > THIRTYSEC || !usedDouble) {
-            usedDouble = false;
-        }
+
 
 
         if (Upgradesmenu.armor && !healthUpgradeApplied) {
@@ -298,7 +301,7 @@ if (tankdirection == LEFT){
         super.mouseDragged(e);
         if (delay > DELAY) {
             this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX(), e.getY(), true));
-            if (usedDouble)
+            if (b < THIRTYSEC && usedDouble)
                 this.addParticleToLevel.accept(new Bullet(this.x + 15, this.y + 15, e.getX() + 15, e.getY(), true));
             this.delay = 0;
         }
