@@ -1,8 +1,4 @@
 import java.awt.*;
-
-//https://stackoverflow.com/questions/44138641/2d-bullet-game-in-java
-
-
 public class Bullet extends Particle {
 
     int width = 8;
@@ -38,8 +34,8 @@ public class Bullet extends Particle {
 
 
     public void paint(Graphics2D g2d) {
-        if (isPlayer) g2d.setColor(Color.yellow);
-        else g2d.setColor(Color.red);
+        if (isPlayer) g2d.setColor(new Color(115, 255, 0));
+        else g2d.setColor(Color.RED);
         g2d.fillRect((int) Math.round(this.x), (int) Math.round(this.y), width, 8);
     }
 }
