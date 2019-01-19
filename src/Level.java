@@ -63,7 +63,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     public static int level = 0;
 
 
-    public static int points = 3100; //TODO: reduce before handing in
+    public static int points = 1000;
     private int currentWave = -1;
 
     private List<List<Entity>> waves = new CopyOnWriteArrayList<>();
@@ -102,34 +102,33 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
                     new Enemy(PLANE, 300, 75),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TURRET, 40, 150),
+                    new Enemy(TOWER, 600, 150),
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(PLANE, 300, 50),
+                    new Enemy(TURRET, 40, 100),
+                    new Enemy(TOWER, 700, 100),
                     new Enemy(TANK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
                     new Enemy(PLANE, 400, 150),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Enemy(TURRET, 50, 210),
+                    new Enemy(TOWER, 500, 400),
             }));
-
             this.addWave(Arrays.asList(new Entity[]{
                     new Boss(BOSSTANK, 500, 100),
-                    new Enemy(TANK, 100, 100),
+                    new Enemy(TANK, 100, 200),
                     new Enemy(TRUCK, 200, 100),
                     new Enemy(PLANE, 300, 100),
                     new Enemy(TURRET, 400, 100),
                     new Enemy(TANK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 150),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Enemy(PLANE, 300, 150),
+                    new Enemy(TURRET, 20, 200),
+                    new Enemy(TOWER, 700, 200),
             }));
         }
     }
@@ -138,36 +137,35 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
         public Level3() {
             this.level = 3;
             this.addWave(Arrays.asList(new Entity[]{
-                    new Enemy(TANK, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TANK, 100, 250),
+                    new Enemy(TRUCK, 200, 150),
+                    new Enemy(PLANE, 50, 50),
+                    new Enemy(TURRET, 800, 200),
+                    new Enemy(TOWER, 500, 200),
             }));
-
             this.addWave(Arrays.asList(new Entity[]{
-                    new Enemy(TANK, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
+                    new Enemy(TANK, 100, 175),
+                    new Enemy(TRUCK, 200, 175),
                     new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TURRET, 800, 250),
+                    new Enemy(TOWER, 50, 250),
                     new Enemy(TANK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Enemy(PLANE, 400, 50),
+                    new Enemy(TURRET, 20, 200),
+                    new Enemy(TOWER, 700, 200),
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
                     new Boss(BOSSSHIP, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TRUCK, 350, 50),
+                    new Enemy(PLANE, 300, 50),
+                    new Enemy(TURRET, 750, 150),
+                    new Enemy(TOWER, 900, 300),
                     new Enemy(TANK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
+                    new Enemy(PLANE, 200, 300),
+                    new Enemy(TURRET, 20, 200),
                     new Enemy(TOWER, 600, 200),
             }));
         }
@@ -178,37 +176,37 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
             this.level = 4;
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
+                    new Enemy(TRUCK, 200, 200),
+                    new Enemy(PLANE, 300, 50),
+                    new Enemy(TURRET, 40, 300),
+                    new Enemy(TOWER, 800, 100),
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
                     new Enemy(TANK, 100, 100),
                     new Enemy(TRUCK, 200, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
-                    new Enemy(TANK, 200, 200),
-                    new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Enemy(PLANE, 300, 20),
+                    new Enemy(TURRET, 750, 100),
+                    new Enemy(TOWER, 900, 100),
+                    new Enemy(TANK, 300, 200),
+                    new Enemy(TRUCK, 350, 200),
+                    new Enemy(PLANE, 400, 75),
+                    new Enemy(TURRET, 250, 200),
+                    new Enemy(TOWER, 500, 200),
             }));
 
             this.addWave(Arrays.asList(new Entity[]{
-                    new Boss(BOSSCOPTER, 100, 100),
-                    new Enemy(TRUCK, 200, 100),
-                    new Enemy(TRUCK, 300, 100),
-                    new Enemy(PLANE, 300, 100),
-                    new Enemy(TURRET, 400, 100),
-                    new Enemy(TOWER, 500, 100),
-                    new Enemy(TANK, 200, 200),
+                    new Boss(BOSSCOPTER, 50, 150),
+                    new Enemy(TRUCK, 200, 200),
                     new Enemy(TRUCK, 300, 200),
-                    new Enemy(PLANE, 400, 200),
-                    new Enemy(TURRET, 500, 200),
-                    new Enemy(TOWER, 600, 200),
+                    new Enemy(PLANE, 300, 50),
+                    new Enemy(TURRET, 40, 200),
+                    new Enemy(TOWER, 900, 200),
+                    new Enemy(TANK, 200, 200),
+                    new Enemy(TRUCK, 350, 200),
+                    new Enemy(PLANE, 400, 250),
+                    new Enemy(TURRET, 750, 300),
+                    new Enemy(TOWER, 250, 300),
             }));
         }
     }
@@ -398,7 +396,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void addToScore(int n) {
-        points += n;
+        points += n*10;
     }
 
     public void reset() {

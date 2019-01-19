@@ -17,8 +17,6 @@ public class PlayerTank extends Entity {
     public int health = HEALTH;
 
     private boolean healthUpgradeApplied = false;
-    private boolean rapidUpgradeApplied = false;
-
     public boolean usedKit = false;
     public boolean usedRapid = false;
     public boolean usedDouble = false;

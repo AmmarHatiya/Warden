@@ -104,43 +104,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.fillRect(citybttn.buttonx + 25, citybttn.buttony + 15, citybttn.buttonw - 105, citybttn.buttonh - 50);
         g2d.fillRect(citybttn.buttonx + 80, citybttn.buttony + 10, citybttn.buttonw - 120, citybttn.buttonh - 50);
         g2d.fillRect(citybttn.buttonx + 115, citybttn.buttony + 20, citybttn.buttonw - 115, citybttn.buttonh - 50);
-        //WINDOWS
-       /* g2d.setColor(new Color(0, 0, 0, 251));
-        // building 1 lines
-        g2d.drawLine(citybttn.buttonx+1,citybttn.buttony+35,citybttn.buttonw-100,citybttn.buttony+35);
-        g2d.drawLine(citybttn.buttonx+1,citybttn.buttony+45,citybttn.buttonw-100,citybttn.buttony+45);
-        g2d.drawLine(citybttn.buttonx+1,citybttn.buttony+55,citybttn.buttonw-100,citybttn.buttony+55);
-        g2d.drawLine(citybttn.buttonx+1,citybttn.buttony+65,citybttn.buttonw-100,citybttn.buttony+65);
 
-        g2d.setColor(new Color(0, 0, 0, 251));
-        g2d.drawLine(citybttn.buttonx+5,citybttn.buttony+74,citybttn.buttonx+5,citybttn.buttony+25);
-        g2d.drawLine(citybttn.buttonx+15,citybttn.buttony+74,citybttn.buttonx+15,citybttn.buttony+25);
-        // building 2 lines
-        g2d.setColor(new Color(0, 0, 0, 251));
-        g2d.drawLine(citybttn.buttonx+25,citybttn.buttony+35,citybttn.buttonw-51,citybttn.buttony+35);
-        g2d.drawLine(citybttn.buttonx+25,citybttn.buttony+45,citybttn.buttonw-51,citybttn.buttony+45);
-        g2d.drawLine(citybttn.buttonx+25,citybttn.buttony+55,citybttn.buttonw-52,citybttn.buttony+55);
-        g2d.drawLine(citybttn.buttonx+25,citybttn.buttony+65,citybttn.buttonw-51,citybttn.buttony+65);
-        g2d.drawLine(citybttn.buttonx+25,citybttn.buttony+25,citybttn.buttonw-51,citybttn.buttony+25);
-
-
-       *//* g2d.drawLine(citybttn.buttonx+30,citybttn.buttony+74,citybttn.buttonx+30,citybttn.buttony+15);
-        g2d.drawLine(citybttn.buttonx+45,citybttn.buttony+74,citybttn.buttonx+45,citybttn.buttony+15);
-        g2d.drawLine(citybttn.buttonx+55,citybttn.buttony+74,citybttn.buttonx+55,citybttn.buttony+15);
-        g2d.drawLine(citybttn.buttonx+65,citybttn.buttony+74,citybttn.buttonx+65,citybttn.buttony+15);*//*
-        // building 3 lines
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+35,citybttn.buttonw-11,citybttn.buttony+35);
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+25,citybttn.buttonw-11,citybttn.buttony+25);
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+45,citybttn.buttonw-11,citybttn.buttony+45);
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+55,citybttn.buttonw-11,citybttn.buttony+55);
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+65,citybttn.buttonw-11,citybttn.buttony+65);
-        g2d.drawLine(citybttn.buttonx+80,citybttn.buttony+15,citybttn.buttonw-11,citybttn.buttony+15);
-        // building 4 lines
-        g2d.drawLine(citybttn.buttonx+115,citybttn.buttony+25,citybttn.buttonw+30,citybttn.buttony+25);
-        g2d.drawLine(citybttn.buttonx+115,citybttn.buttony+35,citybttn.buttonw+30,citybttn.buttony+35);
-        g2d.drawLine(citybttn.buttonx+115,citybttn.buttony+45,citybttn.buttonw+30,citybttn.buttony+45);
-        g2d.drawLine(citybttn.buttonx+115,citybttn.buttony+55,citybttn.buttonw+30,citybttn.buttony+55);
-        g2d.drawLine(citybttn.buttonx+115,citybttn.buttony+65,citybttn.buttonw+30,citybttn.buttony+65);*/
         //ROAD
         g2d.setColor(new Color(130, 130, 130, 251));
         g2d.fillRect(citybttn.buttonx, citybttn.buttony + 75, citybttn.buttonw, citybttn.buttonh - 75);
@@ -158,9 +122,7 @@ public class LevelSelectMenu extends AppPanel implements MouseListener {
         g2d.fillOval(citybttn.buttonx + 8, citybttn.buttony + 75, 50, 15);
         g2d.setColor(new Color(50, 89, 47, 254));
         g2d.fillPolygon(citytankx, citytanky, 4);
-/*
-        g2d.drawImage(playertankimg,0,0,this);
-*/
+
     }
 
     public void tick() {
