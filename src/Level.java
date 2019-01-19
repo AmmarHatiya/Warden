@@ -396,7 +396,7 @@ public abstract class Level extends AppPanel implements MouseListener, KeyListen
     }
 
     public void addToScore(int n) {
-        points += n;
+        points += n*10;
     }
 
     public void reset() {
