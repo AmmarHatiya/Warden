@@ -13,3 +13,7 @@ Top-down retro themed tank game built in Java.
 ### Upgrade Store
 ![UpgradeMenu](https://user-images.githubusercontent.com/45467347/168204376-7c561b1d-361d-4791-9996-9a40aec9d96b.PNG)
 
+### Gameplay (Level 3)
+![MudLevel](https://user-images.githubusercontent.com/45467347/168204504-fded8b46-8d5d-4d98-99a6-d12a409b10e6.PNG)
+
+
